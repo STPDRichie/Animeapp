@@ -5,9 +5,9 @@ import {
     Route,
 } from 'react-router-dom';
 
-import Home from './pages';
+import HomePage from './pages';
 
-function About() {
+function AboutPage() {
     return <h2>About</h2>;
 }
 
@@ -15,8 +15,8 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path='/' element={ <Home /> } />
-                <Route path='/about' element={ <About /> } />
+                <Route path='/' element={ <HomePage /> } />
+                <Route path='/about' element={ <AboutPage /> } />
             </Routes>
         </Router>
     );
