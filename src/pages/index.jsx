@@ -1,86 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-function handleResponse(response) {
-    return response.json().then(function (json) {
-        return response.ok ? json : Promise.reject(json);
-    });
-}
-
-function handleData(data) {
-    console.log(data);
-}
-
-function handleError(error) {
-    console.error(error);
-}
+import { fetchPopular } from '../actions/homePage/actions';
 
 function HomePage() {
-    const [time, setTime] = useState(0);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        // fetch('/time').then((response) => response.json()).then((data) => setTime(data.time));
-        const query = `
-            query ($id: Int) {
-            Media (id: $id, type: ANIME) {
-                id
-                episodes
-                duration
-                description
-                genres
-                averageScore
-                tags {
-                    id
-                    name
-                }
-                bannerImage
-                coverImage {
-                    medium
-                    color
-                }
-                startDate {
-                    year
-                    month
-                    day
-                }
-                endDate {
-                    year
-                    month
-                    day
-                }
-                title {
-                    romaji
-                    english
-                    native
-                }
-            }
-        }`;
-
-        const variables = {
-            id: 120
-        };
-        const url = 'https://graphql.anilist.co';
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-                query: query,
-                variables: variables
-            })
-        };
-        
-        fetch(url, options)
-            .then(handleResponse)
-            .then(handleData)
-            .catch(handleError);
-    }, []);
+        dispatch(fetchPopular());
+    }, [dispatch]);
 
     return (
         <React.Fragment>
             <h2>Home</h2>
-            <h1>{time}</h1>
         </React.Fragment>
     );
 }
