@@ -1,0 +1,48 @@
+{
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "babelOptions": {
+            "configFile": "./node_modules/@netangels/transpilers-configs/babel/babel.config.json"
+        }
+    },
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "extends": [
+        "airbnb-base",
+        "plugin:react/recommended",
+        "plugin:import/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "^16.8.6"
+        },
+        "import/resolver": {
+            "node": {
+                "paths": ["src"],
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
+    "rules": {
+        "indent": ["off"],
+        "class-methods-use-this": "off",
+        "comma-dangle": "off",
+        "react/no-unknown-property": "off",
+        "import/prefer-default-export": "off",
+        "no-restricted-syntax": "off",
+        "linebreak-style": "off",
+        "no-shadow": "off",
+        "no-underscore-dangle": "off",
+        "camelcase": "off",
+        "import/no-extraneous-dependencies": "off"
+    },
+    "plugins": ["import", "react", "prettier"]
+}
