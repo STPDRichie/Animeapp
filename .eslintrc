@@ -2,9 +2,6 @@
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
-        },
-        "babelOptions": {
-            "configFile": "./node_modules/@netangels/transpilers-configs/babel/babel.config.json"
         }
     },
     "parser": "babel-eslint",
@@ -22,7 +19,7 @@
     "settings": {
         "react": {
             "pragma": "React",
-            "version": "^16.8.6"
+            "version": "^18.2.0"
         },
         "import/resolver": {
             "node": {

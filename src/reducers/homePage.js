@@ -13,7 +13,6 @@ export default () => {
     return (state = defaultState, action) => {
         switch (action.type) {
             case FETCH_POPULAR_SUCCESSFULLY: {
-                console.log(action.data);
                 return {
                     ...state,
                     popular: action.data,
