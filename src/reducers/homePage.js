@@ -8,14 +8,18 @@ export default () => {
     const defaultState = {
         popular: null,
         popularInProgress: false,
-    }
+    };
 
     return (state = defaultState, action) => {
         switch (action.type) {
             case FETCH_POPULAR_SUCCESSFULLY: {
+                const { media } = action.data.popular.data.Page;
                 return {
                     ...state,
-                    popular: action.data,
+                    popular: {
+                        count: media.length,
+                        entities: media,
+                    },
                     popularInProgress: false,
                 };
             }
@@ -35,5 +39,5 @@ export default () => {
             default:
                 return state;
         }
-    }
+    };
 };

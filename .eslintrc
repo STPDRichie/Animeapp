@@ -4,14 +4,13 @@
             "jsx": true
         }
     },
-    "parser": "babel-eslint",
     "env": {
         "browser": true,
         "node": true,
         "es6": true
     },
     "extends": [
-        "airbnb-base",
+        "eslint:recommended",
         "plugin:react/recommended",
         "plugin:import/recommended",
         "plugin:prettier/recommended"
@@ -39,7 +38,8 @@
         "no-shadow": "off",
         "no-underscore-dangle": "off",
         "camelcase": "off",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "default-param-last": "off"
     },
     "plugins": ["import", "react", "prettier"]
 }

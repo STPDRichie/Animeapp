@@ -1,10 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import store from './reducers/store';
 
@@ -19,8 +15,8 @@ function App() {
         <Provider store={store}>
             <Router>
                 <Routes>
-                    <Route path='/' element={ <HomePage /> } />
-                    <Route path='/about' element={ <AboutPage /> } />
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/about" element={<AboutPage />} />
                 </Routes>
             </Router>
         </Provider>
