@@ -9,15 +9,17 @@ function ImageWithTitleCard(props) {
 
     return (
         <div className="image-with-title-card">
-            <div className="image-with-title-card__image-wrapper">
-                <div
-                    style={{
-                        backgroundColor: color,
-                    }}
+            <div
+                className="image-with-title-card__image-wrapper"
+                style={{
+                    backgroundColor: color,
+                }}
+            >
+                <img
+                    src={medium}
+                    alt={title.english}
                     className="image-with-title-card__image"
-                >
-                    {medium}
-                </div>
+                />
             </div>
             <div className="image-with-title-card__title">{title.english}</div>
         </div>

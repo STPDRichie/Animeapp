@@ -1,0 +1,21 @@
+.image-with-title-card {
+    width: 185px;
+    height: 315px;
+    &__image-wrapper {
+        width: 185px;
+        height: 265px;
+        border-radius: 10px;
+    }
+    &__image {
+        height: 100%;
+        object-fit: cover;
+    }
+    &__title {
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: 400;
+        margin-top: 15px;
+        color: $text-color;
+        max-height: 40px;
+    }
+}
