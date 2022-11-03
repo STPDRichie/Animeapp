@@ -9,17 +9,21 @@ function HomePage() {
     const { popular } = useSelector((state) => state.homePage);
 
     useEffect(() => {
+        document.title = 'Animeapp – Главная';
         dispatch(fetchPopular());
     }, [dispatch]);
 
     return (
         <div className="home-page">
-            <h2>Home</h2>
             {popular && popular.entities && popular.entities.length > 0 && (
                 <div className="popular-block">
-                    <div className="popular__count">{popular.count}</div>
+                    <div className="popular__count">Всего {popular.count}</div>
                     <div className="popular__entities">
-                        {popular.entities.map((entity) => entity.title.english)}
+                        {popular.entities.map((entity) => (
+                            <div key={entity.id} className="popular__entity">
+                                {entity.title.english}
+                            </div>
+                        ))}
                     </div>
                 </div>
             )}
