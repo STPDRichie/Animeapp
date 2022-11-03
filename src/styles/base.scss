@@ -1,12 +1,53 @@
 * {
     margin: 0;
     padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+:focus {
+    outline: none;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 1;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote::after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+    resize: vertical;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
 }
 
 code {
@@ -16,6 +57,11 @@ code {
 
 a {
     text-decoration: none;
+}
+
+a:active,
+a:hover {
+    outline: none;
 }
 
 ul {

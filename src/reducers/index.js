@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 
-const attachedReducers = [
-    'homePage',
-];
+const attachedReducers = ['homePage'];
 
 function RootReducer(initialState, history) {
     const reducersMap = {};

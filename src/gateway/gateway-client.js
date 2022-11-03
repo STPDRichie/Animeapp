@@ -32,11 +32,17 @@ class GatewayClient {
         if (resource == null) {
             return `${this.gatewayUrl}${this.baseUrl}/${service}/${url || ''}`;
         }
-        return `${this.gatewayUrl}${this.baseUrl}/${service}/${resource}/${url || ''}`;
+        return `${this.gatewayUrl}${this.baseUrl}/${service}/${resource}/${
+            url || ''
+        }`;
     }
 
     async makeRequest(service, resource, url, requestOptions) {
-        const options = _.merge({}, this.defaultResponseOptions, requestOptions);
+        const options = _.merge(
+            {},
+            this.defaultResponseOptions,
+            requestOptions,
+        );
         options.headers['Content-Type'] = 'application/json';
         options.headers['Accept'] = 'application/json';
         if (options.data) {
