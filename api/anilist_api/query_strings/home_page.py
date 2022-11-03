@@ -1,17 +1,4 @@
-populars = '''
-query ($id: Int) {
-    Media (id: $id, type: ANIME) {
-        id
-        title {
-            romaji
-            english
-            native
-        }
-    }
-}
-'''
-
-popular = '''
+search = '''
 query ($search: String) {
     Page(page: 1) {
         media(search: $search, type: ANIME) {
@@ -46,6 +33,8 @@ query ($search: String) {
             bannerImage
             coverImage {
                 medium
+                large
+                extraLarge
                 color
             }
             title {

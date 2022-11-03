@@ -14,6 +14,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1;
+  background-color: #edf1f5;
 }
 
 blockquote,
@@ -74,9 +75,11 @@ ul {
 .image-with-title-card__image-wrapper {
   width: 185px;
   height: 265px;
-  border-radius: 10px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 .image-with-title-card__image {
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -84,7 +87,7 @@ ul {
   font-size: 16px;
   line-height: 18px;
   font-weight: 400;
-  margin-top: 15px;
-  color: #455562;
+  margin-top: 10px;
+  color: #748899;
   max-height: 40px;
 }

@@ -7,10 +7,10 @@ import {
 
 import HomeResource from '../../gateway/resources/homePage';
 
-export const fetchPopular = (callback) => async (dispatch) => {
+export const searchAnime = (query, callback) => async (dispatch) => {
     dispatch({ type: FETCH_POPULAR_IN_PROGRESS });
     const resource = new HomeResource({ url: '', token: 'asd' });
-    const response = await resource.fetchPopular();
+    const response = await resource.searchAnime(query);
     const data = await response.json();
     if (response.ok) {
         dispatch({

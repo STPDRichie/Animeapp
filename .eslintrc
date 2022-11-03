@@ -39,7 +39,8 @@
         "no-underscore-dangle": "off",
         "camelcase": "off",
         "import/no-extraneous-dependencies": "off",
-        "default-param-last": "off"
+        "default-param-last": "off",
+        "no-unused-vars": "warn"
     },
     "plugins": ["import", "react", "prettier"]
 }

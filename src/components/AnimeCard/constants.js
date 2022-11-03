@@ -6,6 +6,8 @@ export const animeCardFormat = PropTypes.shape({
     coverImage: PropTypes.shape({
         color: PropTypes.string,
         medium: PropTypes.string,
+        large: PropTypes.string,
+        extraLarge: PropTypes.string,
     }),
     description: PropTypes.string,
     duration: PropTypes.number,

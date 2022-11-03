@@ -6,34 +6,34 @@ import {
 
 export default () => {
     const defaultState = {
-        popular: null,
-        popularInProgress: false,
+        searchResult: null,
+        searchInProgress: false,
     };
 
     return (state = defaultState, action) => {
         switch (action.type) {
             case FETCH_POPULAR_SUCCESSFULLY: {
-                const { media } = action.data.popular.data.Page;
+                const { media } = action.data.data.Page;
                 return {
                     ...state,
-                    popular: {
+                    searchResult: {
                         count: media.length,
                         entities: media,
                     },
-                    popularInProgress: false,
+                    searchInProgress: false,
                 };
             }
             case FETCH_POPULAR_IN_PROGRESS: {
                 return {
                     ...state,
-                    popular: null,
-                    popularInProgress: true,
+                    searchResult: null,
+                    searchInProgress: true,
                 };
             }
             case FETCH_POPULAR_WITH_ERRORS: {
                 return {
                     ...state,
-                    popularInProgress: false,
+                    searchInProgress: false,
                 };
             }
             default:

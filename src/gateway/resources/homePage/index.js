@@ -1,9 +1,9 @@
 const BaseResource = require('../resource');
 
 class HomeResource extends BaseResource {
-    async fetchPopular() {
-        return this.makeRequest('post', 'popular/', {
-            query: 'Naruto',
+    async searchAnime(query) {
+        return this.makeRequest('post', 'search/', {
+            query: query === '' ? null : query,
         });
     }
 }
