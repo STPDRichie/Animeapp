@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import store from './reducers/store';
 
-import HomePage from './pages';
+import HomePage from './pages/homePage';
 
 function AboutPage() {
     return <h2>About</h2>;

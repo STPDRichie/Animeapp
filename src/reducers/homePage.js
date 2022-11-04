@@ -2,10 +2,15 @@ import {
     FETCH_POPULAR_IN_PROGRESS,
     FETCH_POPULAR_SUCCESSFULLY,
     FETCH_POPULAR_WITH_ERRORS,
+    SEARCH_IN_PROGRESS,
+    SEARCH_SUCCESSFULLY,
+    SEARCH_WITH_ERRORS,
 } from '../actions/homePage/actionTypes';
 
 export default () => {
     const defaultState = {
+        popular: null,
+        popularInProgress: true,
         searchResult: null,
         searchInProgress: false,
     };
@@ -16,6 +21,30 @@ export default () => {
                 const { media } = action.data.data.Page;
                 return {
                     ...state,
+                    popular: {
+                        count: media.length,
+                        entities: media,
+                    },
+                    popularInProgress: false,
+                };
+            }
+            case FETCH_POPULAR_IN_PROGRESS: {
+                return {
+                    ...state,
+                    popular: null,
+                    popularInProgress: true,
+                };
+            }
+            case FETCH_POPULAR_WITH_ERRORS: {
+                return {
+                    ...state,
+                    popularInProgress: false,
+                };
+            }
+            case SEARCH_SUCCESSFULLY: {
+                const { media } = action.data.data.Page;
+                return {
+                    ...state,
                     searchResult: {
                         count: media.length,
                         entities: media,
@@ -23,14 +52,14 @@ export default () => {
                     searchInProgress: false,
                 };
             }
-            case FETCH_POPULAR_IN_PROGRESS: {
+            case SEARCH_IN_PROGRESS: {
                 return {
                     ...state,
                     searchResult: null,
                     searchInProgress: true,
                 };
             }
-            case FETCH_POPULAR_WITH_ERRORS: {
+            case SEARCH_WITH_ERRORS: {
                 return {
                     ...state,
                     searchInProgress: false,

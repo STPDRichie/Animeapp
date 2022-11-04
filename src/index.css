@@ -91,3 +91,20 @@ ul {
   color: #748899;
   max-height: 40px;
 }
+
+.home-page .popular-block {
+  max-width: 1200px;
+  margin: 50px auto;
+}
+.home-page .popular__count {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 22px;
+  color: #748899;
+}
+.home-page .popular__entities {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
