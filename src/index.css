@@ -9,11 +9,24 @@
   outline: none;
 }
 
+@font-face {
+  font-family: "Overpass Italic";
+  font-style: italic;
+  font-weight: normal;
+  src: local("Overpass Italic"), url("static/fonts/Overpass-Italic-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: "Overpass";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Overpass"), url("static/fonts/Overpass-VariableFont_wght.ttf");
+}
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Overpass", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1;
+  font-weight: 600;
   background-color: #edf1f5;
 }
 
@@ -91,27 +104,28 @@ ul {
   height: 75px;
 }
 .image-with-title-card__title {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 18px;
-  font-weight: 400;
   margin-top: 10px;
   color: #748899;
   max-height: 40px;
 }
 
-.home-page .popular-block, .home-page .search-block {
-  max-width: 1200px;
+.home-page .trending-block, .home-page .search-block {
+  max-width: 1100px;
   margin: 50px auto;
 }
-.home-page .popular__count, .home-page .search__count {
+.home-page .trending__title, .home-page .search__title {
   margin-bottom: 20px;
-  font-size: 20px;
-  line-height: 22px;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
   color: #748899;
 }
-.home-page .popular__entities, .home-page .search__entities {
-  display: flex;
+.home-page .trending__entities, .home-page .search__entities {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fill, 185px);
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
 }

@@ -1,7 +1,7 @@
 import {
-    FETCH_POPULAR_IN_PROGRESS,
-    FETCH_POPULAR_SUCCESSFULLY,
-    FETCH_POPULAR_WITH_ERRORS,
+    FETCH_TRENDING_IN_PROGRESS,
+    FETCH_TRENDING_SUCCESSFULLY,
+    FETCH_TRENDING_WITH_ERRORS,
     SEARCH_INIT,
     SEARCH_IN_PROGRESS,
     SEARCH_SUCCESSFULLY,
@@ -10,36 +10,36 @@ import {
 
 export default () => {
     const defaultState = {
-        popular: null,
-        popularInProgress: true,
+        trending: null,
+        trendingInProgress: true,
         searchResult: null,
         searchInProgress: false,
     };
 
     return (state = defaultState, action) => {
         switch (action.type) {
-            case FETCH_POPULAR_SUCCESSFULLY: {
+            case FETCH_TRENDING_SUCCESSFULLY: {
                 const { media } = action.data.data.Page;
                 return {
                     ...state,
-                    popular: {
+                    trending: {
                         count: media.length,
                         entities: media,
                     },
-                    popularInProgress: false,
+                    trendingInProgress: false,
                 };
             }
-            case FETCH_POPULAR_IN_PROGRESS: {
+            case FETCH_TRENDING_IN_PROGRESS: {
                 return {
                     ...state,
-                    popular: null,
-                    popularInProgress: true,
+                    trending: null,
+                    trendingInProgress: true,
                 };
             }
-            case FETCH_POPULAR_WITH_ERRORS: {
+            case FETCH_TRENDING_WITH_ERRORS: {
                 return {
                     ...state,
-                    popularInProgress: false,
+                    trendingInProgress: false,
                 };
             }
             case SEARCH_INIT: {

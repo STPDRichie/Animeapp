@@ -9,11 +9,26 @@
     outline: none;
 }
 
+@font-face {
+    font-family: 'Overpass Italic';
+    font-style: italic;
+    font-weight: normal;
+    src: local('Overpass Italic'), url('static/fonts/Overpass-Italic-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Overpass';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Overpass'), url('static/fonts/Overpass-VariableFont_wght.ttf');
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Overpass', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1;
+    font-weight: 600;
     background-color: $light-background;
 }
 

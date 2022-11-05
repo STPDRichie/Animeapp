@@ -1,8 +1,8 @@
 import { isFunction } from '../../utils/functions';
 import {
-    FETCH_POPULAR_IN_PROGRESS,
-    FETCH_POPULAR_SUCCESSFULLY,
-    FETCH_POPULAR_WITH_ERRORS,
+    FETCH_TRENDING_IN_PROGRESS,
+    FETCH_TRENDING_SUCCESSFULLY,
+    FETCH_TRENDING_WITH_ERRORS,
     SEARCH_INIT,
     SEARCH_IN_PROGRESS,
     SEARCH_SUCCESSFULLY,
@@ -11,21 +11,21 @@ import {
 
 import HomeResource from '../../gateway/resources/homePage';
 
-export const fetchPopular = (callback) => async (dispatch) => {
-    dispatch({ type: FETCH_POPULAR_IN_PROGRESS });
+export const fetchTrending = (callback) => async (dispatch) => {
+    dispatch({ type: FETCH_TRENDING_IN_PROGRESS });
     const resource = new HomeResource({ url: '', token: 'asd' });
-    const response = await resource.fetchPopular();
+    const response = await resource.fetchTrending();
     const data = await response.json();
     if (response.ok) {
         dispatch({
-            type: FETCH_POPULAR_SUCCESSFULLY,
+            type: FETCH_TRENDING_SUCCESSFULLY,
             data,
         });
         if (isFunction(callback)) {
             callback();
         }
     } else {
-        dispatch({ type: FETCH_POPULAR_WITH_ERRORS });
+        dispatch({ type: FETCH_TRENDING_WITH_ERRORS });
     }
 };
 

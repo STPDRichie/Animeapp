@@ -1,20 +1,22 @@
 .home-page {
-    .popular, .search {
+    .trending, .search {
         &-block {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 50px auto;
         }
-        &__count {
+        &__title {
             margin-bottom: 20px;
-            font-size: 20px;
-            line-height: 22px;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
             color: $light-text;
         }
         &__entities {
-            display: flex;
+            display: grid;
+            grid-gap: 25px;
+            grid-template-columns: repeat(auto-fill, 185px);
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 40px;
         }
     }
 }

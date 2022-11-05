@@ -20,7 +20,6 @@ export const animeCardFormat = PropTypes.shape({
     format: PropTypes.string,
     genres: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.number,
-    idMal: PropTypes.number,
     isAdult: PropTypes.bool,
     popularity: PropTypes.number,
     season: PropTypes.string,
