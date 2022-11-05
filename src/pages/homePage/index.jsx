@@ -27,7 +27,9 @@ function HomePage() {
             dispatch(searchAnime(searchQuery));
         } else {
             dispatch(initSearchAnime());
-            dispatch(fetchHomePageAnime());
+            if (!trending) {
+                dispatch(fetchHomePageAnime());
+            }
         }
     }, [searchQuery]);
 
@@ -48,6 +50,7 @@ function HomePage() {
                     <ItemsBlock
                         name="trending"
                         title="Trending now"
+                        viewAllLink="/trending"
                         items={trending}
                         itemsInProgress={false}
                         itemInstance={(entity) => (
@@ -57,6 +60,7 @@ function HomePage() {
                     <ItemsBlock
                         name="season"
                         title="Popular this season"
+                        viewAllLink="/season"
                         items={season}
                         itemsInProgress={false}
                         itemInstance={(entity) => (
@@ -66,6 +70,7 @@ function HomePage() {
                     <ItemsBlock
                         name="next-season"
                         title="Upcoming next season"
+                        viewAllLink="/next-season"
                         items={nextSeason}
                         itemsInProgress={false}
                         itemInstance={(entity) => (
@@ -75,6 +80,7 @@ function HomePage() {
                     <ItemsBlock
                         name="popular"
                         title="All time popular"
+                        viewAllLink="/popular"
                         items={popular}
                         itemsInProgress={false}
                         itemInstance={(entity) => (
@@ -84,6 +90,7 @@ function HomePage() {
                     <ItemsBlock
                         name="top"
                         title="Top 10 anime"
+                        viewAllLink="/top"
                         items={top}
                         itemsInProgress={false}
                         itemInstance={(entity) => (

@@ -5,11 +5,33 @@
     }
     &__title {
         margin-bottom: 20px;
-        font-size: 16px;
-        line-height: 18px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: $light-text;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        cursor: pointer;
+    }
+    &-title {
+        &__label {
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: $main-text;
+            transition: color 0.2s ease-in-out;
+            &:hover {
+                color: $main-text-hover;
+            }
+        }
+        &__link {
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 600;
+            color: $light-text;
+            transition: color 0.2s ease-in-out;
+            &:hover {
+                color: $light-text-hover;
+            }
+        }
     }
     &__entities {
         display: grid;

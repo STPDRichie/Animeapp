@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import store from './reducers/store';
 
@@ -13,12 +13,12 @@ function AboutPage() {
 function App() {
     return (
         <Provider store={store}>
-            <Router>
+            <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/about" element={<AboutPage />} />
                 </Routes>
-            </Router>
+            </BrowserRouter>
         </Provider>
     );
 }

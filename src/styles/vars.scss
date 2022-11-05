@@ -1,4 +1,10 @@
 $main-text: #455562;
 $light-text: #748899;
 
+$main-text-hover: darken($main-text, 20%);
+$light-text-hover: darken($light-text, 20%);
+
 $light-background: #edf1f5;
+
+$scrollbar: #cccccc;
+$scrollbar-hover: #aaaaaa;
