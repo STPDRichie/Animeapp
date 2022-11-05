@@ -1,8 +1,8 @@
 import { isFunction } from '../../utils/functions';
 import {
-    FETCH_TRENDING_IN_PROGRESS,
-    FETCH_TRENDING_SUCCESSFULLY,
-    FETCH_TRENDING_WITH_ERRORS,
+    FETCH_HOME_IN_PROGRESS,
+    FETCH_HOME_SUCCESSFULLY,
+    FETCH_HOME_WITH_ERRORS,
     SEARCH_INIT,
     SEARCH_IN_PROGRESS,
     SEARCH_SUCCESSFULLY,
@@ -11,21 +11,21 @@ import {
 
 import HomeResource from '../../gateway/resources/homePage';
 
-export const fetchTrending = (callback) => async (dispatch) => {
-    dispatch({ type: FETCH_TRENDING_IN_PROGRESS });
+export const fetchHomePageAnime = (callback) => async (dispatch) => {
+    dispatch({ type: FETCH_HOME_IN_PROGRESS });
     const resource = new HomeResource({ url: '', token: 'asd' });
-    const response = await resource.fetchTrending();
+    const response = await resource.fetchHomePageAnime();
     const data = await response.json();
     if (response.ok) {
         dispatch({
-            type: FETCH_TRENDING_SUCCESSFULLY,
+            type: FETCH_HOME_SUCCESSFULLY,
             data,
         });
         if (isFunction(callback)) {
             callback();
         }
     } else {
-        dispatch({ type: FETCH_TRENDING_WITH_ERRORS });
+        dispatch({ type: FETCH_HOME_WITH_ERRORS });
     }
 };
 
