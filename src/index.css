@@ -77,11 +77,18 @@ ul {
   height: 265px;
   border-radius: 5px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .image-with-title-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.image-with-title-card__sad-emoji {
+  width: 75px;
+  height: 75px;
 }
 .image-with-title-card__title {
   font-size: 16px;
@@ -92,17 +99,17 @@ ul {
   max-height: 40px;
 }
 
-.home-page .popular-block {
+.home-page .popular-block, .home-page .search-block {
   max-width: 1200px;
   margin: 50px auto;
 }
-.home-page .popular__count {
+.home-page .popular__count, .home-page .search__count {
   margin-bottom: 20px;
   font-size: 20px;
   line-height: 22px;
   color: #748899;
 }
-.home-page .popular__entities {
+.home-page .popular__entities, .home-page .search__entities {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

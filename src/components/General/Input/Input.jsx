@@ -13,7 +13,6 @@ function Input(props) {
         isHidden,
         onKeyDown = () => {},
         inputAttrs = {},
-        onKeyPress = () => {},
         onBlur = () => {},
         onClick = () => {},
         autoComplete = 'off',
@@ -42,7 +41,6 @@ function Input(props) {
                     name={name}
                     value={value}
                     autoComplete={autoComplete}
-                    onKeyPress={onKeyPress}
                     onKeyDown={onKeyDown}
                     onBlur={onBlur}
                     onClick={onClick}
@@ -80,7 +78,6 @@ Input.propTypes = {
     onClick: PropTypes.func,
     inputAttrs: PropTypes.shape({}),
     isHidden: PropTypes.bool,
-    onKeyPress: PropTypes.func,
     onKeyDown: PropTypes.func,
     onBlur: PropTypes.func,
     classes: PropTypes.arrayOf(PropTypes.string),

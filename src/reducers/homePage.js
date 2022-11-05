@@ -2,6 +2,7 @@ import {
     FETCH_POPULAR_IN_PROGRESS,
     FETCH_POPULAR_SUCCESSFULLY,
     FETCH_POPULAR_WITH_ERRORS,
+    SEARCH_INIT,
     SEARCH_IN_PROGRESS,
     SEARCH_SUCCESSFULLY,
     SEARCH_WITH_ERRORS,
@@ -41,6 +42,13 @@ export default () => {
                     popularInProgress: false,
                 };
             }
+            case SEARCH_INIT: {
+                return {
+                    ...state,
+                    searchResult: null,
+                    searchInProgress: false,
+                };
+            }
             case SEARCH_SUCCESSFULLY: {
                 const { media } = action.data.data.Page;
                 return {
@@ -55,7 +63,6 @@ export default () => {
             case SEARCH_IN_PROGRESS: {
                 return {
                     ...state,
-                    searchResult: null,
                     searchInProgress: true,
                 };
             }

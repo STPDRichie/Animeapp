@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../components/General/Input/Input';
 import ImageWithTitleCard from '../../components/AnimeCard/ImageWithTitleCard';
 
-import { fetchPopular, searchAnime } from '../../actions/homePage/actions';
+import {
+    fetchPopular,
+    initSearchAnime,
+    searchAnime,
+} from '../../actions/homePage/actions';
 
 const popular = {
     count: 8,
@@ -488,16 +492,17 @@ function HomePage() {
     const dispatch = useDispatch();
 
     const { searchResult } = useSelector((state) => state.homePage);
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState();
 
     useEffect(() => {
         document.title = 'Animeapp – Главная';
     }, []);
 
     useEffect(() => {
-        if (searchQuery && searchQuery !== '') {
+        if (searchQuery) {
             dispatch(searchAnime(searchQuery));
         } else {
+            dispatch(initSearchAnime());
             dispatch(fetchPopular());
         }
     }, [searchQuery]);
@@ -505,40 +510,35 @@ function HomePage() {
     return (
         <div className="home-page">
             <Input value={searchQuery} onChange={setSearchQuery} />
-            {popular &&
-                popular.entities &&
-                popular.entities.length > 0 &&
-                !searchResult && (
-                    <div className="popular-block">
-                        <div className="popular__count">Популярные</div>
-                        <div className="popular__entities">
-                            {popular.entities.map((entity) => (
-                                <div
-                                    key={entity.id}
-                                    className="popular__entity"
-                                >
-                                    <ImageWithTitleCard animeCard={entity} />
-                                </div>
-                            ))}
-                        </div>
+            {popular && popular.entities && !searchResult && (
+                <div className="popular-block">
+                    <div className="popular__count">Популярные</div>
+                    <div className="popular__entities">
+                        {popular.entities.map((entity, i) => (
+                            <div
+                                key={entity.id + i}
+                                className="popular__entity"
+                            >
+                                <ImageWithTitleCard animeCard={entity} />
+                            </div>
+                        ))}
                     </div>
-                )}
-            {searchResult &&
-                searchResult.entities &&
-                searchResult.entities.length > 0 && (
-                    <div className="search-block">
-                        <div className="search__count">
-                            Всего найдено {searchResult.count}
-                        </div>
-                        <div className="search__entities">
-                            {searchResult.entities.map((entity) => (
-                                <div key={entity.id} className="search__entity">
-                                    <ImageWithTitleCard animeCard={entity} />
-                                </div>
-                            ))}
-                        </div>
+                </div>
+            )}
+            {searchResult && searchResult.entities && (
+                <div className="search-block">
+                    <div className="search__count">
+                        Всего найдено {searchResult.count} аниме
                     </div>
-                )}
+                    <div className="search__entities">
+                        {searchResult.entities.map((entity) => (
+                            <div key={entity.id} className="search__entity">
+                                <ImageWithTitleCard animeCard={entity} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

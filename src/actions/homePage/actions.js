@@ -3,6 +3,7 @@ import {
     FETCH_POPULAR_IN_PROGRESS,
     FETCH_POPULAR_SUCCESSFULLY,
     FETCH_POPULAR_WITH_ERRORS,
+    SEARCH_INIT,
     SEARCH_IN_PROGRESS,
     SEARCH_SUCCESSFULLY,
     SEARCH_WITH_ERRORS,
@@ -28,6 +29,13 @@ export const fetchPopular = (callback) => async (dispatch) => {
     }
 };
 
+export const initSearchAnime = (callback) => async (dispatch) => {
+    dispatch({ type: SEARCH_INIT });
+    if (isFunction(callback)) {
+        callback();
+    }
+};
+
 export const searchAnime = (query, callback) => async (dispatch) => {
     dispatch({ type: SEARCH_IN_PROGRESS });
     const resource = new HomeResource({ url: '', token: 'asd' });
@@ -37,6 +45,7 @@ export const searchAnime = (query, callback) => async (dispatch) => {
         dispatch({
             type: SEARCH_SUCCESSFULLY,
             data,
+            query,
         });
         if (isFunction(callback)) {
             callback();
