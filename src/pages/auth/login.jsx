@@ -10,8 +10,7 @@ import { login } from '../../actions/auth/actions';
 function LoginPage() {
     const dispatch = useDispatch();
 
-    const { token, setToken } = useToken();
-    const gateway = { url: '', token };
+    const { setToken } = useToken();
 
     const [data, setData] = useState({
         email: '',
@@ -19,7 +18,7 @@ function LoginPage() {
     });
 
     const logMeIn = () => {
-        dispatch(login(data, gateway, (token) => setToken(token)));
+        dispatch(login(data, (token) => setToken(token)));
     };
 
     return (

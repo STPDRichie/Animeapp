@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import useToken from './hooks/useToken';
 
@@ -8,18 +8,18 @@ import store from './reducers/store';
 import history from './history';
 
 import HomePage from './pages/homePage';
-import LoginPage from './pages/login';
+import LoginPage from './pages/auth/login';
+import SignupPage from './pages/auth/signup';
+import ProfilePage from './pages/auth/profile';
 
 function TrendingPage() {
     return <h2>Trending</h2>;
 }
 
-function ProfilePage() {
-    return <h2>Profile</h2>;
-}
-
 function App() {
     const { token } = useToken();
+
+    const isToken = token && token !== '' && token !== undefined;
 
     return (
         <Provider store={store}>
@@ -27,7 +27,32 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={<HomePage />} />
                     <Route exact path="/trending" element={<TrendingPage />} />
-                    {!token && token !== '' && token !== undefined ? (
+                    <Route
+                        exact
+                        path="/login"
+                        element={
+                            isToken ? <Navigate to="/profile" /> : <LoginPage />
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/signup"
+                        element={
+                            isToken ? (
+                                <Navigate to="/profile" />
+                            ) : (
+                                <SignupPage />
+                            )
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/profile"
+                        element={
+                            isToken ? <ProfilePage /> : <Navigate to="/login" />
+                        }
+                    />
+                    {/* {isToken ? (
                         <React.Fragment>
                             <Route
                                 exact
@@ -38,6 +63,11 @@ function App() {
                                 exact
                                 path="/login"
                                 element={<LoginPage />}
+                            />
+                            <Route
+                                exact
+                                path="/signup"
+                                element={<SignupPage />}
                             />
                         </React.Fragment>
                     ) : (
@@ -52,8 +82,13 @@ function App() {
                                 path="/login"
                                 element={<ProfilePage />}
                             />
+                            <Route
+                                exact
+                                path="/signup"
+                                element={<ProfilePage />}
+                            />
                         </React.Fragment>
-                    )}
+                    )} */}
                 </Routes>
             </BrowserRouter>
         </Provider>

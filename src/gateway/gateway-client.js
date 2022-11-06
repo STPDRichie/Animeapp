@@ -45,6 +45,9 @@ class GatewayClient {
         );
         options.headers['Content-Type'] = 'application/json';
         options.headers['Accept'] = 'application/json';
+        if (this.jwtToken) {
+            options.headers['Authorization'] = `Bearer ${this.jwtToken}`;
+        }
         if (options.data) {
             options.data = JSON.stringify(options.data);
         }

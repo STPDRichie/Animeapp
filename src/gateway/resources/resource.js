@@ -1,8 +1,9 @@
 const GatewayClient = require('../gateway-client');
 
 class BaseResource {
-    constructor({ url, token }) {
-        this.client = new GatewayClient({ url, token });
+    constructor() {
+        const token = localStorage.getItem('token');
+        this.client = new GatewayClient({ url: '', token });
         this.service = this.constructor.service;
         this.resource = this.constructor.resource;
         if (this.service == null) {
