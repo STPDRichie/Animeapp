@@ -1,8 +1,10 @@
 import requests
 from flask import Blueprint, request
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from . import db
+from .models import User
+
 from .anilist_api import base_url
 from .anilist_api.variables_getters import get_current_season, get_next_season, get_current_year, get_next_year
 from .anilist_api.query_strings.home_page import anime_list_query, home_page_lists
@@ -14,9 +16,10 @@ main = Blueprint('main', __name__)
 @main.route('/profile/')
 @jwt_required()
 def get_profile():
+    user = User.query.filter_by(email=get_jwt_identity()).first()
     response_body = {
-        "name": "Nagato",
-        "about" :"Hello! I'm a full stack developer that loves python and javascript"
+        'name': user.name,
+        'about' : 'Hello! I\'m {}. id: {}'.format(user.name, user.id)
     }
     return response_body
 
