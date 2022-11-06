@@ -11,9 +11,9 @@ import {
 
 import HomeResource from '../../gateway/resources/homePage';
 
-export const fetchHomePageAnime = (callback) => async (dispatch) => {
+export const fetchHomePageAnime = (gateway, callback) => async (dispatch) => {
     dispatch({ type: FETCH_HOME_IN_PROGRESS });
-    const resource = new HomeResource({ url: '', token: 'asd' });
+    const resource = new HomeResource(gateway);
     const response = await resource.fetchHomePageAnime();
     const data = await response.json();
     if (response.ok) {
@@ -36,9 +36,9 @@ export const initSearchAnime = (callback) => async (dispatch) => {
     }
 };
 
-export const searchAnime = (query, callback) => async (dispatch) => {
+export const searchAnime = (query, gateway, callback) => async (dispatch) => {
     dispatch({ type: SEARCH_IN_PROGRESS });
-    const resource = new HomeResource({ url: '', token: 'asd' });
+    const resource = new HomeResource(gateway);
     const response = await resource.searchAnime(query);
     const data = await response.json();
     if (response.ok) {

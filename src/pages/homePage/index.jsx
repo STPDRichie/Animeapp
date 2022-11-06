@@ -5,6 +5,8 @@ import Input from '../../components/General/Input/Input';
 import ImageWithTitleCard from '../../components/AnimeCard/ImageWithTitleCard';
 import ItemsBlock from '../../components/ItemsBlock/ItemsBlock';
 
+import useToken from '../../hooks/useToken';
+
 import {
     fetchHomePageAnime,
     initSearchAnime,
@@ -13,6 +15,9 @@ import {
 
 function HomePage() {
     const dispatch = useDispatch();
+
+    const { token } = useToken();
+    const gateway = { url: '', token };
 
     const { trending, season, nextSeason, popular, top, searchResult } =
         useSelector((state) => state.homePage);
@@ -24,11 +29,11 @@ function HomePage() {
 
     useEffect(() => {
         if (searchQuery) {
-            dispatch(searchAnime(searchQuery));
+            dispatch(searchAnime(searchQuery, gateway));
         } else {
             dispatch(initSearchAnime());
             if (!trending) {
-                dispatch(fetchHomePageAnime());
+                dispatch(fetchHomePageAnime(gateway));
             }
         }
     }, [searchQuery]);

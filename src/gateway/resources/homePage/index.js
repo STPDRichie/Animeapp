@@ -2,7 +2,7 @@ const BaseResource = require('../resource');
 
 class HomeResource extends BaseResource {
     async fetchHomePageAnime() {
-        return this.makeRequest('get', 'home_page_anime/');
+        return this.makeRequest('get', 'anime_lists/');
     }
     async searchAnime(query) {
         return this.makeRequest('post', 'search/', {
@@ -12,6 +12,6 @@ class HomeResource extends BaseResource {
 }
 
 HomeResource.resource = null;
-HomeResource.service = '.';
+HomeResource.service = 'home_page';
 
 module.exports = HomeResource;
