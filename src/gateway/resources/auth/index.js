@@ -16,6 +16,13 @@ class AuthResource extends BaseResource {
         });
     }
 
+    async loginCallback(access_token, expires_in) {
+        return this.makeRequest('post', 'login-callback/', {
+            access_token,
+            expires_in,
+        });
+    }
+
     async logout() {
         return this.makeRequest('post', 'logout/');
     }

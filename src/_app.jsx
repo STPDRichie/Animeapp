@@ -9,6 +9,7 @@ import history from './history';
 
 import HomePage from './pages/homePage';
 import LoginPage from './pages/auth/login';
+import LoginCallbackPage from './pages/auth/loginCallback';
 import SignupPage from './pages/auth/signup';
 import ProfilePage from './pages/auth/profile';
 
@@ -36,6 +37,11 @@ function App() {
                     />
                     <Route
                         exact
+                        path="/login-callback/*"
+                        element={<LoginCallbackPage />}
+                    />
+                    <Route
+                        exact
                         path="/signup"
                         element={
                             isToken ? (
@@ -52,43 +58,6 @@ function App() {
                             isToken ? <ProfilePage /> : <Navigate to="/login" />
                         }
                     />
-                    {/* {isToken ? (
-                        <React.Fragment>
-                            <Route
-                                exact
-                                path="/profile"
-                                element={<LoginPage />}
-                            />
-                            <Route
-                                exact
-                                path="/login"
-                                element={<LoginPage />}
-                            />
-                            <Route
-                                exact
-                                path="/signup"
-                                element={<SignupPage />}
-                            />
-                        </React.Fragment>
-                    ) : (
-                        <React.Fragment>
-                            <Route
-                                exact
-                                path="/profile"
-                                element={<ProfilePage />}
-                            />
-                            <Route
-                                exact
-                                path="/login"
-                                element={<ProfilePage />}
-                            />
-                            <Route
-                                exact
-                                path="/signup"
-                                element={<ProfilePage />}
-                            />
-                        </React.Fragment>
-                    )} */}
                 </Routes>
             </BrowserRouter>
         </Provider>

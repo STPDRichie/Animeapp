@@ -13,13 +13,13 @@ from .anilist_api.query_strings.home_page import anime_list_query, home_page_lis
 main = Blueprint('main', __name__)
 
 
-@main.route('/profile/')
+@main.route('/profile/', methods=['GET'])
 @jwt_required()
 def get_profile():
     user = User.query.filter_by(email=get_jwt_identity()).first()
     response_body = {
         'name': user.name,
-        'about' : 'Hello! I\'m {}. id: {}'.format(user.name, user.id)
+        'about' : f'Hello! I\'m {user.name}. id: {user.id}'
     }
     return response_body
 

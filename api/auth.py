@@ -30,6 +30,17 @@ def login():
     return response
 
 
+@auth.route('/login-callback/', methods=['POST'])
+def login_callback():
+    access_token = request.json.get('access_token')
+    expires_in = request.json.get('expires_in')
+    token = create_access_token(
+        identity=access_token,
+        expires_delta=timedelta(seconds=int(expires_in))
+    )
+    return {'token': token}
+
+
 @auth.after_request
 def refresh_expiring_jwts(response):
     try:

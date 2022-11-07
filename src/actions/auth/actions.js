@@ -6,6 +6,9 @@ import {
     LOGIN_IN_PROGRESS,
     LOGIN_SUCCESSFULLY,
     LOGIN_WITH_ERRORS,
+    LOGIN_CALLBACK_IN_PROGRESS,
+    LOGIN_CALLBACK_SUCCESSFULLY,
+    LOGIN_CALLBACK_WITH_ERRORS,
     LOGOUT_IN_PROGRESS,
     LOGOUT_SUCCESSFULLY,
     LOGOUT_WITH_ERRORS,
@@ -59,6 +62,26 @@ export const login =
                 type: LOGIN_WITH_ERRORS,
                 data,
             });
+        }
+    };
+
+export const loginCallback =
+    ({ access_token, expires_in }, callback) =>
+    async (dispatch) => {
+        dispatch({ type: LOGIN_CALLBACK_IN_PROGRESS });
+        const resource = new AuthResource();
+        const response = await resource.loginCallback(access_token, expires_in);
+        const data = await response.json();
+        if (response.ok) {
+            dispatch({
+                type: LOGIN_CALLBACK_SUCCESSFULLY,
+                data,
+            });
+            if (isFunction(callback)) {
+                callback(data.token);
+            }
+        } else {
+            dispatch({ type: LOGIN_CALLBACK_WITH_ERRORS });
         }
     };
 
