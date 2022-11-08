@@ -16,11 +16,14 @@ def create_app():
 
     db.init_app(app)
 
-    from .auth import auth as auth_blueprint
+    from .blueprints.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
     
-    from .main import main as main_blueprint
+    from .blueprints.main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+    
+    from .blueprints.user import user as user_blueprint
+    app.register_blueprint(user_blueprint)
 
     from . import models
 

@@ -94,6 +94,7 @@ export const logout = (callback) => async (dispatch) => {
         if (isFunction(callback)) {
             callback();
         }
+        window.location.href = '/';
     } else {
         dispatch({
             type: LOGOUT_WITH_ERRORS,
