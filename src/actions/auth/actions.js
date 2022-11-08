@@ -43,7 +43,7 @@ export const signup =
     };
 
 export const login =
-    ({ email, password }, callback) =>
+    ({ email, password }) =>
     async (dispatch) => {
         dispatch({ type: LOGIN_IN_PROGRESS });
         const resource = new AuthResource();
@@ -54,14 +54,9 @@ export const login =
                 type: LOGIN_SUCCESSFULLY,
                 data,
             });
-            if (isFunction(callback)) {
-                callback(data.token);
-            }
+            window.location.href = data.url;
         } else {
-            dispatch({
-                type: LOGIN_WITH_ERRORS,
-                data,
-            });
+            dispatch({ type: LOGIN_WITH_ERRORS });
         }
     };
 
@@ -80,6 +75,7 @@ export const loginCallback =
             if (isFunction(callback)) {
                 callback(data.token);
             }
+            window.location.href = '/profile';
         } else {
             dispatch({ type: LOGIN_CALLBACK_WITH_ERRORS });
         }

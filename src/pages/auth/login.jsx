@@ -3,14 +3,10 @@ import { useDispatch } from 'react-redux';
 
 import Input from '../../components/General/Input/Input';
 
-import useToken from '../../hooks/useToken';
-
 import { login } from '../../actions/auth/actions';
 
 function LoginPage() {
     const dispatch = useDispatch();
-
-    const { setToken } = useToken();
 
     const [data, setData] = useState({
         email: '',
@@ -18,7 +14,7 @@ function LoginPage() {
     });
 
     const logMeIn = () => {
-        dispatch(login(data, (token) => setToken(token)));
+        dispatch(login(data));
     };
 
     return (

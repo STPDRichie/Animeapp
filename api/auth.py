@@ -1,12 +1,13 @@
 import json
 from datetime import datetime, timedelta, timezone
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
-                               unset_jwt_cookies
+from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from . import db
 from .models import User
+
+from .anilist_api import oauth_url
 
 
 auth = Blueprint('auth', __name__)
@@ -25,9 +26,7 @@ def login():
     if not check_password_hash(user.password, password):
         return {'errors': ['Wrong password']}, 401
 
-    token = create_access_token(identity=email)
-    response = {'msg': 'Login successfully', 'token': token}
-    return response
+    return {'url': oauth_url}
 
 
 @auth.route('/login-callback/', methods=['POST'])
