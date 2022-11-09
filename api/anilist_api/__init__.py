@@ -17,7 +17,7 @@ def make_request(query, variables = None):
                 'Authorization': f'Bearer {token}'
             }
         )
-    except RuntimeError:
+    except (RuntimeError, KeyError):
         return requests.post(
             base_url,
             json={
