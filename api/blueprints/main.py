@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from flask_jwt_extended import jwt_required
 
 from .. import db
 
@@ -11,6 +12,7 @@ main = Blueprint('main', __name__)
 
 
 @main.route('/home_page/anime_lists/', methods=['GET'])
+@jwt_required(optional=True)
 def get_home_page_anime():
     response = make_request(home_page_lists, {
         'season': get_current_season(),
@@ -22,6 +24,7 @@ def get_home_page_anime():
 
 
 @main.route('/home_page/search/', methods=['POST'])
+@jwt_required(optional=True)
 def search_anime():
     search_query = request.json['query']
     response = make_request(anime_list_query, {

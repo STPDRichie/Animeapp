@@ -18,7 +18,7 @@ def login():
     email = request.json.get('email', None)
     password = request.json.get('password', None)
     
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email).one()
 
     if not user:
         return {'errors': ['Email don\'t registered']}, 401
@@ -64,7 +64,7 @@ def signup():
     email = request.json.get('email', None)
     password = request.json.get('password', None)
 
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email).one()
 
     if user:
         return {'errors': ['User with this email already exists']}, 401
