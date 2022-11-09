@@ -12,9 +12,6 @@ import {
     LOGOUT_IN_PROGRESS,
     LOGOUT_SUCCESSFULLY,
     LOGOUT_WITH_ERRORS,
-    PROFILE_IN_PROGRESS,
-    PROFILE_SUCCESSFULLY,
-    PROFILE_WITH_ERRORS,
 } from './actionTypes';
 
 import AuthResource from '../../gateway/resources/auth';
@@ -98,27 +95,6 @@ export const logout = (callback) => async (dispatch) => {
     } else {
         dispatch({
             type: LOGOUT_WITH_ERRORS,
-            data,
-        });
-    }
-};
-
-export const getProfile = (callback) => async (dispatch) => {
-    dispatch({ type: PROFILE_IN_PROGRESS });
-    const resource = new AuthResource();
-    const response = await resource.getProfile();
-    const data = await response.json();
-    if (response.ok) {
-        dispatch({
-            type: PROFILE_SUCCESSFULLY,
-            data,
-        });
-        if (isFunction(callback)) {
-            callback();
-        }
-    } else {
-        dispatch({
-            type: PROFILE_WITH_ERRORS,
             data,
         });
     }

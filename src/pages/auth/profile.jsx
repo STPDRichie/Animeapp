@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 
 import useToken from '../../hooks/useToken';
 
-import { logout, getProfile } from '../../actions/auth/actions';
+import { logout } from '../../actions/auth/actions';
+import { getProfile } from '../../actions/user/actions';
 
 function ProfilePage() {
     const dispatch = useDispatch();
