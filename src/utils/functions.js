@@ -4,3 +4,10 @@ export const isFunction = (func) => {
     }
     return false;
 };
+
+export function makeClasses(classes) {
+    if (!classes) {
+        return '';
+    }
+    return classes.join(' ');
+}

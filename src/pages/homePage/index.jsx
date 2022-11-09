@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Layout from '../../layouts/layout';
+import BlockContainer from '../../components/General/BlockContainer/BlockContainer';
+import HorizontalContainer from '../../components/General/HorizontalContainer/HorizontalContainer';
 import Input from '../../components/General/Input/Input';
 import ImageWithTitleCard from '../../components/AnimeCard/ImageWithTitleCard';
 import ItemsBlock from '../../components/ItemsBlock/ItemsBlock';
@@ -20,10 +23,6 @@ function HomePage() {
     const [searchQuery, setSearchQuery] = useState();
 
     useEffect(() => {
-        document.title = 'Animeapp – Главная';
-    }, []);
-
-    useEffect(() => {
         if (searchQuery) {
             dispatch(searchAnime(searchQuery));
         } else {
@@ -35,72 +34,81 @@ function HomePage() {
     }, [searchQuery]);
 
     return (
-        <div className="home-page">
-            <Input value={searchQuery} onChange={setSearchQuery} />
-            <ItemsBlock
-                name="search"
-                title={`Found this anime`}
-                items={searchResult}
-                itemsInProgress={false}
-                itemInstance={(entity) => (
-                    <ImageWithTitleCard animeCard={entity} />
+        <Layout title="Animeapp – Главная" mainContentClasses={['home-page']}>
+            <BlockContainer>
+                <HorizontalContainer>
+                    <Input
+                        id="search"
+                        name="search"
+                        label="Search"
+                        value={searchQuery}
+                        onChange={setSearchQuery}
+                    />
+                </HorizontalContainer>
+                <ItemsBlock
+                    name="search"
+                    items={searchResult}
+                    itemsInProgress={false}
+                    itemInstance={(entity) => (
+                        <ImageWithTitleCard animeCard={entity} />
+                    )}
+                />
+                {!searchResult && (
+                    <React.Fragment>
+                        <ItemsBlock
+                            name="trending"
+                            title="Trending now"
+                            viewAllLink="/trending"
+                            items={trending}
+                            itemsInProgress={false}
+                            itemInstance={(entity) => (
+                                <ImageWithTitleCard animeCard={entity} />
+                            )}
+                        />
+                        <ItemsBlock
+                            name="season"
+                            title="Popular this season"
+                            viewAllLink="/season"
+                            items={season}
+                            itemsInProgress={false}
+                            itemInstance={(entity) => (
+                                <ImageWithTitleCard animeCard={entity} />
+                            )}
+                        />
+                        <ItemsBlock
+                            name="next-season"
+                            title="Upcoming next season"
+                            viewAllLink="/next-season"
+                            items={nextSeason}
+                            itemsInProgress={false}
+                            itemInstance={(entity) => (
+                                <ImageWithTitleCard animeCard={entity} />
+                            )}
+                        />
+                        <ItemsBlock
+                            name="popular"
+                            title="All time popular"
+                            viewAllLink="/popular"
+                            items={popular}
+                            itemsInProgress={false}
+                            itemInstance={(entity) => (
+                                <ImageWithTitleCard animeCard={entity} />
+                            )}
+                        />
+                        <ItemsBlock
+                            name="top"
+                            title="Top 10 anime"
+                            viewAllLink="/top"
+                            items={top}
+                            itemsInProgress={false}
+                            itemInstance={(entity) => (
+                                <ImageWithTitleCard animeCard={entity} />
+                            )}
+                        />
+                    </React.Fragment>
                 )}
-            />
-            {!searchResult && (
-                <React.Fragment>
-                    <ItemsBlock
-                        name="trending"
-                        title="Trending now"
-                        viewAllLink="/trending"
-                        items={trending}
-                        itemsInProgress={false}
-                        itemInstance={(entity) => (
-                            <ImageWithTitleCard animeCard={entity} />
-                        )}
-                    />
-                    <ItemsBlock
-                        name="season"
-                        title="Popular this season"
-                        viewAllLink="/season"
-                        items={season}
-                        itemsInProgress={false}
-                        itemInstance={(entity) => (
-                            <ImageWithTitleCard animeCard={entity} />
-                        )}
-                    />
-                    <ItemsBlock
-                        name="next-season"
-                        title="Upcoming next season"
-                        viewAllLink="/next-season"
-                        items={nextSeason}
-                        itemsInProgress={false}
-                        itemInstance={(entity) => (
-                            <ImageWithTitleCard animeCard={entity} />
-                        )}
-                    />
-                    <ItemsBlock
-                        name="popular"
-                        title="All time popular"
-                        viewAllLink="/popular"
-                        items={popular}
-                        itemsInProgress={false}
-                        itemInstance={(entity) => (
-                            <ImageWithTitleCard animeCard={entity} />
-                        )}
-                    />
-                    <ItemsBlock
-                        name="top"
-                        title="Top 10 anime"
-                        viewAllLink="/top"
-                        items={top}
-                        itemsInProgress={false}
-                        itemInstance={(entity) => (
-                            <ImageWithTitleCard animeCard={entity} />
-                        )}
-                    />
-                </React.Fragment>
-            )}
-        </div>
+            </BlockContainer>
+        </Layout>
     );
 }
 

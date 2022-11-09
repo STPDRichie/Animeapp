@@ -9,6 +9,11 @@
     outline: none;
 }
 
+::selection {
+    color: $select-text;
+    background: $select-background;
+}
+
 @font-face {
     font-family: 'Overpass Italic';
     font-style: italic;
@@ -29,6 +34,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     line-height: 1;
     font-weight: 600;
+    color: $main-text;
     background-color: $light-background;
     &::-webkit-scrollbar {
         width: 8px;
@@ -78,6 +84,12 @@ select {
 button[disabled],
 html input[disabled] {
     cursor: default;
+}
+
+input {
+    font-family: 'Overpass', sans-serif;
+    font-weight: 500;
+    color: $main-text;
 }
 
 code {

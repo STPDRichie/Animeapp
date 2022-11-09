@@ -1,0 +1,20 @@
+.input {
+    display: flex;
+    font-size: 16px;
+    line-height: 18px;
+    &__inner {
+        display: flex;
+        flex-direction: column;
+    }
+    &__input {
+        padding: 10px 15px;
+        border-radius: 6px;
+        box-shadow: 0 14px 30px rgba($shadow-blue, 0.1),
+                    0 4px 4px rgba($shadow-blue, 0.05);
+        font-size: 14px;
+    }
+}
+
+.input-label {
+    margin-bottom: 10px;
+}

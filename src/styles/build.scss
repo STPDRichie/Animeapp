@@ -2,6 +2,10 @@
 
 @import './base.scss';
 
+@import '../components/General/BlockContainer/style.scss';
+@import '../components/General/HorizontalContainer/style.scss';
+@import '../components/General/Input/style.scss';
+
 @import '../components/AnimeCard/style.scss';
 @import '../components/ItemsBlock/style.scss';
 

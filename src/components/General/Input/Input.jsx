@@ -1,6 +1,8 @@
 import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 
+import { makeClasses } from '../../../utils/functions';
+
 function Input(props) {
     const {
         id,
@@ -26,12 +28,12 @@ function Input(props) {
     const endlessType = isHidden ? 'hidden' : type;
 
     return (
-        <div className={`${classes}`}>
+        <div className={`input ${makeClasses(classes)}`}>
             <div className="input__inner">
                 {!isHidden && label && (
                     <label
                         htmlFor={id}
-                        className="input-label"
+                        className="input__label input-label"
                         dangerouslySetInnerHTML={{ __html: label }}
                     ></label>
                 )}
