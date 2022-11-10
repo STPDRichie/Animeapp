@@ -17,7 +17,12 @@ function Header(props) {
     return (
         <header className={`header ${makeClasses(classes)}`}>
             <BlockContainer classes={['header-block']}>
-                <div className="header__title">Animeapp</div>
+                <div
+                    className="header__title"
+                    onClick={() => dispatch(push('/'))}
+                >
+                    Animeapp
+                </div>
                 <div className="header__nav header-nav">
                     {!token && (
                         <div className="header-nav__links">

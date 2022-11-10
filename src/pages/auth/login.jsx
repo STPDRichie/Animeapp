@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Input from '../../components/General/Input/Input';
+import Button from '../../components/General/Button/Button';
 
 import { login } from '../../actions/auth/actions';
 
@@ -13,25 +14,32 @@ function LoginPage() {
         password: '',
     });
 
-    const logMeIn = () => {
-        dispatch(login(data));
-    };
-
     return (
-        <React.Fragment>
-            <h2>Login</h2>
-            <Input
-                name="email"
-                value={data.email}
-                onChange={(value) => setData({ ...data, email: value })}
-            />
-            <Input
-                name="password"
-                value={data.password}
-                onChange={(value) => setData({ ...data, password: value })}
-            />
-            <button onClick={logMeIn}>Submit</button>
-        </React.Fragment>
+        <div className="login-page">
+            <div className="login-form">
+                <div className="login-form__title">Log in</div>
+                <div className="login-form__input-block input-block">
+                    <Input
+                        id="email"
+                        name="email"
+                        label="Email"
+                        value={data.email}
+                        onChange={(value) => setData({ ...data, email: value })}
+                    />
+                    <Input
+                        id="password"
+                        name="password"
+                        type="password"
+                        label="Password"
+                        value={data.password}
+                        onChange={(value) =>
+                            setData({ ...data, password: value })
+                        }
+                    />
+                </div>
+                <Button onClick={() => dispatch(login(data))}>Submit</Button>
+            </div>
+        </div>
     );
 }
 

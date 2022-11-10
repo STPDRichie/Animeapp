@@ -19,21 +19,25 @@ function LoginCallbackPage() {
     }, [urlInfo]);
 
     useEffect(() => {
-        const params = window.location.href.split('#')[1].split('&');
-        const data = Object.assign(
-            {},
-            ...params.map((param) => {
-                const keyValue = param.split('=');
-                return { [keyValue[0]]: keyValue[1] };
-            }),
-        );
-        setUrlInfo(data);
+        if (window.location.href.split('#').length === 2) {
+            const params = window.location.href.split('#')[1].split('&');
+            const data = Object.assign(
+                {},
+                ...params.map((param) => {
+                    const keyValue = param.split('=');
+                    return { [keyValue[0]]: keyValue[1] };
+                }),
+            );
+            setUrlInfo(data);
+        }
     }, []);
 
     return (
-        <React.Fragment>
-            <h2>Login Callback</h2>
-        </React.Fragment>
+        <div className="login-callback-page">
+            <div className="login-callback-page__title">
+                Please wait a second ...
+            </div>
+        </div>
     );
 }
 

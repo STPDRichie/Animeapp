@@ -11,3 +11,10 @@ export function makeClasses(classes) {
     }
     return classes.join(' ');
 }
+
+export function makeModifiers(prefix, modifiers) {
+    if (!modifiers) {
+        return '';
+    }
+    return modifiers.map((modifier) => `${prefix}--${modifier}`).join(' ');
+}

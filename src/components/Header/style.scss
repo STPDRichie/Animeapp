@@ -11,7 +11,9 @@
         font-family: 'Roboto', sans-serif;
         font-size: 35px;
         line-height: 40px;
-        color: $white;
+        color: $light-blue-text;
+        user-select: none;
+        cursor: pointer;
     }
     &__nav {
         display: flex;

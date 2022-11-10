@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Input from '../../components/General/Input/Input';
+import Button from '../../components/General/Button/Button';
 
 import { signup } from '../../actions/auth/actions';
 
@@ -14,30 +15,39 @@ function SignupPage() {
         password: '',
     });
 
-    const logMeIn = () => {
-        dispatch(signup(data));
-    };
-
     return (
-        <React.Fragment>
-            <h2>Signup</h2>
-            <Input
-                name="name"
-                value={data.name}
-                onChange={(value) => setData({ ...data, name: value })}
-            />
-            <Input
-                name="email"
-                value={data.email}
-                onChange={(value) => setData({ ...data, email: value })}
-            />
-            <Input
-                name="password"
-                value={data.password}
-                onChange={(value) => setData({ ...data, password: value })}
-            />
-            <button onClick={logMeIn}>Submit</button>
-        </React.Fragment>
+        <div className="signup-page">
+            <div className="signup-form">
+                <div className="signup-form__title">Sign up</div>
+                <div className="signup-form__input-block input-block">
+                    <Input
+                        id="name"
+                        name="name"
+                        label="Name"
+                        value={data.name}
+                        onChange={(value) => setData({ ...data, name: value })}
+                    />
+                    <Input
+                        id="email"
+                        name="email"
+                        label="Email"
+                        value={data.email}
+                        onChange={(value) => setData({ ...data, email: value })}
+                    />
+                    <Input
+                        id="password"
+                        name="password"
+                        type="password"
+                        label="Password"
+                        value={data.password}
+                        onChange={(value) =>
+                            setData({ ...data, password: value })
+                        }
+                    />
+                </div>
+                <Button onClick={() => dispatch(signup(data))}>Submit</Button>
+            </div>
+        </div>
     );
 }
 
