@@ -3,34 +3,49 @@ import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
 
+import { isFunction } from '../../utils/functions';
+
 function ItemsBlock(props) {
-    const { name, title, viewAllLink, items, itemsInProgress, itemInstance } =
-        props;
+    const {
+        name,
+        title,
+        viewAllLink,
+        items,
+        itemInstance,
+        itemLoader,
+        loadersCount,
+    } = props;
 
     const dispatch = useDispatch();
 
     return (
         <React.Fragment>
-            {!itemsInProgress && items && items.entities && (
-                <div className={`items-block ${name}-block`}>
-                    {title && viewAllLink && (
-                        <div
-                            className={`items__title items-title ${name}__title`}
-                            onClick={() => dispatch(push(viewAllLink))}
-                        >
-                            <div className="items-title__label">{title}</div>
-                            <div className="items-title__link">View all</div>
-                        </div>
-                    )}
-                    {title && !viewAllLink && (
-                        <div
-                            className={`items__title items-title ${name}__title`}
-                        >
-                            <div className="items-title__label">{title}</div>
-                        </div>
-                    )}
-                    <div className={`items__entities ${name}__entities`}>
-                        {items.entities.map((entity) => (
+            <div className={`items-block ${name}-block`}>
+                {title && viewAllLink && (
+                    <div
+                        className={`items__title items-title ${name}__title`}
+                        onClick={() => dispatch(push(viewAllLink))}
+                    >
+                        <div className="items-title__label">{title}</div>
+                        <div className="items-title__link">View all</div>
+                    </div>
+                )}
+                {title && !viewAllLink && (
+                    <div className={`items__title items-title ${name}__title`}>
+                        <div className="items-title__label">{title}</div>
+                    </div>
+                )}
+                <div className={`items__entities ${name}__entities`}>
+                    {!items &&
+                        loadersCount &&
+                        isFunction(itemLoader) &&
+                        [...Array(loadersCount)].map((_, i) => (
+                            <div key={i} className="items-block__entity-loader">
+                                {itemLoader()}
+                            </div>
+                        ))}
+                    {items &&
+                        items.entities.map((entity) => (
                             <div
                                 key={entity.id}
                                 className={`items__entity ${name}__entity`}
@@ -38,9 +53,8 @@ function ItemsBlock(props) {
                                 {itemInstance(entity)}
                             </div>
                         ))}
-                    </div>
                 </div>
-            )}
+            </div>
         </React.Fragment>
     );
 }
@@ -53,8 +67,9 @@ ItemsBlock.propTypes = {
         count: PropTypes.number,
         entities: PropTypes.array,
     }),
-    itemsInProgress: PropTypes.bool,
     itemInstance: PropTypes.func,
+    itemLoader: PropTypes.func,
+    loadersCount: PropTypes.number,
 };
 
 export default ItemsBlock;

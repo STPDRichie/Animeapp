@@ -32,3 +32,15 @@
         color: $light-text;
     }
 }
+
+.image-with-title-card {
+    .image-wrapper__loader {
+        @include loading;
+    }
+    .title__loader {
+        @include loading;
+        height: 14px;
+        width: 70%;
+        border-radius: 5px;
+    }
+}

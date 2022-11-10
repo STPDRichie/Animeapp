@@ -33,6 +33,17 @@ function HomePage() {
         }
     }, [searchQuery]);
 
+    const itemsBlockProps = {
+        itemInstance: (entity) => <ImageWithTitleCard animeCard={entity} />,
+        loadersCount: 5,
+        itemLoader: () => (
+            <div className="image-with-title-card">
+                <div className="image-with-title-card__image-wrapper image-wrapper__loader" />
+                <div className="image-with-title-card__title title__loader" />
+            </div>
+        ),
+    };
+
     return (
         <Layout title="Animeapp – Главная" mainContentClasses={['home-page']}>
             <BlockContainer>
@@ -45,14 +56,13 @@ function HomePage() {
                         onChange={setSearchQuery}
                     />
                 </HorizontalContainer>
-                <ItemsBlock
-                    name="search"
-                    items={searchResult}
-                    itemsInProgress={false}
-                    itemInstance={(entity) => (
-                        <ImageWithTitleCard animeCard={entity} />
-                    )}
-                />
+                {searchResult && (
+                    <ItemsBlock
+                        name="search"
+                        items={searchResult}
+                        {...itemsBlockProps}
+                    />
+                )}
                 {!searchResult && (
                     <React.Fragment>
                         <ItemsBlock
@@ -60,50 +70,35 @@ function HomePage() {
                             title="Trending now"
                             viewAllLink="/trending"
                             items={trending}
-                            itemsInProgress={false}
-                            itemInstance={(entity) => (
-                                <ImageWithTitleCard animeCard={entity} />
-                            )}
+                            {...itemsBlockProps}
                         />
                         <ItemsBlock
                             name="season"
                             title="Popular this season"
                             viewAllLink="/season"
                             items={season}
-                            itemsInProgress={false}
-                            itemInstance={(entity) => (
-                                <ImageWithTitleCard animeCard={entity} />
-                            )}
+                            {...itemsBlockProps}
                         />
                         <ItemsBlock
                             name="next-season"
                             title="Upcoming next season"
                             viewAllLink="/next-season"
                             items={nextSeason}
-                            itemsInProgress={false}
-                            itemInstance={(entity) => (
-                                <ImageWithTitleCard animeCard={entity} />
-                            )}
+                            {...itemsBlockProps}
                         />
                         <ItemsBlock
                             name="popular"
                             title="All time popular"
                             viewAllLink="/popular"
                             items={popular}
-                            itemsInProgress={false}
-                            itemInstance={(entity) => (
-                                <ImageWithTitleCard animeCard={entity} />
-                            )}
+                            {...itemsBlockProps}
                         />
                         <ItemsBlock
                             name="top"
                             title="Top 10 anime"
                             viewAllLink="/top"
                             items={top}
-                            itemsInProgress={false}
-                            itemInstance={(entity) => (
-                                <ImageWithTitleCard animeCard={entity} />
-                            )}
+                            {...itemsBlockProps}
                         />
                     </React.Fragment>
                 )}
