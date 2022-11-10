@@ -1,0 +1,38 @@
+.header {
+    background-color: $dark-background;
+    &-block {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        height: 80px;
+    }
+    &__title {
+        font-family: 'Roboto', sans-serif;
+        font-size: 35px;
+        line-height: 40px;
+        color: $white;
+    }
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0 30px;
+    }
+    &-nav {
+        &__links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0 25px;
+        }
+        &__link {
+            cursor: pointer;
+            color: $header-link;
+            transition: color 0.2s ease-in-out;
+            &:hover {
+                color: $header-link-hover;
+            }
+        }
+    }
+}

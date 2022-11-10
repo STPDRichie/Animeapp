@@ -20,7 +20,7 @@ function HomePage() {
     const { trending, season, nextSeason, popular, top, searchResult } =
         useSelector((state) => state.homePage);
 
-    const [searchQuery, setSearchQuery] = useState();
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         if (searchQuery) {

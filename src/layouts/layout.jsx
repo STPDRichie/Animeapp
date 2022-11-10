@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import Header from '../components/Header/Header';
+
 import { childrenProps } from '../utils/constants';
 import { makeClasses } from '../utils/functions';
 
@@ -13,7 +15,7 @@ function Layout(props) {
 
     return (
         <div className="layout">
-            {/* <Header /> */}
+            <Header />
             <main className={`main-content ${makeClasses(mainContentClasses)}`}>
                 <div className="layout__inner">{children}</div>
             </main>
