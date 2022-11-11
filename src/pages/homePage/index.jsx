@@ -8,6 +8,7 @@ import Input from '../../components/General/Input/Input';
 import ImageWithTitleCard from '../../components/AnimeCard/ImageWithTitleCard';
 import ItemsBlock from '../../components/ItemsBlock/ItemsBlock';
 
+import { useDebounce } from '../../hooks/useDebounce';
 import {
     fetchHomePageAnime,
     initSearchAnime,
@@ -22,9 +23,13 @@ function HomePage() {
 
     const [searchQuery, setSearchQuery] = useState('');
 
+    const search = useDebounce(async (query) => {
+        dispatch(searchAnime(query));
+    }, 500);
+
     useEffect(() => {
         if (searchQuery) {
-            dispatch(searchAnime(searchQuery));
+            search(searchQuery);
         } else {
             dispatch(initSearchAnime());
             if (!trending) {

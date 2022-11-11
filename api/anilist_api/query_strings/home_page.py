@@ -200,7 +200,7 @@ query (
             description
             type
             format
-            status (version:2)
+            status (version: 2)
             episodes
             duration
             chapters

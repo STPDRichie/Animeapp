@@ -1,6 +1,14 @@
 $white: #ffffff;
 $black: #000000;
 
+$green: #7bd555;
+$yellow: #f7bf63;
+$orange: #f79a63;
+$peach: #fa7a7a;
+$red: #e85d75;
+$blue: #3db4f2;
+$blue-dim: #8db2db;
+
 $main-text: #5c728a;
 $main-text-hover: darken($main-text, 20%);
 
@@ -10,7 +18,7 @@ $light-text-hover: darken($light-text, 20%);
 $link: #4b88ca;
 $link-hover: #589ce6;
 
-$light-blue-text: #d2e4f5;
+$light-blue-text: #d5e9fa;
 
 $header-link: #bebfdd;
 $header-link-hover: #d2d3f0;
@@ -29,3 +37,13 @@ $shadow-blue: #6784bb;
 
 $loader-dark: #cadbe8;
 $loader-light: #dde6ef;
+
+:export {
+    green: $green;
+    yellow: $yellow;
+    orange: $orange;
+    peach: $peach;
+    red: $red;
+    blue: $blue;
+    blueDim: $blue-dim;
+}

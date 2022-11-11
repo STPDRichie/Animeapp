@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
 
-import { animeCardFormat } from './constants';
+import { animeCardFormat, statusColorsMap } from './constants';
 
 import sadEmoji from '../../static/icon/sad-emoji.svg';
 
@@ -9,8 +11,17 @@ function ImageWithTitleCard(props) {
     const title = animeCard.title;
     const { color, extraLarge } = animeCard.coverImage;
 
+    const dispatch = useDispatch();
+
     return (
-        <div className="image-with-title-card">
+        <div
+            className="image-with-title-card"
+            onClick={() =>
+                dispatch(
+                    push(`/${animeCard.type.toLowerCase()}/${animeCard.id}`),
+                )
+            }
+        >
             <div
                 className="image-with-title-card__image-wrapper"
                 style={{
@@ -32,7 +43,20 @@ function ImageWithTitleCard(props) {
                     />
                 )}
             </div>
-            <div className="image-with-title-card__title">{title.romaji}</div>
+            <div className="image-with-title-card__title">
+                {animeCard.mediaListEntry && animeCard.mediaListEntry.status && (
+                    <div
+                        className="image-with-title-card__status"
+                        style={{
+                            backgroundColor:
+                                statusColorsMap[
+                                    animeCard.mediaListEntry.status
+                                ],
+                        }}
+                    />
+                )}
+                {title.userPreferred}
+            </div>
         </div>
     );
 }

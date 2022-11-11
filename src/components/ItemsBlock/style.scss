@@ -7,6 +7,14 @@
         cursor: pointer;
     }
     &-title {
+        &:hover {
+            .items-title__label {
+                color: $main-text-hover;
+            }
+            .items-title__link {
+                color: $light-text-hover;
+            }
+        }
         &__label {
             font-size: 16px;
             line-height: 18px;
@@ -14,9 +22,6 @@
             text-transform: uppercase;
             color: $main-text;
             transition: color 0.2s ease-in-out;
-            &:hover {
-                color: $main-text-hover;
-            }
         }
         &__link {
             font-size: 14px;
@@ -24,9 +29,6 @@
             font-weight: 600;
             color: $light-text;
             transition: color 0.2s ease-in-out;
-            &:hover {
-                color: $light-text-hover;
-            }
         }
     }
     &__entities {
@@ -35,4 +37,8 @@
         grid-template-columns: repeat(auto-fill, 185px);
         justify-content: space-between;
     }
+}
+
+.items-block__entity-loader {
+    @include appearance;
 }

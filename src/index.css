@@ -1,9 +1,29 @@
+:export {
+  green: #7bd555;
+  yellow: #f7bf63;
+  orange: #f79a63;
+  peach: #fa7a7a;
+  red: #e85d75;
+  blue: #3db4f2;
+  blueDim: #8db2db;
+}
+
 @keyframes loading-keyframes {
   0% {
     background-color: #cadbe8;
   }
   100% {
     background-color: #dde6ef;
+  }
+}
+@keyframes appearance-keyframes {
+  0% {
+    opacity: 0;
+    transform: scale(80%, 80%);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(100%, 100%);
   }
 }
 * {
@@ -182,7 +202,7 @@ ul {
   font-family: "Roboto", sans-serif;
   font-size: 35px;
   line-height: 40px;
-  color: #d2e4f5;
+  color: #d5e9fa;
   user-select: none;
   cursor: pointer;
 }
@@ -210,6 +230,10 @@ ul {
 .image-with-title-card {
   width: 185px;
   height: 315px;
+  cursor: pointer;
+}
+.image-with-title-card:hover .image-with-title-card__title {
+  color: #475560;
 }
 .image-with-title-card__image-wrapper {
   width: 185px;
@@ -240,6 +264,16 @@ ul {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   color: #748899;
+  transition: color 0.2s ease-in-out;
+}
+.image-with-title-card__status {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 7px;
+  display: inline-block;
+  position: relative;
+  top: 1px;
 }
 
 .image-with-title-card .image-wrapper__loader {
@@ -265,6 +299,12 @@ ul {
   align-items: flex-end;
   cursor: pointer;
 }
+.items-title:hover .items-title__label {
+  color: #333f4d;
+}
+.items-title:hover .items-title__link {
+  color: #475560;
+}
 .items-title__label {
   font-size: 16px;
   line-height: 18px;
@@ -273,9 +313,6 @@ ul {
   color: #5c728a;
   transition: color 0.2s ease-in-out;
 }
-.items-title__label:hover {
-  color: #333f4d;
-}
 .items-title__link {
   font-size: 14px;
   line-height: 18px;
@@ -283,14 +320,18 @@ ul {
   color: #748899;
   transition: color 0.2s ease-in-out;
 }
-.items-title__link:hover {
-  color: #475560;
-}
 .items__entities {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, 185px);
   justify-content: space-between;
+}
+
+.items-block__entity-loader {
+  animation-name: appearance-keyframes;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
 }
 
 .home-page .horizontal-container {

@@ -1,6 +1,12 @@
 .image-with-title-card {
     width: 185px;
     height: 315px;
+    cursor: pointer;
+    &:hover {
+        .image-with-title-card__title {
+            color: $light-text-hover;
+        }
+    }
     &__image-wrapper {
         width: 185px;
         height: 265px;
@@ -30,6 +36,16 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         color: $light-text;
+        transition: color 0.2s ease-in-out;
+    }
+    &__status {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 7px;
+        display: inline-block;
+        position: relative;
+        top: 1px;
     }
 }
 
