@@ -232,15 +232,16 @@ ul {
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  height: 80px;
+  height: 70px;
 }
 .header__title {
   font-family: "Roboto", sans-serif;
-  font-size: 35px;
+  font-size: 33px;
   line-height: 40px;
   color: #ffffff;
   user-select: none;
   cursor: pointer;
+  margin-bottom: 5px;
 }
 .header__nav {
   display: flex;
