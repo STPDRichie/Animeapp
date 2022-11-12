@@ -19,6 +19,7 @@
     color: $main-text;
     border-radius: 10px;
     overflow: hidden;
+    @include appearance;
     &__close {
         position: absolute;
         top: 12px;

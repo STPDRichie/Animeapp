@@ -66,15 +66,7 @@ function ChangeAnimeStatusModal(props) {
                                 label="Progress"
                                 min={0}
                                 max={animeCard.episodes}
-                                // onChange={() => {}}
                             />
-                            {/* <Select
-                                label="Progress"
-                                placeholder=""
-                                options={statuses}
-                                isSearchable={false}
-                                grid-area="progress"
-                            /> */}
                         </div>
                     </div>
                 </div>
