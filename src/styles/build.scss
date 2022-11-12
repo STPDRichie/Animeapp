@@ -2,11 +2,14 @@
 @import './mixins.scss';
 @import './base.scss';
 
+@import '../components/General/Modal/style.scss';
 @import '../components/General/BlockContainer/style.scss';
 @import '../components/General/BlockWithTooltip/style.scss';
 @import '../components/General/HorizontalContainer/style.scss';
 @import '../components/General/Input/style.scss';
 @import '../components/General/Button/style.scss';
+
+@import '../components/Modals/style.scss';
 
 @import '../components/Header/style.scss';
 @import '../components/ItemsBlock/style.scss';

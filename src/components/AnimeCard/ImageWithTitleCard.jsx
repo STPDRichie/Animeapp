@@ -10,7 +10,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import BlockWithTooltip from '../General/BlockWithTooltip/BlockWithTooltip';
+import ChangeAnimeStatusModal from '../Modals/ChangeAnimeStatusModal';
 import useToken from '../../hooks/useToken';
+import useModal from '../General/Modal/useModal';
 
 import { locate } from '../../utils/functions';
 import { addAnimeToList } from '../../actions/user/actions';
@@ -29,6 +31,7 @@ function ImageWithTitleCard(props) {
     const dispatch = useDispatch();
 
     const { token } = useToken();
+    const { openModal } = useModal();
 
     const addToList = (status, mediaId) => {
         dispatch(addAnimeToList(status, mediaId));
@@ -67,6 +70,11 @@ function ImageWithTitleCard(props) {
                             className="image-with-title-card__action action__set"
                             onClick={(e) => {
                                 e.stopPropagation();
+                                openModal(() => (
+                                    <ChangeAnimeStatusModal
+                                        animeCard={animeCard}
+                                    />
+                                ));
                             }}
                         >
                             {animeCard.mediaListEntry && (
