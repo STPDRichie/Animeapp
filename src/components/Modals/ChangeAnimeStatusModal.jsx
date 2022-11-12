@@ -12,9 +12,8 @@ function ChangeAnimeStatusModal(props) {
             <div
                 className="anime__banner"
                 style={{ backgroundImage: `url(${animeCard.bannerImage})` }}
-            >
-                {/* <img src={animeCard.bannerImage} /> */}
-            </div>
+            />
+            <div className="modal-content"></div>
         </Modal>
     );
 }
