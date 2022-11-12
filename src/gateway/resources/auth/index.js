@@ -26,10 +26,6 @@ class AuthResource extends BaseResource {
     async logout() {
         return this.makeRequest('post', 'logout/');
     }
-
-    async getProfile() {
-        return this.makeRequest('get', 'profile/');
-    }
 }
 
 AuthResource.resource = null;

@@ -7,6 +7,9 @@ import {
     SEARCH_SUCCESSFULLY,
     SEARCH_WITH_ERRORS,
 } from '../actions/homePage/actionTypes';
+import { ADD_ANIME_TO_LIST_SUCCESSFULLY } from '../actions/user/actionTypes';
+
+import { changeMediaInLists } from '../actions/user/utils';
 
 export default () => {
     const defaultState = {
@@ -88,6 +91,7 @@ export default () => {
             case SEARCH_IN_PROGRESS: {
                 return {
                     ...state,
+                    searchResult: null,
                     searchInProgress: true,
                 };
             }
@@ -95,6 +99,25 @@ export default () => {
                 return {
                     ...state,
                     searchInProgress: false,
+                };
+            }
+            case ADD_ANIME_TO_LIST_SUCCESSFULLY: {
+                const { SaveMediaListEntry } = action.data.data;
+                const { status, mediaId } = SaveMediaListEntry;
+                return {
+                    ...state,
+                    ...changeMediaInLists(
+                        [
+                            state.trending,
+                            state.season,
+                            state.nextSeason,
+                            state.popular,
+                            state.top,
+                            state.searchResult,
+                        ],
+                        status,
+                        mediaId,
+                    ),
                 };
             }
             default:

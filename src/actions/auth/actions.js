@@ -23,7 +23,7 @@ export const signup =
         const resource = new AuthResource();
         const response = await resource.signup(name, email, password);
         const data = await response.json();
-        if (response.ok) {
+        if (response.ok && !data.errors) {
             dispatch({
                 type: SIGNUP_SUCCESSFULLY,
                 data,
@@ -46,14 +46,17 @@ export const login =
         const resource = new AuthResource();
         const response = await resource.login(email, password);
         const data = await response.json();
-        if (response.ok) {
+        if (response.ok && !data.errors) {
             dispatch({
                 type: LOGIN_SUCCESSFULLY,
                 data,
             });
             window.location.href = data.url;
         } else {
-            dispatch({ type: LOGIN_WITH_ERRORS });
+            dispatch({
+                type: LOGIN_WITH_ERRORS,
+                data,
+            });
         }
     };
 
@@ -64,7 +67,7 @@ export const loginCallback =
         const resource = new AuthResource();
         const response = await resource.loginCallback(access_token, expires_in);
         const data = await response.json();
-        if (response.ok) {
+        if (response.ok && !data.errors) {
             dispatch({
                 type: LOGIN_CALLBACK_SUCCESSFULLY,
                 data,
@@ -74,7 +77,10 @@ export const loginCallback =
             }
             window.location.href = '/profile';
         } else {
-            dispatch({ type: LOGIN_CALLBACK_WITH_ERRORS });
+            dispatch({
+                type: LOGIN_CALLBACK_WITH_ERRORS,
+                data,
+            });
         }
     };
 
@@ -83,7 +89,7 @@ export const logout = (callback) => async (dispatch) => {
     const resource = new AuthResource();
     const response = await resource.logout();
     const data = await response.json();
-    if (response.ok) {
+    if (response.ok && !data.errors) {
         dispatch({
             type: LOGOUT_SUCCESSFULLY,
             data,

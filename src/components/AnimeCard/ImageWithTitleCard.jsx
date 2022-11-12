@@ -11,8 +11,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import BlockWithTooltip from '../General/BlockWithTooltip/BlockWithTooltip';
+import useToken from '../../hooks/useToken';
 
-import { animeCardFormat, statusColorsMap } from './constants';
+import { addAnimeToList } from '../../actions/user/actions';
+import {
+    animeCardFormat,
+    statusColorsMap,
+    animeUserStatusesMap,
+} from './constants';
 import sadEmoji from '../../static/icon/sad-emoji.svg';
 
 function ImageWithTitleCard(props) {
@@ -21,6 +27,13 @@ function ImageWithTitleCard(props) {
     const { color, extraLarge, large, medium } = animeCard.coverImage;
 
     const dispatch = useDispatch();
+
+    const { token } = useToken();
+
+    const addToList = (e, status, mediaId) => {
+        e.stopPropagation();
+        dispatch(addAnimeToList(status, mediaId));
+    };
 
     return (
         <div
@@ -51,63 +64,86 @@ function ImageWithTitleCard(props) {
                         className="image-with-title-card__sad-emoji"
                     />
                 )}
-                <div className="image-with-title-card__actions">
-                    <div className="image-with-title-card__action action__set">
-                        {animeCard.mediaListEntry && (
-                            <FontAwesomeIcon icon={faPen} />
-                        )}
-                        {!animeCard.mediaListEntry && (
-                            <FontAwesomeIcon icon={faPlus} />
-                        )}
+                {token && (
+                    <div className="image-with-title-card__actions">
+                        <div className="image-with-title-card__action action__set">
+                            {animeCard.mediaListEntry && (
+                                <FontAwesomeIcon icon={faPen} />
+                            )}
+                            {!animeCard.mediaListEntry && (
+                                <FontAwesomeIcon icon={faPlus} />
+                            )}
+                        </div>
+                        <div className="image-with-title-card__additional-actions action__additional">
+                            <BlockWithTooltip
+                                clickable={false}
+                                tooltipPlace="left"
+                                tooltipId={`${animeCard.id}-set-planning`}
+                                tooltipChidren="Set as Planning"
+                                className="action-tooltip"
+                            >
+                                <div
+                                    data-tip
+                                    data-for={`${animeCard.id}-set-planning`}
+                                    className="image-with-title-card__action action__planning"
+                                    onClick={(e) =>
+                                        addToList(
+                                            e,
+                                            animeUserStatusesMap.PLANNING,
+                                            animeCard.id,
+                                        )
+                                    }
+                                >
+                                    <FontAwesomeIcon icon={faCalendar} />
+                                </div>
+                            </BlockWithTooltip>
+                            <BlockWithTooltip
+                                clickable={false}
+                                tooltipPlace="left"
+                                tooltipId={`${animeCard.id}-set-completed`}
+                                tooltipChidren="Set as Completed"
+                                className="action-tooltip"
+                            >
+                                <div
+                                    data-tip
+                                    data-for={`${animeCard.id}-set-completed`}
+                                    className="image-with-title-card__action action__completed"
+                                    onClick={(e) =>
+                                        addToList(
+                                            e,
+                                            animeUserStatusesMap.COMPLETED,
+                                            animeCard.id,
+                                        )
+                                    }
+                                >
+                                    <FontAwesomeIcon icon={faCheck} />
+                                </div>
+                            </BlockWithTooltip>
+                            <BlockWithTooltip
+                                clickable={false}
+                                tooltipPlace="left"
+                                tooltipId={`${animeCard.id}-set-watching`}
+                                tooltipChidren="Set as Watching"
+                                className="action-tooltip"
+                            >
+                                <div
+                                    data-tip
+                                    data-for={`${animeCard.id}-set-watching`}
+                                    className="image-with-title-card__action action__watching"
+                                    onClick={(e) =>
+                                        addToList(
+                                            e,
+                                            animeUserStatusesMap.CURRENT,
+                                            animeCard.id,
+                                        )
+                                    }
+                                >
+                                    <FontAwesomeIcon icon={faPlay} />
+                                </div>
+                            </BlockWithTooltip>
+                        </div>
                     </div>
-                    <div className="image-with-title-card__additional-actions action__additional">
-                        <BlockWithTooltip
-                            clickable={false}
-                            tooltipPlace="left"
-                            tooltipId={`${animeCard.id}-set-planning`}
-                            tooltipChidren="Set as Planning"
-                            className="action-tooltip"
-                        >
-                            <div
-                                data-tip
-                                data-for={`${animeCard.id}-set-planning`}
-                                className="image-with-title-card__action action__planning"
-                            >
-                                <FontAwesomeIcon icon={faCalendar} />
-                            </div>
-                        </BlockWithTooltip>
-                        <BlockWithTooltip
-                            clickable={false}
-                            tooltipPlace="left"
-                            tooltipId={`${animeCard.id}-set-completed`}
-                            tooltipChidren="Set as Completed"
-                            className="action-tooltip"
-                        >
-                            <div
-                                data-tip
-                                data-for={`${animeCard.id}-set-completed`}
-                                className="image-with-title-card__action action__completed"
-                            >
-                                <FontAwesomeIcon icon={faCheck} />
-                            </div>
-                        </BlockWithTooltip>
-                        <BlockWithTooltip
-                            clickable={false}
-                            tooltipPlace="left"
-                            tooltipId={`${animeCard.id}-set-watching`}
-                            tooltipChidren="Set as Watching"
-                            className="action-tooltip"
-                        >
-                            <div
-                                data-tip
-                                data-for={`${animeCard.id}-set-watching`}
-                                className="image-with-title-card__action action__watching"
-                            >
-                                <FontAwesomeIcon icon={faPlay} />
-                            </div>
-                        </BlockWithTooltip>
-                    </div>
-                </div>
+                )}
             </div>
             <div className="image-with-title-card__title">
                 {animeCard.mediaListEntry && animeCard.mediaListEntry.status && (

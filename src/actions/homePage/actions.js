@@ -16,7 +16,7 @@ export const fetchHomePageAnime = (callback) => async (dispatch) => {
     const resource = new HomeResource();
     const response = await resource.fetchHomePageAnime();
     const data = await response.json();
-    if (response.ok) {
+    if (response.ok && !data.errors) {
         dispatch({
             type: FETCH_HOME_SUCCESSFULLY,
             data,
@@ -25,7 +25,10 @@ export const fetchHomePageAnime = (callback) => async (dispatch) => {
             callback();
         }
     } else {
-        dispatch({ type: FETCH_HOME_WITH_ERRORS });
+        dispatch({
+            type: FETCH_HOME_WITH_ERRORS,
+            data,
+        });
     }
 };
 
@@ -41,7 +44,7 @@ export const searchAnime = (query, callback) => async (dispatch) => {
     const resource = new HomeResource();
     const response = await resource.searchAnime(query);
     const data = await response.json();
-    if (response.ok) {
+    if (response.ok && !data.errors) {
         dispatch({
             type: SEARCH_SUCCESSFULLY,
             data,
@@ -51,6 +54,9 @@ export const searchAnime = (query, callback) => async (dispatch) => {
             callback();
         }
     } else {
-        dispatch({ type: SEARCH_WITH_ERRORS });
+        dispatch({
+            type: SEARCH_WITH_ERRORS,
+            data,
+        });
     }
 };
