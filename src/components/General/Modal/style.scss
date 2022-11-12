@@ -1,0 +1,35 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($dark-background, 0.5);
+}
+
+.modal-container {
+    position: relative;
+    box-shadow: 0 0 10px 0 rgba($dark-background, 0.15);
+    background-color: $white;
+    color: $main-text;
+    border-radius: 10px;
+    overflow: hidden;
+    &__close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        height: 14px;
+        width: 14px;
+        color: rgba($white, 0.7);
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+        &:hover {
+            color: rgba($white, 1);
+        }
+    }
+}

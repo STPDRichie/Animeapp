@@ -7,6 +7,8 @@ import useToken from './hooks/useToken';
 import store from './reducers/store';
 import history from './history';
 
+import ModalProvider from './components/General/Modal/ModalProvider';
+
 import HomePage from './pages/homePage';
 import LoginPage from './pages/auth/login';
 import LoginCallbackPage from './pages/auth/loginCallback';
@@ -24,42 +26,56 @@ function App() {
 
     return (
         <Provider store={store}>
-            <BrowserRouter history={history}>
-                <Routes>
-                    <Route exact path="/" element={<HomePage />} />
-                    <Route exact path="/trending" element={<TrendingPage />} />
-                    <Route
-                        exact
-                        path="/login"
-                        element={
-                            isToken ? <Navigate to="/profile" /> : <LoginPage />
-                        }
-                    />
-                    <Route
-                        exact
-                        path="/login-callback/*"
-                        element={<LoginCallbackPage />}
-                    />
-                    <Route
-                        exact
-                        path="/signup"
-                        element={
-                            isToken ? (
-                                <Navigate to="/profile" />
-                            ) : (
-                                <SignupPage />
-                            )
-                        }
-                    />
-                    <Route
-                        exact
-                        path="/profile"
-                        element={
-                            isToken ? <ProfilePage /> : <Navigate to="/login" />
-                        }
-                    />
-                </Routes>
-            </BrowserRouter>
+            <ModalProvider>
+                <BrowserRouter history={history}>
+                    <Routes>
+                        <Route exact path="/" element={<HomePage />} />
+                        <Route
+                            exact
+                            path="/trending"
+                            element={<TrendingPage />}
+                        />
+                        <Route
+                            exact
+                            path="/login"
+                            element={
+                                isToken ? (
+                                    <Navigate to="/profile" />
+                                ) : (
+                                    <LoginPage />
+                                )
+                            }
+                        />
+                        <Route
+                            exact
+                            path="/login-callback/*"
+                            element={<LoginCallbackPage />}
+                        />
+                        <Route
+                            exact
+                            path="/signup"
+                            element={
+                                isToken ? (
+                                    <Navigate to="/profile" />
+                                ) : (
+                                    <SignupPage />
+                                )
+                            }
+                        />
+                        <Route
+                            exact
+                            path="/profile"
+                            element={
+                                isToken ? (
+                                    <ProfilePage />
+                                ) : (
+                                    <Navigate to="/login" />
+                                )
+                            }
+                        />
+                    </Routes>
+                </BrowserRouter>
+            </ModalProvider>
         </Provider>
     );
 }

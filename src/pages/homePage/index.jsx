@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Layout from '../../layouts/layout';
+import Layout from '../../layouts/Layout';
 import BlockContainer from '../../components/General/BlockContainer/BlockContainer';
 import HorizontalContainer from '../../components/General/HorizontalContainer/HorizontalContainer';
 import Input from '../../components/General/Input/Input';

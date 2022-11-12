@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../components/Header/Header';
+import ModalPortal from '../components/General/Modal/ModalPortal';
 
 import { childrenProps } from '../utils/constants';
 import { makeClasses } from '../utils/functions';
@@ -20,7 +21,7 @@ function Layout(props) {
                 <div className="layout__inner">{children}</div>
             </main>
             {/* <Footer /> */}
-            {/* <ModalPortal /> */}
+            <ModalPortal />
         </div>
     );
 }
