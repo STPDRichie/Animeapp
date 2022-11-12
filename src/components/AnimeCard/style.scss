@@ -60,3 +60,25 @@
         border-radius: 5px;
     }
 }
+
+@include appearance-oh-hover('.image-with-title-card', '.image-with-title-card__action.action__set', 0.2s);
+.image-with-title-card {
+    @include appearance-oh-hover('.image-with-title-card__actions', '.action__additional', 0.2s);
+    &__image-wrapper {
+        position: relative;
+    }
+    &__actions {
+        position: absolute;
+        right: 14px;
+        bottom: 14px;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    &__action {
+        width: 28px;
+        height: 28px;
+        background-color: rgba($dark-background, 0.9);
+        border-radius: 50%;
+        margin-top: 10px;
+    }
+}

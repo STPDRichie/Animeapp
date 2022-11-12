@@ -31,3 +31,17 @@
     animation-iteration-count: 1;
     animation-direction: normal;
 }
+
+@mixin appearance-oh-hover($hover-element, $element, $duration) {
+    #{$element} {
+        opacity: 0;
+        transform: scale(80%, 80%);
+        transition: all $duration ease-in-out;
+    }
+    #{$hover-element}:hover {
+        #{$element} {
+            opacity: 1;
+            transform: scale(100%, 100%);
+        }
+    }
+}
