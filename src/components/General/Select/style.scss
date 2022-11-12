@@ -1,0 +1,96 @@
+.select__label {
+    display: block;
+}
+
+.select-block {
+    cursor: pointer;
+}
+
+.select-inner {
+    &__control {
+        box-shadow: none !important;
+        cursor: pointer !important;
+        min-height: 36px !important;
+        background-color: $light-background !important;
+        border: none !important;
+        border-radius: 5px !important;
+    }
+    &__indicator-separator {
+        display: none;
+    }
+    &__dropdown-indicator {
+        color: $light-icon !important;
+        &:hover {
+            color: $light-icon !important;
+        }
+    }
+    &__menu,
+    &__single-value,
+    &__placeholder {
+        font-size: 16px;
+        color: $light-text !important;
+    }
+    &__menu {
+        z-index: 10 !important;
+        background-color: $light-background !important;
+        box-shadow: none !important;
+        @include appearance;
+    }
+    &__option {
+        position: relative;
+        &:active,
+        &:hover {
+            background-color: $light-background !important;
+        }
+        &:focus {
+            background-color: initial !important;
+        }
+    }
+    &__option--is-focused {
+        background-color: $light-background !important;
+    }
+    &__option--is-selected {
+        color: $blue !important;
+        background-color: initial !important;
+        &::after {
+            height: 14px;
+            width: 14px;
+            // background: url('/static-host-expert/icons/check.svg') center no-repeat;
+            right: 13px;
+            position: absolute;
+        }
+    }
+    &__indicator {
+        padding: 6px 8px !important;
+    }
+}
+
+.select--light {
+    .select-inner__control {
+        background-color: $white !important;
+        border: 1px solid rgba($main-text, 0.5) !important;
+        border-radius: 4px;
+    }
+    .select-inner__single-value {
+        color: $main-text !important;
+        font-size: 16px;
+        font-weight: 300;
+    }
+    .select-inner__value-container {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .select-inner__menu {
+        background-color: $white !important;
+    }
+    .select-inner__option {
+        font-weight: 300;
+        color: $main-text;
+    }
+    .select-inner__option--is-selected {
+        color: $main-text !important;
+    }
+    .select-inner__option--is-focused, .select-inner__option:hover {
+        background-color: $white !important;
+    }
+}
