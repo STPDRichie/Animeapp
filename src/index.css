@@ -226,6 +226,26 @@ ul {
   gap: 15px;
 }
 
+.button {
+  width: 100%;
+  background-color: #4b88ca;
+  border-radius: 6px;
+  font-size: 18px;
+  transition: background-color 0.2s ease-in-out;
+}
+.button:hover {
+  background-color: #589ce6;
+}
+.button__inner {
+  padding: 15px 20px;
+  font-size: inherit;
+  text-align: center;
+  color: #ffffff;
+}
+.button--disabled {
+  opacity: 0.7;
+}
+
 .input {
   display: flex;
   font-size: 16px;
@@ -247,24 +267,148 @@ ul {
   margin-bottom: 10px;
 }
 
-.button {
+.input-number-inner {
+  color: #5c728a;
+}
+.input-number-inner input {
   width: 100%;
-  background-color: #4b88ca;
-  border-radius: 6px;
-  font-size: 18px;
-  transition: background-color 0.2s ease-in-out;
-}
-.button:hover {
-  background-color: #589ce6;
-}
-.button__inner {
-  padding: 15px 20px;
-  font-size: inherit;
+  border: none;
   text-align: center;
-  color: #ffffff;
+  background-color: #edf1f5;
 }
-.button--disabled {
-  opacity: 0.7;
+
+.input-number__label {
+  display: block;
+}
+
+.input-number-inner__input {
+  position: relative;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #edf1f5;
+  color: #5c728a;
+  text-align: center;
+}
+.input-number-inner__input input {
+  font-size: 16px;
+  font-weight: 600;
+}
+.input-number-inner__input .add,
+.input-number-inner__input .subtract {
+  position: absolute;
+  right: 0;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+  user-select: none;
+  color: #cadbe8;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-number-inner__input .add {
+  top: 2px;
+  border-radius: 0 5px 0 0;
+}
+.input-number-inner__input .subtract {
+  bottom: 1px;
+  border-radius: 0 0 5px 0;
+}
+
+.select__label {
+  display: block;
+}
+
+.select-block {
+  cursor: pointer;
+}
+
+.select-inner__control {
+  box-shadow: none !important;
+  cursor: pointer !important;
+  min-height: 36px !important;
+  background-color: #edf1f5 !important;
+  border: none !important;
+  border-radius: 5px !important;
+}
+.select-inner__indicator-separator {
+  display: none;
+}
+.select-inner__dropdown-indicator {
+  color: #cadbe8 !important;
+}
+.select-inner__dropdown-indicator:hover {
+  color: #cadbe8 !important;
+}
+.select-inner__menu, .select-inner__single-value, .select-inner__placeholder {
+  font-size: 16px;
+  color: #748899 !important;
+}
+.select-inner__menu {
+  z-index: 10 !important;
+  background-color: #edf1f5 !important;
+  box-shadow: none !important;
+  animation-name: appearance-keyframes;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+}
+.select-inner__option {
+  position: relative;
+}
+.select-inner__option:active, .select-inner__option:hover {
+  background-color: #edf1f5 !important;
+}
+.select-inner__option:focus {
+  background-color: initial !important;
+}
+.select-inner__option--is-focused {
+  background-color: #edf1f5 !important;
+}
+.select-inner__option--is-selected {
+  color: #3db4f2 !important;
+  background-color: initial !important;
+}
+.select-inner__option--is-selected::after {
+  height: 14px;
+  width: 14px;
+  right: 13px;
+  position: absolute;
+}
+.select-inner__indicator {
+  padding: 6px 8px !important;
+}
+
+.select--light .select-inner__control {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(92, 114, 138, 0.5) !important;
+  border-radius: 4px;
+}
+.select--light .select-inner__single-value {
+  color: #5c728a !important;
+  font-size: 16px;
+  font-weight: 300;
+}
+.select--light .select-inner__value-container {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.select--light .select-inner__menu {
+  background-color: #ffffff !important;
+}
+.select--light .select-inner__option {
+  font-weight: 300;
+  color: #5c728a;
+}
+.select--light .select-inner__option--is-selected {
+  color: #5c728a !important;
+}
+.select--light .select-inner__option--is-focused, .select--light .select-inner__option:hover {
+  background-color: #ffffff !important;
 }
 
 .change-anime-status-modal {
@@ -318,12 +462,32 @@ ul {
   margin: 10px 20px;
   line-height: 32px;
 }
-.change-anime-status-modal .change-anime-status__buttons {
+.change-anime-status-modal .change-anime-status__header-buttons {
   position: relative;
   z-index: 10;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+}
+.change-anime-status-modal .change-anime-status__body {
+  padding-top: 70px;
+  width: 100%;
+}
+.change-anime-status-modal .change-anime-status__form {
+  display: grid;
+  grid-gap: 50px;
+  grid-template-columns: 230px 230px 230px;
+  grid-template-areas: "status score progress" "start finish repeat" "notes notes notes" "advanced advanced advanced";
+  justify-content: center;
+}
+.change-anime-status-modal .status {
+  grid-area: status;
+}
+.change-anime-status-modal .score {
+  grid-area: score;
+}
+.change-anime-status-modal .progress {
+  grid-area: progress;
 }
 .change-anime-status-modal .button {
   font-size: 13px;

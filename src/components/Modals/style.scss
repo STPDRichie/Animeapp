@@ -49,13 +49,37 @@
             margin: 10px 20px;
             line-height: 32px;
         }
-        &__buttons {
+        &__header-buttons {
             position: relative;
             z-index: 10;
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
         }
+        &__body {
+            padding-top: 70px;
+            width: 100%;
+        }
+        &__form {
+            display: grid;
+            grid-gap: 50px;
+            grid-template-columns: 230px 230px 230px;
+            grid-template-areas:
+                "status score progress"
+                "start finish repeat"
+                "notes notes notes"
+                "advanced advanced advanced";
+            justify-content: center;
+        }
+    }
+    .status {
+        grid-area: status;
+    }
+    .score {
+        grid-area: score;
+    }
+    .progress {
+        grid-area: progress;
     }
     .button {
         font-size: 13px;
