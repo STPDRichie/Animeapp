@@ -30,8 +30,7 @@ function ImageWithTitleCard(props) {
 
     const { token } = useToken();
 
-    const addToList = (e, status, mediaId) => {
-        e.stopPropagation();
+    const addToList = (status, mediaId) => {
         dispatch(addAnimeToList(status, mediaId));
     };
 
@@ -64,7 +63,12 @@ function ImageWithTitleCard(props) {
                 )}
                 {token && (
                     <div className="image-with-title-card__actions">
-                        <div className="image-with-title-card__action action__set">
+                        <div
+                            className="image-with-title-card__action action__set"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                            }}
+                        >
                             {animeCard.mediaListEntry && (
                                 <FontAwesomeIcon icon={faPen} />
                             )}
@@ -84,13 +88,13 @@ function ImageWithTitleCard(props) {
                                     data-tip
                                     data-for={`${animeCard.id}-set-planning`}
                                     className="image-with-title-card__action action__planning"
-                                    onClick={(e) =>
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         addToList(
-                                            e,
                                             animeUserStatusesMap.PLANNING,
                                             animeCard.id,
-                                        )
-                                    }
+                                        );
+                                    }}
                                 >
                                     <FontAwesomeIcon icon={faCalendar} />
                                 </div>
@@ -106,13 +110,13 @@ function ImageWithTitleCard(props) {
                                     data-tip
                                     data-for={`${animeCard.id}-set-completed`}
                                     className="image-with-title-card__action action__completed"
-                                    onClick={(e) =>
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         addToList(
-                                            e,
                                             animeUserStatusesMap.COMPLETED,
                                             animeCard.id,
-                                        )
-                                    }
+                                        );
+                                    }}
                                 >
                                     <FontAwesomeIcon icon={faCheck} />
                                 </div>
@@ -128,13 +132,13 @@ function ImageWithTitleCard(props) {
                                     data-tip
                                     data-for={`${animeCard.id}-set-watching`}
                                     className="image-with-title-card__action action__watching"
-                                    onClick={(e) =>
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         addToList(
-                                            e,
                                             animeUserStatusesMap.CURRENT,
                                             animeCard.id,
-                                        )
-                                    }
+                                        );
+                                    }}
                                 >
                                     <FontAwesomeIcon icon={faPlay} />
                                 </div>
