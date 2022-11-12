@@ -1,6 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPen,
+    faCalendar,
+    faCheck,
+    faPlay,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { animeCardFormat, statusColorsMap } from './constants';
 
@@ -43,11 +50,19 @@ function ImageWithTitleCard(props) {
                     />
                 )}
                 <div className="image-with-title-card__actions">
-                    <div className="image-with-title-card__action action__set"></div>
+                    <div className="image-with-title-card__action action__set">
+                        <FontAwesomeIcon icon={faPen} />
+                    </div>
                     <div className="image-with-title-card__additional-actions action__additional">
-                        <div className="image-with-title-card__action action__planning"></div>
-                        <div className="image-with-title-card__action action__completed"></div>
-                        <div className="image-with-title-card__action action__watching"></div>
+                        <div className="image-with-title-card__action action__planning">
+                            <FontAwesomeIcon icon={faCalendar} />
+                        </div>
+                        <div className="image-with-title-card__action action__completed">
+                            <FontAwesomeIcon icon={faCheck} />
+                        </div>
+                        <div className="image-with-title-card__action action__watching">
+                            <FontAwesomeIcon icon={faPlay} />
+                        </div>
                     </div>
                 </div>
             </div>
