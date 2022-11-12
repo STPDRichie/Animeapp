@@ -19,6 +19,10 @@ function LoginCallbackPage() {
     }, [urlInfo]);
 
     useEffect(() => {
+        document.title = 'Login Callback • Animeapp';
+    }, []);
+
+    useEffect(() => {
         if (window.location.href.split('#').length === 2) {
             const params = window.location.href.split('#')[1].split('&');
             const data = Object.assign(

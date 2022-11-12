@@ -5,7 +5,7 @@ from .. import db
 
 from ..anilist_api import make_request
 from ..anilist_api.variables_getters import get_current_season, get_next_season, get_current_year, get_next_year
-from ..anilist_api.query_strings.home_page import anime_list_query, home_page_lists
+from ..anilist_api.query_strings.anime_pages import anime_list_query, home_page_lists
 
 
 main = Blueprint('main', __name__)

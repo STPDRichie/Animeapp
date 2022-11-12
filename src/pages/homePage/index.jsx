@@ -50,7 +50,7 @@ function HomePage() {
     };
 
     return (
-        <Layout title="Animeapp – Главная" mainContentClasses={['home-page']}>
+        <Layout title="Home • Animeapp" mainContentClasses={['home-page']}>
             <BlockContainer>
                 <HorizontalContainer>
                     <Input

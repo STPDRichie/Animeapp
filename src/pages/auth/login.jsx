@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Input from '../../components/General/Input/Input';
@@ -13,6 +13,10 @@ function LoginPage() {
         email: '',
         password: '',
     });
+
+    useEffect(() => {
+        document.title = 'Login • Animeapp';
+    }, []);
 
     return (
         <div className="login-page">
