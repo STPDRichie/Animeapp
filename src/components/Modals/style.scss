@@ -1,20 +1,67 @@
 .change-anime-status-modal {
     width: 1000px;
-    .anime {
-        &__banner {
+    .change-anime-status {
+        &__header {
             position: relative;
             width: 100%;
             height: 180px;
+            display: flex;
+            justify-content: space-between;
+            background-position: 50%;
+            background-repeat: no-repeat;
             background-size: cover;
-            &::before {
+            box-shadow: inset 0 0 250px $dark-background;
+            padding-top: 0;
+            padding-bottom: 0;
+            &:after {
                 position: absolute;
                 content: '';
                 width: 100%;
                 height: 100%;
                 top: 0;
                 left: 0;
-                background-color: rgba($dark-background, 0.8);
+                background: rgba($dark-background, 0.5);
+                z-index: 5;
             }
+        }
+        &__info {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            height: 100%;
+            justify-content: flex-start;
+            align-items: flex-end;
+            color: $white;
+        }
+        &__image-wrapper {
+            width: 100px;
+            height: 140px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: -30px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        &__title {
+            margin: 10px 20px;
+            line-height: 32px;
+        }
+        &__buttons {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+    }
+    .button {
+        font-size: 13px;
+        margin: 10px 0;
+        &__inner {
+            padding: 10px 15px;
         }
     }
 }

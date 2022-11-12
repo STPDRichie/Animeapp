@@ -2,13 +2,14 @@
     width: 100%;
     background-color: $link;
     border-radius: 6px;
+    font-size: 18px;
     transition: background-color 0.2s ease-in-out;
     &:hover {
         background-color: $link-hover;
     }
     &__inner {
         padding: 15px 20px;
-        font-size: 18px;
+        font-size: inherit;
         text-align: center;
         color: $white;
     }

@@ -27,6 +27,7 @@
         width: 14px;
         color: rgba($white, 0.7);
         cursor: pointer;
+        z-index: 1000;
         transition: color 0.2s ease-in-out;
         &:hover {
             color: rgba($white, 1);
@@ -36,5 +37,5 @@
 
 .modal-content {
     width: 100%;
-    padding: 30px;
+    padding: 50px;
 }

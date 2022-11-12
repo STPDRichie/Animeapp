@@ -165,6 +165,7 @@ ul {
   width: 14px;
   color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
+  z-index: 1000;
   transition: color 0.2s ease-in-out;
 }
 .modal-container__close:hover {
@@ -173,7 +174,7 @@ ul {
 
 .modal-content {
   width: 100%;
-  padding: 30px;
+  padding: 50px;
 }
 
 .block-container {
@@ -250,6 +251,7 @@ ul {
   width: 100%;
   background-color: #4b88ca;
   border-radius: 6px;
+  font-size: 18px;
   transition: background-color 0.2s ease-in-out;
 }
 .button:hover {
@@ -257,7 +259,7 @@ ul {
 }
 .button__inner {
   padding: 15px 20px;
-  font-size: 18px;
+  font-size: inherit;
   text-align: center;
   color: #ffffff;
 }
@@ -268,20 +270,67 @@ ul {
 .change-anime-status-modal {
   width: 1000px;
 }
-.change-anime-status-modal .anime__banner {
+.change-anime-status-modal .change-anime-status__header {
   position: relative;
   width: 100%;
   height: 180px;
+  display: flex;
+  justify-content: space-between;
+  background-position: 50%;
+  background-repeat: no-repeat;
   background-size: cover;
+  box-shadow: inset 0 0 250px #2b2d42;
+  padding-top: 0;
+  padding-bottom: 0;
 }
-.change-anime-status-modal .anime__banner::before {
+.change-anime-status-modal .change-anime-status__header:after {
   position: absolute;
   content: "";
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(43, 45, 66, 0.8);
+  background: rgba(43, 45, 66, 0.5);
+  z-index: 5;
+}
+.change-anime-status-modal .change-anime-status__info {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: flex-end;
+  color: #ffffff;
+}
+.change-anime-status-modal .change-anime-status__image-wrapper {
+  width: 100px;
+  height: 140px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: -30px;
+}
+.change-anime-status-modal .change-anime-status__image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.change-anime-status-modal .change-anime-status__title {
+  margin: 10px 20px;
+  line-height: 32px;
+}
+.change-anime-status-modal .change-anime-status__buttons {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.change-anime-status-modal .button {
+  font-size: 13px;
+  margin: 10px 0;
+}
+.change-anime-status-modal .button__inner {
+  padding: 10px 15px;
 }
 
 .header {
