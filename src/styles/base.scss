@@ -78,6 +78,7 @@ textarea {
 
 button,
 select {
+    font-family: 'Overpass', sans-serif;
     text-transform: none;
 }
 
@@ -97,7 +98,8 @@ code {
         monospace;
 }
 
-a {
+a,
+abbr {
     text-decoration: none;
 }
 

@@ -1,0 +1,97 @@
+.input-date {
+    position: relative;
+    &__calendar {
+        position: absolute;
+        width: 150%;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $white;
+        box-shadow: 0 0 15px 0 rgba($dark-background, 0.1);
+        border-radius: 5px;
+        z-index: 10;
+    }
+    &__input .input__input {
+        text-align: center;
+    }
+}
+
+.react-calendar {
+    button:enabled:hover {
+        cursor: pointer;
+    }
+    &__navigation {
+        height: 45px;
+        display: flex;
+        margin-bottom: 10px;
+        &__label__labelText {
+            font-size: 16px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: -2px;
+        }
+        button {
+            min-width: 45px;
+            background: none;
+            color: $main-text;
+            transition: color 0.2s ease-in-out;
+            &:enabled:hover,
+            &:enabled:focus {
+                color: $blue;
+            }
+            &[disabled] {
+                color: $light-text;
+            }
+        }
+    }
+    &__month-view__weekdays {
+        text-align: center;
+        font-weight: 500;
+        font-size: 14px;
+        user-select: none;
+        border-bottom: 1px solid $light-background;
+        &__weekday {
+            padding: 0.5em;
+        }
+    }
+    &__year-view, &__decade-view, &__century-view {
+        .react-calendar__tile {
+            padding: 1.5em 0.5em;
+        }
+    }
+    &__tile {
+        max-width: 100%;
+        text-align: center;
+        padding: 0.75em 0;
+        background: none;
+        color: $main-text;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: color 0.2s ease-in-out;
+        &:enabled:hover,
+        &:enabled:focus {
+            color: $blue;
+        }
+        &:disabled {
+            background-color: $light-background;
+        }
+        &--now {
+            color: $blue;
+            font-weight: 600;
+        }
+        &--selected {
+            abbr {
+                color: $white;
+                background-color: $blue;
+                border-radius: 50%;
+            }
+        }
+        abbr {
+            width: 25px;
+            height: 25px;
+            line-height: 27px;
+        }
+    }
+}

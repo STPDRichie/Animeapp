@@ -1,3 +1,8 @@
+.input-label {
+    margin-bottom: 10px;
+    display: block;
+}
+
 .input {
     display: flex;
     font-size: 16px;
@@ -14,8 +19,14 @@
                     0 4px 4px rgba($shadow-blue, 0.05);
         font-size: 16px;
     }
-}
-
-.input-label {
-    margin-bottom: 10px;
+    &--light-blue {
+        .input {
+            &__input {
+                height: 36px;
+                border-radius: 5px;
+                background-color: $light-background;
+                box-shadow: none;
+            }
+        }
+    }
 }

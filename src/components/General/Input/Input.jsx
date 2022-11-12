@@ -11,6 +11,7 @@ function Input(props) {
         label,
         value,
         classes = [],
+        modifier,
         onChange = () => {},
         isHidden,
         onKeyDown = () => {},
@@ -21,6 +22,7 @@ function Input(props) {
         floatPlaceholder,
         additionalRightText,
         autoFocus,
+        disabled,
     } = props;
 
     const inputRef = createRef();
@@ -28,7 +30,11 @@ function Input(props) {
     const endlessType = isHidden ? 'hidden' : type;
 
     return (
-        <div className={`input ${makeClasses(classes)}`}>
+        <div
+            className={`input ${
+                modifier ? `input--${modifier}` : ''
+            } ${makeClasses(classes)}`}
+        >
             <div className="input__inner">
                 {!isHidden && label && (
                     <label
@@ -49,6 +55,7 @@ function Input(props) {
                     className="input__input"
                     ref={inputRef}
                     autoFocus={autoFocus}
+                    disabled={disabled}
                     onChange={(e) => onChange(e.target.value)}
                     {...inputAttrs}
                 />
@@ -74,6 +81,8 @@ Input.propTypes = {
     id: PropTypes.string,
     label: PropTypes.string,
     name: PropTypes.string,
+    classes: PropTypes.arrayOf(PropTypes.string),
+    modifier: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
@@ -82,16 +91,11 @@ Input.propTypes = {
     isHidden: PropTypes.bool,
     onKeyDown: PropTypes.func,
     onBlur: PropTypes.func,
-    classes: PropTypes.arrayOf(PropTypes.string),
-    errors: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.string),
-        PropTypes.string,
-    ]),
-    hasErrors: PropTypes.bool,
     floatPlaceholder: PropTypes.string,
     additionalRightText: PropTypes.string,
     autoComplete: PropTypes.string,
     autoFocus: PropTypes.bool,
+    disabled: PropTypes.bool,
 };
 
 export default Input;

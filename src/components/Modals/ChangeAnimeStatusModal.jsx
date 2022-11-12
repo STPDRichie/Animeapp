@@ -4,6 +4,7 @@ import Modal from '../General/Modal/Modal';
 import Button from '../General/Button/Button';
 import Select from '../General/Select/Select';
 import InputNumber from '../General/InputNumber/InputNumber';
+import InputDate from '../General/InputDate/InputDate';
 
 import { animeCardFormat, animeUserStatusesMap } from '../AnimeCard/constants';
 
@@ -63,10 +64,19 @@ function ChangeAnimeStatusModal(props) {
                         </div>
                         <div className="form-input progress">
                             <InputNumber
-                                label="Progress"
+                                label="Episode Progress"
                                 min={0}
                                 max={animeCard.episodes}
                             />
+                        </div>
+                        <div className="form-input start">
+                            <InputDate label="Start Date" />
+                        </div>
+                        <div className="form-input finish">
+                            <InputDate label="Finish Date" />
+                        </div>
+                        <div className="form-input repeat">
+                            <InputNumber label="Total Rewatches" min={0} />
                         </div>
                     </div>
                 </div>
