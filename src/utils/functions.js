@@ -18,3 +18,7 @@ export function makeModifiers(prefix, modifiers) {
     }
     return modifiers.map((modifier) => `${prefix}--${modifier}`).join(' ');
 }
+
+export const locate = (url) => {
+    window.location.href = url;
+};

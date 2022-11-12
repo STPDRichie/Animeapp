@@ -1,4 +1,4 @@
-import { isFunction } from '../../utils/functions';
+import { isFunction, locate } from '../../utils/functions';
 import {
     SIGNUP_IN_PROGRESS,
     SIGNUP_SUCCESSFULLY,
@@ -51,7 +51,7 @@ export const login =
                 type: LOGIN_SUCCESSFULLY,
                 data,
             });
-            window.location.href = data.url;
+            locate(data.url);
         } else {
             dispatch({
                 type: LOGIN_WITH_ERRORS,
@@ -75,7 +75,7 @@ export const loginCallback =
             if (isFunction(callback)) {
                 callback(data.token);
             }
-            window.location.href = '/profile';
+            locate('/profile');
         } else {
             dispatch({
                 type: LOGIN_CALLBACK_WITH_ERRORS,
@@ -97,7 +97,7 @@ export const logout = (callback) => async (dispatch) => {
         if (isFunction(callback)) {
             callback();
         }
-        window.location.href = '/';
+        locate('/');
     } else {
         dispatch({
             type: LOGOUT_WITH_ERRORS,

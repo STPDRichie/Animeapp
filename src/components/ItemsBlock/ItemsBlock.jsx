@@ -1,9 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { push } from 'connected-react-router';
 import PropTypes from 'prop-types';
 
-import { isFunction } from '../../utils/functions';
+import { isFunction, locate } from '../../utils/functions';
 
 function ItemsBlock(props) {
     const {
@@ -16,15 +14,13 @@ function ItemsBlock(props) {
         loadersCount,
     } = props;
 
-    const dispatch = useDispatch();
-
     return (
         <React.Fragment>
             <div className={`items-block ${name}-block`}>
                 {title && viewAllLink && (
                     <div
                         className={`items__title items-title ${name}__title`}
-                        onClick={() => dispatch(push(viewAllLink))}
+                        onClick={() => locate(viewAllLink)}
                     >
                         <div className="items-title__label">{title}</div>
                         <div className="items-title__link">View all</div>

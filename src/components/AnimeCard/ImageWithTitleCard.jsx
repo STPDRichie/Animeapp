@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { push } from 'connected-react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPen,
@@ -13,6 +12,7 @@ import {
 import BlockWithTooltip from '../General/BlockWithTooltip/BlockWithTooltip';
 import useToken from '../../hooks/useToken';
 
+import { locate } from '../../utils/functions';
 import { addAnimeToList } from '../../actions/user/actions';
 import {
     animeCardFormat,
@@ -39,9 +39,7 @@ function ImageWithTitleCard(props) {
         <div
             className="image-with-title-card"
             onClick={() =>
-                dispatch(
-                    push(`/${animeCard.type.toLowerCase()}/${animeCard.id}`),
-                )
+                locate(`/${animeCard.type.toLowerCase()}/${animeCard.id}`)
             }
         >
             <div
