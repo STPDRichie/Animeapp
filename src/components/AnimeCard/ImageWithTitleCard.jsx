@@ -7,10 +7,12 @@ import {
     faCalendar,
     faCheck,
     faPlay,
+    faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { animeCardFormat, statusColorsMap } from './constants';
+import BlockWithTooltip from '../General/BlockWithTooltip/BlockWithTooltip';
 
+import { animeCardFormat, statusColorsMap } from './constants';
 import sadEmoji from '../../static/icon/sad-emoji.svg';
 
 function ImageWithTitleCard(props) {
@@ -51,18 +53,59 @@ function ImageWithTitleCard(props) {
                 )}
                 <div className="image-with-title-card__actions">
                     <div className="image-with-title-card__action action__set">
-                        <FontAwesomeIcon icon={faPen} />
+                        {animeCard.mediaListEntry && (
+                            <FontAwesomeIcon icon={faPen} />
+                        )}
+                        {!animeCard.mediaListEntry && (
+                            <FontAwesomeIcon icon={faPlus} />
+                        )}
                     </div>
                     <div className="image-with-title-card__additional-actions action__additional">
-                        <div className="image-with-title-card__action action__planning">
-                            <FontAwesomeIcon icon={faCalendar} />
-                        </div>
-                        <div className="image-with-title-card__action action__completed">
-                            <FontAwesomeIcon icon={faCheck} />
-                        </div>
-                        <div className="image-with-title-card__action action__watching">
-                            <FontAwesomeIcon icon={faPlay} />
-                        </div>
+                        <BlockWithTooltip
+                            clickable={false}
+                            tooltipPlace="left"
+                            tooltipId={`${animeCard.id}-set-planning`}
+                            tooltipChidren="Set as Planning"
+                            className="action-tooltip"
+                        >
+                            <div
+                                data-tip
+                                data-for={`${animeCard.id}-set-planning`}
+                                className="image-with-title-card__action action__planning"
+                            >
+                                <FontAwesomeIcon icon={faCalendar} />
+                            </div>
+                        </BlockWithTooltip>
+                        <BlockWithTooltip
+                            clickable={false}
+                            tooltipPlace="left"
+                            tooltipId={`${animeCard.id}-set-completed`}
+                            tooltipChidren="Set as Completed"
+                            className="action-tooltip"
+                        >
+                            <div
+                                data-tip
+                                data-for={`${animeCard.id}-set-completed`}
+                                className="image-with-title-card__action action__completed"
+                            >
+                                <FontAwesomeIcon icon={faCheck} />
+                            </div>
+                        </BlockWithTooltip>
+                        <BlockWithTooltip
+                            clickable={false}
+                            tooltipPlace="left"
+                            tooltipId={`${animeCard.id}-set-watching`}
+                            tooltipChidren="Set as Watching"
+                            className="action-tooltip"
+                        >
+                            <div
+                                data-tip
+                                data-for={`${animeCard.id}-set-watching`}
+                                className="image-with-title-card__action action__watching"
+                            >
+                                <FontAwesomeIcon icon={faPlay} />
+                            </div>
+                        </BlockWithTooltip>
                     </div>
                 </div>
             </div>
