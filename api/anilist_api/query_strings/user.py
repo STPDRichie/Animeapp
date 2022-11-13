@@ -65,6 +65,14 @@ mutation (
 }
 '''
 
+DELETE_ANIME_FROM_LISTS = '''
+mutation ($id: Int) {
+    DeleteMediaListEntry (id: $id) {
+        deleted
+    }
+}
+'''
+
 CHANGE_ANIME_STATUS = '''
 mutation (
     $mediaId: Int,
@@ -133,6 +141,7 @@ query ($mediaId: Int) {
         volumes
         isFavourite
         mediaListEntry {
+            id
             mediaId
             status
             score (format: POINT_5)

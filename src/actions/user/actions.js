@@ -6,6 +6,9 @@ import {
     ADD_ANIME_TO_LIST_IN_PROGRESS,
     ADD_ANIME_TO_LIST_SUCCESSFULLY,
     ADD_ANIME_TO_LIST_WITH_ERRORS,
+    DELETE_ANIME_FROM_LISTS_IN_PROGRESS,
+    DELETE_ANIME_FROM_LISTS_SUCCESSFULLY,
+    DELETE_ANIME_FROM_LISTS_WITH_ERRORS,
     FETCH_ANIME_INFO_IN_PROGRESS,
     FETCH_ANIME_INFO_SUCCESSFULLY,
     FETCH_ANIME_INFO_WITH_ERRORS,
@@ -58,6 +61,28 @@ export const addAnimeToList =
             });
         }
     };
+
+export const deleteAnimeFromLists = (entryId, callback) => async (dispatch) => {
+    dispatch({ type: DELETE_ANIME_FROM_LISTS_IN_PROGRESS });
+    const resource = new UserResource();
+    const response = await resource.deleteAnimeFromLists(entryId);
+    const data = await response.json();
+    if (response.ok && !data.errors) {
+        dispatch({
+            type: DELETE_ANIME_FROM_LISTS_SUCCESSFULLY,
+            data,
+            entryId,
+        });
+        if (isFunction(callback)) {
+            callback();
+        }
+    } else {
+        dispatch({
+            type: DELETE_ANIME_FROM_LISTS_WITH_ERRORS,
+            data,
+        });
+    }
+};
 
 export const fetchAnimeInfo = (mediaId, callback) => async (dispatch) => {
     dispatch({ type: FETCH_ANIME_INFO_IN_PROGRESS });

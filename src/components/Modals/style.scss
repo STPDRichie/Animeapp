@@ -70,10 +70,12 @@
             justify-content: center;
         }
         &__buttons {
+            height: 90px;
             padding-top: 10px;
             padding-bottom: 40px;
             display: flex;
             justify-content: flex-end;
+            align-items: flex-end;
             .button {
                 width: auto;
                 margin: 0;

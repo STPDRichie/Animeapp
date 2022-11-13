@@ -1,5 +1,6 @@
 export function changeMediaInLists(lists, media) {
-    for (const list of lists) {
+    Object.keys(lists).forEach((key) => {
+        const list = lists[key];
         if (list && list.entities) {
             const mediaIndex = list.entities.findIndex(
                 (anime) => anime.id === media.mediaId,
@@ -13,6 +14,25 @@ export function changeMediaInLists(lists, media) {
                 };
             }
         }
-    }
+    });
+    return lists;
+}
+
+export function deleteMediaFromLists(lists, entryId) {
+    Object.keys(lists).forEach((key) => {
+        const list = lists[key];
+        if (list && list.entities) {
+            const mediaIndex = list.entities.findIndex(
+                (anime) =>
+                    anime.mediaListEntry && anime.mediaListEntry.id === entryId,
+            );
+            if (mediaIndex !== -1) {
+                list.entities[mediaIndex] = {
+                    ...list.entities[mediaIndex],
+                    mediaListEntry: null,
+                };
+            }
+        }
+    });
     return lists;
 }

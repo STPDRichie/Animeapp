@@ -70,6 +70,7 @@ export const animeCardFormat = PropTypes.shape({
     }),
     chapters: PropTypes.number,
     mediaListEntry: PropTypes.shape({
+        id: PropTypes.number,
         mediaId: PropTypes.number,
         status: PropTypes.oneOf([
             animeUserStatusesMap.CURRENT,

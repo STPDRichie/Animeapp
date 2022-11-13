@@ -26,6 +26,7 @@ export default () => {
                 return {
                     ...state,
                     anime: null,
+                    animeUserInfo: null,
                     animeInProgress: true,
                 };
             }

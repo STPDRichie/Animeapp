@@ -1,10 +1,8 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
-from .. import db
-
 from ..anilist_api import make_request
-from ..anilist_api.query_strings.user import USER_INFO, ADD_ANIME_TO_LIST, CHANGE_ANIME_STATUS, ANIME_INFO
+from ..anilist_api.query_strings.user import USER_INFO, ADD_ANIME_TO_LIST, DELETE_ANIME_FROM_LISTS, CHANGE_ANIME_STATUS, ANIME_INFO
 
 
 user = Blueprint('user', __name__)
@@ -17,7 +15,7 @@ def get_profile():
     return response.json()
 
 
-@user.route('/user/anime_to_list/', methods=['POST'])
+@user.route('/user/add_anime_to_list/', methods=['POST'])
 @jwt_required()
 def add_anime_to_list():
     media_id = request.json['mediaId']
@@ -25,6 +23,16 @@ def add_anime_to_list():
     response = make_request(ADD_ANIME_TO_LIST, {
         'mediaId': media_id,
         'status': status
+    })
+    return response.json()
+
+
+@user.route('/user/delete_anime_from_lists/', methods=['POST'])
+@jwt_required()
+def delete_anime_from_lists():
+    entry_id = request.json['entryId']
+    response = make_request(DELETE_ANIME_FROM_LISTS, {
+        'id': entry_id
     })
     return response.json()
 

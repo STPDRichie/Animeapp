@@ -9,7 +9,11 @@ import InputDate from '../General/InputDate/InputDate';
 import useModal from '../General/Modal/useModal';
 
 import { getYMD } from '../../utils/functions';
-import { fetchAnimeInfo, changeAnimeStatus } from '../../actions/user/actions';
+import {
+    fetchAnimeInfo,
+    changeAnimeStatus,
+    deleteAnimeFromLists,
+} from '../../actions/user/actions';
 import { animeCardFormat, animeUserStatusesMap } from '../AnimeCard/constants';
 
 function ChangeAnimeStatusModal(props) {
@@ -81,6 +85,10 @@ function ChangeAnimeStatusModal(props) {
                 () => closeModal(),
             ),
         );
+    };
+
+    const onDelete = () => {
+        dispatch(deleteAnimeFromLists(animeUserInfo.id, () => closeModal()));
     };
 
     useEffect(() => {
@@ -213,7 +221,11 @@ function ChangeAnimeStatusModal(props) {
                     </div>
                 </div>
                 <div className="change-anime-status__buttons modal-content">
-                    <Button modifiers={['danger']}>Delete</Button>
+                    {!animeInProgress && animeUserInfo && (
+                        <Button modifiers={['danger']} onClick={onDelete}>
+                            Delete
+                        </Button>
+                    )}
                 </div>
             </React.Fragment>
         </Modal>

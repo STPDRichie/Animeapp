@@ -12,10 +12,14 @@ import {
 } from '../actions/animePages/actionTypes';
 import {
     ADD_ANIME_TO_LIST_SUCCESSFULLY,
+    DELETE_ANIME_FROM_LISTS_SUCCESSFULLY,
     CHANGE_ANIME_STATUS_SUCCESSFULLY,
 } from '../actions/user/actionTypes';
 
-import { changeMediaInLists } from '../actions/user/utils';
+import {
+    changeMediaInLists,
+    deleteMediaFromLists,
+} from '../actions/user/utils';
 
 export default () => {
     const defaultState = {
@@ -113,15 +117,32 @@ export default () => {
                 return {
                     ...state,
                     ...changeMediaInLists(
-                        [
-                            state.trending,
-                            state.season,
-                            state.nextSeason,
-                            state.popular,
-                            state.top,
-                            state.searchResult,
-                        ],
+                        {
+                            trending: state.trending,
+                            season: state.season,
+                            nextSeason: state.nextSeason,
+                            popular: state.popular,
+                            top: state.top,
+                            searchResult: state.searchResult,
+                        },
                         SaveMediaListEntry,
+                    ),
+                };
+            }
+            case DELETE_ANIME_FROM_LISTS_SUCCESSFULLY: {
+                const { entryId } = action;
+                return {
+                    ...state,
+                    ...deleteMediaFromLists(
+                        {
+                            trending: state.trending,
+                            season: state.season,
+                            nextSeason: state.nextSeason,
+                            popular: state.popular,
+                            top: state.top,
+                            searchResult: state.searchResult,
+                        },
+                        entryId,
                     ),
                 };
             }
@@ -130,14 +151,14 @@ export default () => {
                 return {
                     ...state,
                     ...changeMediaInLists(
-                        [
-                            state.trending,
-                            state.season,
-                            state.nextSeason,
-                            state.popular,
-                            state.top,
-                            state.searchResult,
-                        ],
+                        {
+                            trending: state.trending,
+                            season: state.season,
+                            nextSeason: state.nextSeason,
+                            popular: state.popular,
+                            top: state.top,
+                            searchResult: state.searchResult,
+                        },
                         SaveMediaListEntry,
                     ),
                 };

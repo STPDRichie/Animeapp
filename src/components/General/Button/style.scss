@@ -3,6 +3,8 @@
     background-color: $link;
     border-radius: 6px;
     font-size: 18px;
+    user-select: none;
+    cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     &:hover {
         background-color: $link-hover;
