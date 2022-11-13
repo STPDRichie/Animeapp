@@ -6,9 +6,10 @@ import Button from '../General/Button/Button';
 import Select from '../General/Select/Select';
 import InputNumber from '../General/InputNumber/InputNumber';
 import InputDate from '../General/InputDate/InputDate';
+import useModal from '../General/Modal/useModal';
 
 import { getYMD } from '../../utils/functions';
-import { fetchAnimeInfo } from '../../actions/user/actions';
+import { fetchAnimeInfo, changeAnimeStatus } from '../../actions/user/actions';
 import { animeCardFormat, animeUserStatusesMap } from '../AnimeCard/constants';
 
 function ChangeAnimeStatusModal(props) {
@@ -16,6 +17,7 @@ function ChangeAnimeStatusModal(props) {
     const { title, coverImage } = animeCard;
 
     const dispatch = useDispatch();
+    const { closeModal } = useModal();
 
     const { animeUserInfo, animeInProgress } = useSelector(
         (state) => state.anime,
@@ -64,15 +66,21 @@ function ChangeAnimeStatusModal(props) {
         repeat: animeUserInfo && animeUserInfo.repeat,
     });
 
-    const changeAnimeStatus = () => {
-        console.log({
-            status: formData.status && formData.status.value,
-            score: formData.score && parseInt(formData.score.value),
-            progress: formData.progress,
-            startedAt: getYMD(formData.startedAt),
-            completedAt: getYMD(formData.completedAt),
-            repeat: formData.repeat,
-        });
+    const onSubmit = () => {
+        dispatch(
+            changeAnimeStatus(
+                animeCard.id,
+                {
+                    status: formData.status && formData.status.value,
+                    score: formData.score && parseInt(formData.score.value),
+                    progress: formData.progress,
+                    startedAt: getYMD(formData.startedAt),
+                    completedAt: getYMD(formData.completedAt),
+                    repeat: formData.repeat,
+                },
+                () => closeModal(),
+            ),
+        );
     };
 
     useEffect(() => {
@@ -95,7 +103,7 @@ function ChangeAnimeStatusModal(props) {
                         </div>
                     </div>
                     <div className="change-anime-status__header-buttons">
-                        <Button onClick={changeAnimeStatus}>Save</Button>
+                        <Button onClick={onSubmit}>Save</Button>
                     </div>
                 </div>
                 {!animeInProgress && (
