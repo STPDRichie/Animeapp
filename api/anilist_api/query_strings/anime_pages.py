@@ -84,6 +84,19 @@ fragment media on Media {
     mediaListEntry {
         id
         status
+        score (format: POINT_5)
+        progress
+        startedAt {
+            year
+            month
+            day
+        }
+        completedAt {
+            year
+            month
+            day
+        }
+        repeat
     }
     studios(isMain: true) {
         edges {

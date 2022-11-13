@@ -133,15 +133,10 @@ query ($mediaId: Int) {
         volumes
         isFavourite
         mediaListEntry {
-            mediaId
+            id
             status
             score (format: POINT_5)
             progress
-            progressVolumes
-            repeat
-            priority
-            notes
-            updatedAt
             startedAt {
                 year
                 month
@@ -152,6 +147,7 @@ query ($mediaId: Int) {
                 month
                 day
             }
+            repeat
         }
     }
 }
