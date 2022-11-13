@@ -33,3 +33,14 @@ export function getStringDate(date) {
 
     return [yyyy, (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('-');
 }
+
+export function getYMD(date) {
+    if (!date) {
+        return '';
+    }
+    var mm = date.getMonth() + 1;
+    var dd = date.getDate();
+    var yyyy = date.getFullYear();
+
+    return [yyyy, mm, dd];
+}

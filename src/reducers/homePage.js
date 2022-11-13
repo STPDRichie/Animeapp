@@ -103,7 +103,6 @@ export default () => {
             }
             case ADD_ANIME_TO_LIST_SUCCESSFULLY: {
                 const { SaveMediaListEntry } = action.data.data;
-                const { status, mediaId } = SaveMediaListEntry;
                 return {
                     ...state,
                     ...changeMediaInLists(
@@ -115,8 +114,7 @@ export default () => {
                             state.top,
                             state.searchResult,
                         ],
-                        status,
-                        mediaId,
+                        SaveMediaListEntry,
                     ),
                 };
             }

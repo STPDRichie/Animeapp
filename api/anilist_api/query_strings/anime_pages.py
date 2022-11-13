@@ -62,7 +62,7 @@ fragment media on Media {
     description
     type
     format
-    status(version: 2)
+    status (version: 2)
     episodes
     duration
     chapters
@@ -222,6 +222,19 @@ query (
             mediaListEntry {
                 id
                 status
+                score (format: POINT_5)
+                progress
+                startedAt {
+                    year
+                    month
+                    day
+                }
+                completedAt {
+                    year
+                    month
+                    day
+                }
+                repeat
             }
             studios (isMain: true) {
                 edges {

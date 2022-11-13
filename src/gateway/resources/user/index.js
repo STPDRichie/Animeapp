@@ -6,8 +6,14 @@ class UserResource extends BaseResource {
     }
 
     async addAnimeToList(status, mediaId) {
-        return this.makeRequest('post', 'add_anime_to_list/', {
+        return this.makeRequest('post', 'anime_to_list/', {
             status,
+            mediaId,
+        });
+    }
+
+    async fetchAnimeInfo(mediaId) {
+        return this.makeRequest('post', 'anime_info/', {
             mediaId,
         });
     }

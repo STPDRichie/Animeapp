@@ -14,31 +14,31 @@ export function InputNumber(props) {
         max = 1000000,
         onChange = () => {},
         inputAttrs,
-        defaultValue = 0,
+        value = 0,
         autoComplete = 'off',
         classes = [],
     } = props;
 
-    const [value, setValue] = useState(defaultValue);
+    const [currentValue, setCurrentValue] = useState(value);
 
     const addValue = () => {
-        let newValue = value + 1;
-        newValue = newValue <= max ? newValue : value;
-        setValue(newValue);
+        let newValue = currentValue + 1;
+        newValue = newValue <= max ? newValue : currentValue;
+        setCurrentValue(newValue);
         onChange(newValue);
     };
 
     const subtractValue = () => {
-        let newValue = value - 1;
-        newValue = newValue >= Number(min) ? newValue : value;
-        setValue(newValue);
+        let newValue = currentValue - 1;
+        newValue = newValue >= Number(min) ? newValue : currentValue;
+        setCurrentValue(newValue);
         onChange(newValue);
     };
 
     const onKeyDown = (e) => {
         if (e.keyCode === 8) {
-            const newValue = Math.trunc(value / 10);
-            setValue(newValue);
+            const newValue = Math.trunc(currentValue / 10);
+            setCurrentValue(newValue);
         }
         if (e.keyCode === 38) {
             addValue();
@@ -65,7 +65,7 @@ export function InputNumber(props) {
                         id={id}
                         type="text"
                         name={name}
-                        value={value}
+                        value={currentValue}
                         autoComplete={autoComplete}
                         onChange={onChange}
                         onKeyDown={onKeyDown}
@@ -91,7 +91,7 @@ InputNumber.propTypes = {
     name: PropTypes.string,
     onChange: PropTypes.func,
     inputAttrs: PropTypes.shape({}),
-    defaultValue: PropTypes.number,
+    value: PropTypes.number,
     autoComplete: PropTypes.string,
     classes: PropTypes.arrayOf(PropTypes.string),
 };
