@@ -70,7 +70,7 @@ export const fetchAnimeList =
         const resource = new AnimeResource();
         const response = await resource.fetchAnimeList(listName, pageNumber);
         const data = await response.json();
-        if (response.ok) {
+        if (response.ok && !data.errors) {
             dispatch({
                 type: FETCH_ANIME_LIST_SUCCESSFULLY,
                 data,

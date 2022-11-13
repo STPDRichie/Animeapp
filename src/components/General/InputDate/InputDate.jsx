@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar } from 'react-calendar';
 import PropTypes from 'prop-types';
 
@@ -23,9 +23,12 @@ function InputDate(props) {
     const classNames = ['input-date', modifiersClass];
 
     const onChangeDate = (value) => {
-        setCurrentDate(value);
         onChange(value);
     };
+
+    useEffect(() => {
+        setCurrentDate(value);
+    }, [value]);
 
     return (
         <div

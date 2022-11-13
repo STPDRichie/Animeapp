@@ -84,6 +84,21 @@ function ChangeAnimeStatusModal(props) {
     };
 
     useEffect(() => {
+        setFormData({
+            status:
+                animeUserInfo &&
+                statuses.find((s) => s.value === animeUserInfo.status),
+            score:
+                animeUserInfo &&
+                scores.find((s) => s.value === animeUserInfo.score.toString()),
+            progress: animeUserInfo && animeUserInfo.progress,
+            startedAt,
+            completedAt,
+            repeat: animeUserInfo && animeUserInfo.repeat,
+        });
+    }, [animeUserInfo]);
+
+    useEffect(() => {
         dispatch(fetchAnimeInfo(animeCard.id));
     }, []);
 
