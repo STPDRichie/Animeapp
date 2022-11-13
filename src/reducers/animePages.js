@@ -6,7 +6,7 @@ import {
     SEARCH_IN_PROGRESS,
     SEARCH_SUCCESSFULLY,
     SEARCH_WITH_ERRORS,
-} from '../actions/homePage/actionTypes';
+} from '../actions/animePages/actionTypes';
 import {
     ADD_ANIME_TO_LIST_SUCCESSFULLY,
     CHANGE_ANIME_STATUS_SUCCESSFULLY,

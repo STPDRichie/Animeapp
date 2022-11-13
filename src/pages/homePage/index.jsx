@@ -13,13 +13,13 @@ import {
     fetchHomePageAnime,
     initSearchAnime,
     searchAnime,
-} from '../../actions/homePage/actions';
+} from '../../actions/animePages/actions';
 
 function HomePage() {
     const dispatch = useDispatch();
 
     const { trending, season, nextSeason, popular, top, searchResult } =
-        useSelector((state) => state.homePage);
+        useSelector((state) => state.animePages);
 
     const [searchQuery, setSearchQuery] = useState('');
 

@@ -11,7 +11,7 @@ from ..anilist_api.query_strings.anime_pages import anime_list_query, home_page_
 main = Blueprint('main', __name__)
 
 
-@main.route('/home_page/anime_lists/', methods=['GET'])
+@main.route('/anime_pages/anime_lists/', methods=['GET'])
 @jwt_required(optional=True)
 def get_home_page_anime():
     response = make_request(home_page_lists, {
@@ -23,7 +23,7 @@ def get_home_page_anime():
     return response.json()
 
 
-@main.route('/home_page/search/', methods=['POST'])
+@main.route('/anime_pages/search/', methods=['POST'])
 @jwt_required(optional=True)
 def search_anime():
     search_query = request.json['query']

@@ -8,12 +8,12 @@ import history from '../history';
 const defaultMiddlewareConfig = {
     immutableCheck: {
         ignoredPaths: [
-            'homePage.trending',
-            'homePage.season',
-            'homePage.nextSeason',
-            'homePage.popular',
-            'homePage.top',
-            'homePage.searchResult',
+            'animePages.trending',
+            'animePages.season',
+            'animePages.nextSeason',
+            'animePages.popular',
+            'animePages.top',
+            'animePages.searchResult',
         ],
     },
 };

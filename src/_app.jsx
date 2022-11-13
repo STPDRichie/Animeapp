@@ -10,14 +10,11 @@ import history from './history';
 import ModalProvider from './components/General/Modal/ModalProvider';
 
 import HomePage from './pages/homePage';
+import TrendingPage from './pages/animePages/trending';
 import LoginPage from './pages/auth/login';
 import LoginCallbackPage from './pages/auth/loginCallback';
 import SignupPage from './pages/auth/signup';
 import ProfilePage from './pages/auth/profile';
-
-function TrendingPage() {
-    return <h2>Trending</h2>;
-}
 
 function App() {
     const { token } = useToken();
