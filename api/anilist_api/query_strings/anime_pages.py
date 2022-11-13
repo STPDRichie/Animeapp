@@ -82,7 +82,7 @@ fragment media on Media {
         episode
     }
     mediaListEntry {
-        id
+        mediaId
         status
         score (format: POINT_5)
         progress
@@ -233,7 +233,7 @@ query (
                 episode
             }
             mediaListEntry {
-                id
+                mediaId
                 status
                 score (format: POINT_5)
                 progress

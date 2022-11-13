@@ -17,6 +17,13 @@ class UserResource extends BaseResource {
             mediaId,
         });
     }
+
+    async changeAnimeStatus(mediaId, formData) {
+        return this.makeRequest('post', 'change_anime_status/', {
+            mediaId,
+            ...formData,
+        });
+    }
 }
 
 UserResource.resource = null;

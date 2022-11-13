@@ -29,6 +29,16 @@ def add_anime_to_list():
     return response.json()
 
 
+@user.route('/user/anime_info/', methods=['POST'])
+@jwt_required()
+def get_anime_info():
+    media_id = request.json['mediaId']
+    response = make_request(anime_info, {
+        'mediaId': media_id
+    })
+    return response.json()
+
+
 @user.route('/user/change_anime_status/', methods=['POST'])
 @jwt_required()
 def change_anime_status():
@@ -47,15 +57,5 @@ def change_anime_status():
         'repeat': repeat,
         'startedAt': started_at,
         'completedAt': completed_at
-    })
-    return response.json()
-
-
-@user.route('/user/anime_info/', methods=['POST'])
-@jwt_required()
-def get_anime_info():
-    media_id = request.json['mediaId']
-    response = make_request(anime_info, {
-        'mediaId': media_id
     })
     return response.json()

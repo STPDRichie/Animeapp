@@ -6,9 +6,12 @@ import {
     ADD_ANIME_TO_LIST_IN_PROGRESS,
     ADD_ANIME_TO_LIST_SUCCESSFULLY,
     ADD_ANIME_TO_LIST_WITH_ERRORS,
-    FECTH_ANIME_INFO_IN_PROGRESS,
-    FECTH_ANIME_INFO_SUCCESSFULLY,
-    FECTH_ANIME_INFO_WITH_ERRORS,
+    FETCH_ANIME_INFO_IN_PROGRESS,
+    FETCH_ANIME_INFO_SUCCESSFULLY,
+    FETCH_ANIME_INFO_WITH_ERRORS,
+    CHANGE_ANIME_STATUS_IN_PROGRESS,
+    CHANGE_ANIME_STATUS_SUCCESSFULLY,
+    CHANGE_ANIME_STATUS_WITH_ERRORS,
 } from './actionTypes';
 
 import UserResource from '../../gateway/resources/user';
@@ -57,13 +60,13 @@ export const addAnimeToList =
     };
 
 export const fetchAnimeInfo = (mediaId, callback) => async (dispatch) => {
-    dispatch({ type: FECTH_ANIME_INFO_IN_PROGRESS });
+    dispatch({ type: FETCH_ANIME_INFO_IN_PROGRESS });
     const resource = new UserResource();
     const response = await resource.fetchAnimeInfo(mediaId);
     const data = await response.json();
     if (response.ok && !data.errors) {
         dispatch({
-            type: FECTH_ANIME_INFO_SUCCESSFULLY,
+            type: FETCH_ANIME_INFO_SUCCESSFULLY,
             data,
         });
         if (isFunction(callback)) {
@@ -71,8 +74,30 @@ export const fetchAnimeInfo = (mediaId, callback) => async (dispatch) => {
         }
     } else {
         dispatch({
-            type: FECTH_ANIME_INFO_WITH_ERRORS,
+            type: FETCH_ANIME_INFO_WITH_ERRORS,
             data,
         });
     }
 };
+
+export const changeAnimeStatus =
+    (mediaId, formData, callback) => async (dispatch) => {
+        dispatch({ type: CHANGE_ANIME_STATUS_IN_PROGRESS });
+        const resource = new UserResource();
+        const response = await resource.changeAnimeStatus(mediaId, formData);
+        const data = await response.json();
+        if (response.ok && !data.errors) {
+            dispatch({
+                type: CHANGE_ANIME_STATUS_SUCCESSFULLY,
+                data,
+            });
+            if (isFunction(callback)) {
+                callback();
+            }
+        } else {
+            dispatch({
+                type: CHANGE_ANIME_STATUS_WITH_ERRORS,
+                data,
+            });
+        }
+    };

@@ -7,7 +7,12 @@ import {
     SEARCH_SUCCESSFULLY,
     SEARCH_WITH_ERRORS,
 } from '../actions/homePage/actionTypes';
-import { ADD_ANIME_TO_LIST_SUCCESSFULLY } from '../actions/user/actionTypes';
+import {
+    ADD_ANIME_TO_LIST_SUCCESSFULLY,
+    CHANGE_ANIME_STATUS_IN_PROGRESS,
+    CHANGE_ANIME_STATUS_SUCCESSFULLY,
+    CHANGE_ANIME_STATUS_WITH_ERRORS,
+} from '../actions/user/actionTypes';
 
 import { changeMediaInLists } from '../actions/user/utils';
 
@@ -102,6 +107,23 @@ export default () => {
                 };
             }
             case ADD_ANIME_TO_LIST_SUCCESSFULLY: {
+                const { SaveMediaListEntry } = action.data.data;
+                return {
+                    ...state,
+                    ...changeMediaInLists(
+                        [
+                            state.trending,
+                            state.season,
+                            state.nextSeason,
+                            state.popular,
+                            state.top,
+                            state.searchResult,
+                        ],
+                        SaveMediaListEntry,
+                    ),
+                };
+            }
+            case CHANGE_ANIME_STATUS_SUCCESSFULLY: {
                 const { SaveMediaListEntry } = action.data.data;
                 return {
                     ...state,

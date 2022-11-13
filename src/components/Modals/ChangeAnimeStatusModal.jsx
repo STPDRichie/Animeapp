@@ -67,7 +67,7 @@ function ChangeAnimeStatusModal(props) {
     const changeAnimeStatus = () => {
         console.log({
             status: formData.status && formData.status.value,
-            score: parseInt(formData.score.value),
+            score: formData.score && parseInt(formData.score.value),
             progress: formData.progress,
             startedAt: getYMD(formData.startedAt),
             completedAt: getYMD(formData.completedAt),

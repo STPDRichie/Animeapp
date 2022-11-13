@@ -1,7 +1,10 @@
 import {
-    FECTH_ANIME_INFO_IN_PROGRESS,
-    FECTH_ANIME_INFO_SUCCESSFULLY,
-    FECTH_ANIME_INFO_WITH_ERRORS,
+    FETCH_ANIME_INFO_IN_PROGRESS,
+    FETCH_ANIME_INFO_SUCCESSFULLY,
+    FETCH_ANIME_INFO_WITH_ERRORS,
+    CHANGE_ANIME_STATUS_IN_PROGRESS,
+    CHANGE_ANIME_STATUS_SUCCESSFULLY,
+    CHANGE_ANIME_STATUS_WITH_ERRORS,
 } from '../actions/user/actionTypes';
 
 export default () => {
@@ -13,7 +16,7 @@ export default () => {
 
     return (state = defaultState, action) => {
         switch (action.type) {
-            case FECTH_ANIME_INFO_SUCCESSFULLY: {
+            case FETCH_ANIME_INFO_SUCCESSFULLY: {
                 const { Media } = action.data.data;
                 return {
                     ...state,
@@ -22,14 +25,14 @@ export default () => {
                     animeInProgress: false,
                 };
             }
-            case FECTH_ANIME_INFO_IN_PROGRESS: {
+            case FETCH_ANIME_INFO_IN_PROGRESS: {
                 return {
                     ...state,
                     anime: null,
                     animeInProgress: true,
                 };
             }
-            case FECTH_ANIME_INFO_WITH_ERRORS: {
+            case FETCH_ANIME_INFO_WITH_ERRORS: {
                 return {
                     ...state,
                     animeInProgress: false,

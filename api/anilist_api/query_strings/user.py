@@ -133,7 +133,7 @@ query ($mediaId: Int) {
         volumes
         isFavourite
         mediaListEntry {
-            id
+            mediaId
             status
             score (format: POINT_5)
             progress
