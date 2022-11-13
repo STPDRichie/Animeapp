@@ -36,7 +36,7 @@ export function getStringDate(date) {
 
 export function getYMD(date) {
     if (!date) {
-        return '';
+        return null;
     }
     var month = date.getMonth() + 1;
     var day = date.getDate();
