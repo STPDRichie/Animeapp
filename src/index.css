@@ -256,6 +256,25 @@ ul {
   margin-bottom: 10px;
   display: block;
 }
+.input-label__loader {
+  width: 100px;
+  height: 16px;
+  border-radius: 5px;
+  animation-name: loading-keyframes;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.input__loader {
+  cursor: default;
+  height: 36px;
+  border-radius: 5px;
+  animation-name: loading-keyframes;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
 
 .input {
   display: flex;
@@ -574,7 +593,7 @@ ul {
   display: grid;
   grid-gap: 50px;
   grid-template-columns: 230px 230px 230px;
-  grid-template-areas: "status score progress" "start finish repeat" "notes notes notes" "advanced advanced advanced";
+  grid-template-areas: "status score progress" "start finish repeat" "notes notes notes";
   justify-content: center;
 }
 .change-anime-status-modal .status {

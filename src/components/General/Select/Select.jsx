@@ -14,31 +14,42 @@ function Select(props) {
         selectAttrs = {},
         modifiersClass,
         formatOptionLabel,
+        inLoad,
     } = props;
 
     const classNames = ['select', modifiersClass];
 
     return (
         <div className={classNames.join(' ')}>
-            {label && (
-                <label
-                    className="select__label input-label"
-                    dangerouslySetInnerHTML={{ __html: label }}
-                ></label>
+            {inLoad && (
+                <React.Fragment>
+                    <div className="select__label input-label input-label__loader" />
+                    <div className="select-block input__loader" />
+                </React.Fragment>
             )}
-            <ReactSelect
-                {...selectAttrs}
-                placeholder={placeholder}
-                value={value}
-                menuPlacement="auto"
-                className="select-block"
-                classNamePrefix="select-inner"
-                onChange={onChange}
-                isSearchable={isSearchable}
-                formatOptionLabel={formatOptionLabel}
-                options={options}
-                isDisabled={disabled}
-            />
+            {!inLoad && (
+                <React.Fragment>
+                    {label && (
+                        <label
+                            className="select__label input-label"
+                            dangerouslySetInnerHTML={{ __html: label }}
+                        ></label>
+                    )}
+                    <ReactSelect
+                        {...selectAttrs}
+                        placeholder={placeholder}
+                        value={value}
+                        menuPlacement="auto"
+                        className="select-block"
+                        classNamePrefix="select-inner"
+                        onChange={onChange}
+                        isSearchable={isSearchable}
+                        formatOptionLabel={formatOptionLabel}
+                        options={options}
+                        isDisabled={disabled}
+                    />
+                </React.Fragment>
+            )}
         </div>
     );
 }
@@ -72,6 +83,7 @@ Select.propTypes = {
     selectAttrs: PropTypes.shape({}),
     modifiersClass: PropTypes.string,
     formatOptionLabel: PropTypes.func,
+    inLoad: PropTypes.bool,
 };
 
 export default Select;

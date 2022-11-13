@@ -121,93 +121,99 @@ function ChangeAnimeStatusModal(props) {
                         <Button onClick={onSubmit}>Save</Button>
                     </div>
                 </div>
-                {!animeInProgress && (
-                    <div className="change-anime-status__body modal-content">
-                        <div className="change-anime-status__form">
-                            <div className="form-input status">
-                                <Select
-                                    label="Status"
-                                    placeholder=""
-                                    options={statuses}
-                                    value={formData.status}
-                                    isSearchable={false}
-                                    onChange={(selected) =>
-                                        setFormData({
-                                            ...formData,
-                                            status: selected,
-                                        })
-                                    }
-                                />
-                            </div>
-                            <div className="form-input score">
-                                <Select
-                                    label="Score"
-                                    placeholder=""
-                                    options={scores}
-                                    value={formData.score}
-                                    isSearchable={false}
-                                    onChange={(selected) =>
-                                        setFormData({
-                                            ...formData,
-                                            score: selected,
-                                        })
-                                    }
-                                />
-                            </div>
-                            <div className="form-input progress">
-                                <InputNumber
-                                    label="Episode Progress"
-                                    min={0}
-                                    max={animeCard.episodes}
-                                    value={formData.progress}
-                                    onChange={(selected) =>
-                                        setFormData({
-                                            ...formData,
-                                            progress: selected,
-                                        })
-                                    }
-                                />
-                            </div>
-                            <div className="form-input start">
-                                <InputDate
-                                    label="Start Date"
-                                    value={formData.startedAt}
-                                    onChange={(selected) =>
-                                        setFormData({
-                                            ...formData,
-                                            startedAt: selected,
-                                        })
-                                    }
-                                />
-                            </div>
-                            <div className="form-input finish">
-                                <InputDate
-                                    label="Finish Date"
-                                    value={formData.completedAt}
-                                    onChange={(selected) =>
-                                        setFormData({
-                                            ...formData,
-                                            completedAt: selected,
-                                        })
-                                    }
-                                />
-                            </div>
-                            <div className="form-input repeat">
-                                <InputNumber
-                                    label="Total Rewatches"
-                                    min={0}
-                                    value={formData.repeat}
-                                    onChange={(selected) =>
-                                        setFormData({
-                                            ...formData,
-                                            repeat: selected,
-                                        })
-                                    }
-                                />
-                            </div>
+                <div className="change-anime-status__body modal-content">
+                    <div className="change-anime-status__form">
+                        <div className="form-input status">
+                            <Select
+                                label="Status"
+                                placeholder=""
+                                options={statuses}
+                                value={formData.status}
+                                isSearchable={false}
+                                inLoad={animeInProgress}
+                                onChange={(selected) =>
+                                    setFormData({
+                                        ...formData,
+                                        status: selected,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className="form-input score">
+                            <Select
+                                label="Score"
+                                placeholder=""
+                                options={scores}
+                                value={formData.score}
+                                isSearchable={false}
+                                inLoad={animeInProgress}
+                                onChange={(selected) =>
+                                    setFormData({
+                                        ...formData,
+                                        score: selected,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className="form-input progress">
+                            <InputNumber
+                                label="Episode Progress"
+                                min={0}
+                                max={animeCard.episodes}
+                                value={formData.progress}
+                                inLoad={animeInProgress}
+                                onChange={(selected) =>
+                                    setFormData({
+                                        ...formData,
+                                        progress: selected,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className="form-input start">
+                            <InputDate
+                                label="Start Date"
+                                value={formData.startedAt}
+                                inLoad={animeInProgress}
+                                onChange={(selected) =>
+                                    setFormData({
+                                        ...formData,
+                                        startedAt: selected,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className="form-input finish">
+                            <InputDate
+                                label="Finish Date"
+                                value={formData.completedAt}
+                                inLoad={animeInProgress}
+                                onChange={(selected) =>
+                                    setFormData({
+                                        ...formData,
+                                        completedAt: selected,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className="form-input repeat">
+                            <InputNumber
+                                label="Total Rewatches"
+                                min={0}
+                                value={formData.repeat}
+                                inLoad={animeInProgress}
+                                onChange={(selected) =>
+                                    setFormData({
+                                        ...formData,
+                                        repeat: selected,
+                                    })
+                                }
+                            />
                         </div>
                     </div>
-                )}
+                </div>
+                {/* {!animeInProgress && (
+                )} */}
             </React.Fragment>
         </Modal>
     );

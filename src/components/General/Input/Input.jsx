@@ -23,6 +23,7 @@ function Input(props) {
         additionalRightText,
         autoFocus,
         disabled,
+        inLoad,
     } = props;
 
     const inputRef = createRef();
@@ -36,41 +37,53 @@ function Input(props) {
             } ${makeClasses(classes)}`}
         >
             <div className="input__inner">
-                {!isHidden && label && (
-                    <label
-                        htmlFor={id}
-                        className="input__label input-label"
-                        dangerouslySetInnerHTML={{ __html: label }}
-                    ></label>
+                {inLoad && (
+                    <React.Fragment>
+                        {!isHidden && (
+                            <div className="input__label input-label input-label__loader" />
+                        )}
+                        <div className="input__input input__loader" />
+                    </React.Fragment>
                 )}
-                <input
-                    id={id}
-                    type={endlessType}
-                    name={name}
-                    value={value}
-                    autoComplete={autoComplete}
-                    onKeyDown={onKeyDown}
-                    onBlur={onBlur}
-                    onClick={onClick}
-                    className="input__input"
-                    ref={inputRef}
-                    autoFocus={autoFocus}
-                    disabled={disabled}
-                    onChange={(e) => onChange(e.target.value)}
-                    {...inputAttrs}
-                />
-                {floatPlaceholder && (
-                    <span className="input-float-placeholder">
-                        {floatPlaceholder}
-                    </span>
-                )}
-                {additionalRightText && (
-                    <span
-                        className="input-additional-right-text"
-                        dangerouslySetInnerHTML={{
-                            __html: additionalRightText,
-                        }}
-                    />
+                {!inLoad && (
+                    <React.Fragment>
+                        {!isHidden && label && (
+                            <label
+                                htmlFor={id}
+                                className="input__label input-label"
+                                dangerouslySetInnerHTML={{ __html: label }}
+                            ></label>
+                        )}
+                        <input
+                            id={id}
+                            type={endlessType}
+                            name={name}
+                            value={value}
+                            autoComplete={autoComplete}
+                            onKeyDown={onKeyDown}
+                            onBlur={onBlur}
+                            onClick={onClick}
+                            className="input__input"
+                            ref={inputRef}
+                            autoFocus={autoFocus}
+                            disabled={disabled}
+                            onChange={(e) => onChange(e.target.value)}
+                            {...inputAttrs}
+                        />
+                        {floatPlaceholder && (
+                            <span className="input-float-placeholder">
+                                {floatPlaceholder}
+                            </span>
+                        )}
+                        {additionalRightText && (
+                            <span
+                                className="input-additional-right-text"
+                                dangerouslySetInnerHTML={{
+                                    __html: additionalRightText,
+                                }}
+                            />
+                        )}
+                    </React.Fragment>
                 )}
             </div>
         </div>
@@ -96,6 +109,7 @@ Input.propTypes = {
     autoComplete: PropTypes.string,
     autoFocus: PropTypes.bool,
     disabled: PropTypes.bool,
+    inLoad: PropTypes.bool,
 };
 
 export default Input;

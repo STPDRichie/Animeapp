@@ -1,6 +1,19 @@
 .input-label {
     margin-bottom: 10px;
     display: block;
+    &__loader {
+        width: 100px;
+        height: 16px;
+        border-radius: 5px;
+        @include loading;
+    }
+}
+
+.input__loader {
+    cursor: default;
+    height: 36px;
+    border-radius: 5px;
+    @include loading;
 }
 
 .input {
