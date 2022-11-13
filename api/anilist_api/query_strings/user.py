@@ -50,7 +50,7 @@ USER_INFO = '''
 }
 '''
 
-ANIME_TO_LIST = '''
+ADD_ANIME_TO_LIST = '''
 mutation (
     $mediaId: Int,
     $status: MediaListStatus,
@@ -65,7 +65,7 @@ mutation (
 }
 '''
 
-ANIME_STATUS_CHANGE = '''
+CHANGE_ANIME_STATUS = '''
 mutation (
     $mediaId: Int,
     $status: MediaListStatus,

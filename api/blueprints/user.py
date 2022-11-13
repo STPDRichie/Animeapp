@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from .. import db
 
 from ..anilist_api import make_request
-from ..anilist_api.query_strings.user import USER_INFO, ANIME_TO_LIST, ANIME_STATUS_CHANGE, ANIME_INFO
+from ..anilist_api.query_strings.user import USER_INFO, ADD_ANIME_TO_LIST, CHANGE_ANIME_STATUS, ANIME_INFO
 
 
 user = Blueprint('user', __name__)
@@ -22,7 +22,7 @@ def get_profile():
 def add_anime_to_list():
     media_id = request.json['mediaId']
     status = request.json['status']
-    response = make_request(ANIME_TO_LIST, {
+    response = make_request(ADD_ANIME_TO_LIST, {
         'mediaId': media_id,
         'status': status
     })
@@ -49,7 +49,7 @@ def change_anime_status():
     repeat = request.json['repeat'] if request.json['repeat'] else 0
     started_at = request.json['startedAt']
     completed_at = request.json['completedAt']
-    response = make_request(ANIME_STATUS_CHANGE, {
+    response = make_request(CHANGE_ANIME_STATUS, {
         'mediaId': media_id,
         'status': status,
         'score': score,
