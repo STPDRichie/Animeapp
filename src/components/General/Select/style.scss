@@ -24,6 +24,7 @@
     &__single-value,
     &__placeholder {
         font-size: 16px;
+        font-weight: 500;
         color: $light-text !important;
     }
     &__menu {
@@ -37,6 +38,7 @@
         &:active,
         &:hover {
             background-color: $light-background !important;
+            cursor: pointer;
         }
         &:focus {
             background-color: initial !important;

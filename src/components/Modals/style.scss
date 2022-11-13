@@ -77,6 +77,13 @@
     }
     .score {
         grid-area: score;
+        .select-inner__single-value {
+            text-align: center;
+            margin-left: 36px;
+        }
+        .select-inner__option {
+            text-align: center;
+        }
     }
     .progress {
         grid-area: progress;

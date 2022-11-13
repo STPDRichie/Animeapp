@@ -303,7 +303,7 @@ ul {
 }
 .input-number-inner__input input {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .input-number-inner__input .add,
 .input-number-inner__input .subtract {
@@ -441,6 +441,7 @@ ul {
 }
 .select-inner__menu, .select-inner__single-value, .select-inner__placeholder {
   font-size: 16px;
+  font-weight: 500;
   color: #748899 !important;
 }
 .select-inner__menu {
@@ -457,6 +458,7 @@ ul {
 }
 .select-inner__option:active, .select-inner__option:hover {
   background-color: #edf1f5 !important;
+  cursor: pointer;
 }
 .select-inner__option:focus {
   background-color: initial !important;
@@ -580,6 +582,13 @@ ul {
 }
 .change-anime-status-modal .score {
   grid-area: score;
+}
+.change-anime-status-modal .score .select-inner__single-value {
+  text-align: center;
+  margin-left: 36px;
+}
+.change-anime-status-modal .score .select-inner__option {
+  text-align: center;
 }
 .change-anime-status-modal .progress {
   grid-area: progress;
