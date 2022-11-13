@@ -38,9 +38,13 @@ export function getYMD(date) {
     if (!date) {
         return '';
     }
-    var mm = date.getMonth() + 1;
-    var dd = date.getDate();
-    var yyyy = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var year = date.getFullYear();
 
-    return [yyyy, mm, dd];
+    return {
+        year,
+        month,
+        day,
+    };
 }

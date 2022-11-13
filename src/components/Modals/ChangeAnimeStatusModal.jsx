@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Modal from '../General/Modal/Modal';
@@ -7,6 +7,7 @@ import Select from '../General/Select/Select';
 import InputNumber from '../General/InputNumber/InputNumber';
 import InputDate from '../General/InputDate/InputDate';
 
+import { getYMD } from '../../utils/functions';
 import { fetchAnimeInfo } from '../../actions/user/actions';
 import { animeCardFormat, animeUserStatusesMap } from '../AnimeCard/constants';
 
@@ -42,13 +43,37 @@ function ChangeAnimeStatusModal(props) {
         );
 
     const scores = [
-        { value: 5, label: '5' },
-        { value: 4, label: '4' },
-        { value: 3, label: '3' },
-        { value: 2, label: '2' },
-        { value: 1, label: '1' },
-        { value: 0, label: '' },
+        { value: '5', label: '5' },
+        { value: '4', label: '4' },
+        { value: '3', label: '3' },
+        { value: '2', label: '2' },
+        { value: '1', label: '1' },
+        { value: '0', label: '' },
     ];
+
+    const [formData, setFormData] = useState({
+        status:
+            animeUserInfo &&
+            statuses.find((s) => s.value === animeUserInfo.status),
+        score:
+            animeUserInfo &&
+            scores.find((s) => s.value === animeUserInfo.score.toString()),
+        progress: animeUserInfo && animeUserInfo.progress,
+        startedAt,
+        completedAt,
+        repeat: animeUserInfo && animeUserInfo.repeat,
+    });
+
+    const changeAnimeStatus = () => {
+        console.log({
+            status: formData.status.value,
+            score: parseInt(formData.score.value),
+            progress: formData.progress,
+            startedAt: getYMD(formData.startedAt),
+            completedAt: getYMD(formData.completedAt),
+            repeat: formData.repeat,
+        });
+    };
 
     useEffect(() => {
         dispatch(fetchAnimeInfo(animeCard.id));
@@ -70,7 +95,7 @@ function ChangeAnimeStatusModal(props) {
                         </div>
                     </div>
                     <div className="change-anime-status__header-buttons">
-                        <Button>Save</Button>
+                        <Button onClick={changeAnimeStatus}>Save</Button>
                     </div>
                 </div>
                 {!animeInProgress && (
@@ -81,15 +106,14 @@ function ChangeAnimeStatusModal(props) {
                                     label="Status"
                                     placeholder=""
                                     options={statuses}
-                                    value={
-                                        animeUserInfo &&
-                                        statuses.find(
-                                            (s) =>
-                                                s.value ===
-                                                animeUserInfo.status,
-                                        )
-                                    }
+                                    value={formData.status}
                                     isSearchable={false}
+                                    onChange={(selected) =>
+                                        setFormData({
+                                            ...formData,
+                                            status: selected,
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="form-input score">
@@ -97,14 +121,14 @@ function ChangeAnimeStatusModal(props) {
                                     label="Score"
                                     placeholder=""
                                     options={scores}
-                                    value={
-                                        animeUserInfo &&
-                                        scores.find(
-                                            (s) =>
-                                                s.value === animeUserInfo.score,
-                                        )
-                                    }
+                                    value={formData.score}
                                     isSearchable={false}
+                                    onChange={(selected) =>
+                                        setFormData({
+                                            ...formData,
+                                            score: selected,
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="form-input progress">
@@ -112,29 +136,49 @@ function ChangeAnimeStatusModal(props) {
                                     label="Episode Progress"
                                     min={0}
                                     max={animeCard.episodes}
-                                    value={
-                                        animeUserInfo && animeUserInfo.progress
+                                    value={formData.progress}
+                                    onChange={(selected) =>
+                                        setFormData({
+                                            ...formData,
+                                            progress: selected,
+                                        })
                                     }
                                 />
                             </div>
                             <div className="form-input start">
                                 <InputDate
                                     label="Start Date"
-                                    value={startedAt}
+                                    value={formData.startedAt}
+                                    onChange={(selected) =>
+                                        setFormData({
+                                            ...formData,
+                                            startedAt: selected,
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="form-input finish">
                                 <InputDate
                                     label="Finish Date"
-                                    value={completedAt}
+                                    value={formData.completedAt}
+                                    onChange={(selected) =>
+                                        setFormData({
+                                            ...formData,
+                                            completedAt: selected,
+                                        })
+                                    }
                                 />
                             </div>
                             <div className="form-input repeat">
                                 <InputNumber
                                     label="Total Rewatches"
                                     min={0}
-                                    value={
-                                        animeUserInfo && animeUserInfo.repeat
+                                    value={formData.repeat}
+                                    onChange={(selected) =>
+                                        setFormData({
+                                            ...formData,
+                                            repeat: selected,
+                                        })
                                     }
                                 />
                             </div>
