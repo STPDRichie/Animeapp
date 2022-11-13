@@ -212,8 +212,9 @@ function ChangeAnimeStatusModal(props) {
                         </div>
                     </div>
                 </div>
-                {/* {!animeInProgress && (
-                )} */}
+                <div className="change-anime-status__buttons modal-content">
+                    <Button modifiers={['danger']}>Delete</Button>
+                </div>
             </React.Fragment>
         </Modal>
     );

@@ -156,12 +156,24 @@ ul {
   box-shadow: 0 0 10px 0 rgba(43, 45, 66, 0.15);
   background-color: #ffffff;
   color: #5c728a;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 700px;
   animation-name: appearance-keyframes;
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-direction: normal;
+}
+.modal-container::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-container::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 5px;
+}
+.modal-container::-webkit-scrollbar-thumb:hover {
+  background-color: #aaaaaa;
 }
 .modal-container__close {
   position: absolute;
@@ -250,6 +262,12 @@ ul {
 }
 .button--disabled {
   opacity: 0.7;
+}
+.button--danger {
+  background-color: #e85d75;
+}
+.button--danger:hover {
+  background-color: #eb7388;
 }
 
 .input-label {
@@ -593,8 +611,18 @@ ul {
   display: grid;
   grid-gap: 50px;
   grid-template-columns: 230px 230px 230px;
-  grid-template-areas: "status score progress" "start finish repeat" "notes notes notes";
+  grid-template-areas: "status score progress" "start finish repeat";
   justify-content: center;
+}
+.change-anime-status-modal .change-anime-status__buttons {
+  padding-top: 10px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+.change-anime-status-modal .change-anime-status__buttons .button {
+  width: auto;
+  margin: 0;
 }
 .change-anime-status-modal .status {
   grid-area: status;

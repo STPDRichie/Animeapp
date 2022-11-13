@@ -17,8 +17,20 @@
     box-shadow: 0 0 10px 0 rgba($dark-background, 0.15);
     background-color: $white;
     color: $main-text;
-    border-radius: 10px;
-    overflow: hidden;
+    border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 700px;
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $scrollbar;
+        border-radius: 5px;
+        &:hover {
+            background-color: $scrollbar-hover;
+        }
+    }
     @include appearance;
     &__close {
         position: absolute;

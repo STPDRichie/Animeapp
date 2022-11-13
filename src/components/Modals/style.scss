@@ -66,9 +66,18 @@
             grid-template-columns: 230px 230px 230px;
             grid-template-areas:
                 "status score progress"
-                "start finish repeat"
-                "notes notes notes";
+                "start finish repeat";
             justify-content: center;
+        }
+        &__buttons {
+            padding-top: 10px;
+            padding-bottom: 40px;
+            display: flex;
+            justify-content: flex-end;
+            .button {
+                width: auto;
+                margin: 0;
+            }
         }
     }
     .status {

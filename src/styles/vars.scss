@@ -38,6 +38,9 @@ $loader-light: #dde6ef;
 
 $light-icon: $loader-dark;
 
+$button-danger: $red;
+$button-danger-hover: lighten($button-danger, 5%);
+
 :export {
     green: $green;
     yellow: $yellow;
