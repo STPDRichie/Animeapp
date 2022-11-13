@@ -113,9 +113,7 @@ function ChangeAnimeStatusModal(props) {
                                     min={0}
                                     max={animeCard.episodes}
                                     value={
-                                        (animeUserInfo &&
-                                            animeUserInfo.progress) ||
-                                        0
+                                        animeUserInfo && animeUserInfo.progress
                                     }
                                 />
                             </div>
@@ -136,9 +134,7 @@ function ChangeAnimeStatusModal(props) {
                                     label="Total Rewatches"
                                     min={0}
                                     value={
-                                        (animeUserInfo &&
-                                            animeUserInfo.repeat) ||
-                                        0
+                                        animeUserInfo && animeUserInfo.repeat
                                     }
                                 />
                             </div>

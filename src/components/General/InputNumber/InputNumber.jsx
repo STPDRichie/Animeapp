@@ -19,7 +19,7 @@ export function InputNumber(props) {
         classes = [],
     } = props;
 
-    const [currentValue, setCurrentValue] = useState(value);
+    const [currentValue, setCurrentValue] = useState(value || min);
 
     const addValue = () => {
         let newValue = currentValue + 1;
