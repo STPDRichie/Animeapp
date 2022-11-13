@@ -808,6 +808,11 @@ ul {
   margin-bottom: 40px;
 }
 
+.anime-page__title {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
 .login-page, .signup-page, .login-callback-page {
   width: 100%;
   height: 100vh;

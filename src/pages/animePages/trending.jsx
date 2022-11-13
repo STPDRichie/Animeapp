@@ -6,7 +6,7 @@ import BlockContainer from '../../components/General/BlockContainer/BlockContain
 import ImageWithTitleCard from '../../components/AnimeCard/ImageWithTitleCard';
 import ItemsBlock from '../../components/ItemsBlock/ItemsBlock';
 
-import { fetchHomePageAnime } from '../../actions/animePages/actions';
+import { fetchAnimeList } from '../../actions/animePages/actions';
 
 function TrendingPage() {
     const dispatch = useDispatch();
@@ -15,25 +15,33 @@ function TrendingPage() {
 
     const [currentPage, setCurrentPage] = useState(1);
 
+    const onChangePage = (callback) => {
+        setCurrentPage(currentPage + 1);
+        dispatch(fetchAnimeList('trending', currentPage, () => callback()));
+    };
+
     useEffect(() => {
-        dispatch(fetchHomePageAnime());
+        dispatch(
+            fetchAnimeList('trending', currentPage, () => setCurrentPage(2)),
+        );
     }, []);
 
-    useEffect(() => {
-        console.log(`fetching ${currentPage} page`);
-    }, [currentPage]);
-
     return (
-        <Layout title="Trending • Animeapp" mainContentClasses={['home-page']}>
+        <Layout
+            title="Trending • Animeapp"
+            mainContentClasses={['trending-page']}
+        >
             <BlockContainer>
+                <div className="trending-page__title anime-page__title">
+                    Trending Anime
+                </div>
                 <ItemsBlock
                     name="trending"
-                    title="Trending anime"
                     items={trending}
                     itemInstance={(entity) => (
                         <ImageWithTitleCard animeCard={entity} />
                     )}
-                    loadersCount={5}
+                    loadersCount={10}
                     itemLoader={() => (
                         <div className="image-with-title-card">
                             <div className="image-with-title-card__image-wrapper image-wrapper__loader" />
@@ -41,9 +49,7 @@ function TrendingPage() {
                         </div>
                     )}
                     needInfiniteScroll={true}
-                    infiniteScrollCallback={() =>
-                        setCurrentPage(currentPage + 1)
-                    }
+                    infiniteScrollCallback={onChangePage}
                 />
             </BlockContainer>
         </Layout>

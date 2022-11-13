@@ -6,6 +6,9 @@ import {
     SEARCH_IN_PROGRESS,
     SEARCH_SUCCESSFULLY,
     SEARCH_WITH_ERRORS,
+    FETCH_ANIME_LIST_IN_PROGRESS,
+    FETCH_ANIME_LIST_SUCCESSFULLY,
+    FETCH_ANIME_LIST_WITH_ERRORS,
 } from '../actions/animePages/actionTypes';
 import {
     ADD_ANIME_TO_LIST_SUCCESSFULLY,
@@ -21,7 +24,7 @@ export default () => {
         nextSeason: null,
         popular: null,
         top: null,
-        homeInProgress: true,
+        animeInProgress: true,
         searchResult: null,
         searchInProgress: false,
     };
@@ -53,7 +56,7 @@ export default () => {
                         count: top.media.length,
                         entities: top.media,
                     },
-                    homeInProgress: false,
+                    animeInProgress: false,
                 };
             }
             case FETCH_HOME_IN_PROGRESS: {
@@ -64,13 +67,13 @@ export default () => {
                     nextSeason: null,
                     popular: null,
                     top: null,
-                    homeInProgress: true,
+                    animeInProgress: true,
                 };
             }
             case FETCH_HOME_WITH_ERRORS: {
                 return {
                     ...state,
-                    homeInProgress: false,
+                    animeInProgress: false,
                 };
             }
             case SEARCH_INIT: {
@@ -136,6 +139,37 @@ export default () => {
                         ],
                         SaveMediaListEntry,
                     ),
+                };
+            }
+            case FETCH_ANIME_LIST_SUCCESSFULLY: {
+                const { list } = action.data.data;
+                const { listName } = action;
+                let newList = {
+                    count: list.media.length,
+                    entities: list.media,
+                };
+                if (state[listName]) {
+                    newList = {
+                        count: state[listName].count + list.media.length,
+                        entities: [...state[listName].entities, ...list.media],
+                    };
+                }
+                return {
+                    ...state,
+                    [listName]: newList,
+                    animeInProgress: false,
+                };
+            }
+            case FETCH_ANIME_LIST_IN_PROGRESS: {
+                return {
+                    ...state,
+                    animeInProgress: true,
+                };
+            }
+            case FETCH_ANIME_LIST_WITH_ERRORS: {
+                return {
+                    ...state,
+                    animeInProgress: false,
                 };
             }
             default:

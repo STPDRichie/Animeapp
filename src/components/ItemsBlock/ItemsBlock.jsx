@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
@@ -18,31 +18,12 @@ function ItemsBlock(props) {
         infiniteScrollCallback,
     } = props;
 
-    const [cT, setCT] = useState(items);
-
     const [isFetching, setIsFetching] = (needInfiniteScroll &&
         useInfiniteScroll(() => {
-            if (!isFetching) {
-                if (isFunction(infiniteScrollCallback)) {
-                    infiniteScrollCallback();
-                }
+            if (isFunction(infiniteScrollCallback)) {
+                infiniteScrollCallback(() => setIsFetching(false));
             }
-            if (cT) {
-                setCT(() => ({
-                    count: cT.count + 5,
-                    entities: [...cT.entities, ...cT.entities.slice(-5)],
-                }));
-            }
-            setIsFetching(false);
         })) || [false, () => {}];
-
-    useEffect(() => {
-        if (!items) {
-            setIsFetching(true);
-        } else {
-            setCT(items);
-        }
-    }, [items]);
 
     return (
         <React.Fragment>
@@ -62,7 +43,7 @@ function ItemsBlock(props) {
                     </div>
                 )}
                 <div className={`items__entities ${name}__entities`}>
-                    {!cT &&
+                    {!items &&
                         loadersCount &&
                         isFunction(itemLoader) &&
                         [...Array(loadersCount)].map((_, i) => (
@@ -70,8 +51,8 @@ function ItemsBlock(props) {
                                 {itemLoader()}
                             </div>
                         ))}
-                    {cT &&
-                        cT.entities.map((entity) => (
+                    {items &&
+                        items.entities.map((entity) => (
                             <div
                                 key={entity.id}
                                 className={`items__entity ${name}__entity`}
@@ -79,16 +60,16 @@ function ItemsBlock(props) {
                                 {itemInstance(entity)}
                             </div>
                         ))}
+                    {needInfiniteScroll &&
+                        isFetching &&
+                        loadersCount &&
+                        isFunction(itemLoader) &&
+                        [...Array(loadersCount)].map((_, i) => (
+                            <div key={i} className="items-block__entity-loader">
+                                {itemLoader()}
+                            </div>
+                        ))}
                 </div>
-                {needInfiniteScroll &&
-                    isFetching &&
-                    loadersCount &&
-                    isFunction(itemLoader) &&
-                    [...Array(loadersCount)].map((_, i) => (
-                        <div key={i} className="items-block__entity-loader">
-                            {itemLoader()}
-                        </div>
-                    ))}
             </div>
         </React.Fragment>
     );

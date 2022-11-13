@@ -283,3 +283,95 @@ query ($type: ExternalLinkMediaType) {
     }
 }
 '''
+
+anime_list = '''
+query (
+    $season: MediaSeason,
+    $seasonYear: Int,
+    $sort: [MediaSort],
+    $page: Int
+) {
+    list: Page(page: $page, perPage: 10) {
+        media(season: $season, seasonYear: $seasonYear, sort: $sort, type: ANIME, isAdult: false) {
+            ...media
+        }
+    }
+}
+
+fragment media on Media {
+    id
+    title {
+        userPreferred
+        romaji
+        english
+        native
+    }
+    coverImage {
+        extraLarge
+        large
+        medium
+        color
+    }
+    startDate {
+        year
+        month
+        day
+    }
+    endDate {
+        year
+        month
+        day
+    }
+    bannerImage
+    season
+    seasonYear
+    description
+    type
+    format
+    status (version: 2)
+    episodes
+    duration
+    chapters
+    volumes
+    genres
+    isAdult
+    averageScore
+    popularity
+    source
+    tags {
+        id
+        name
+    }
+    nextAiringEpisode {
+        airingAt
+        timeUntilAiring
+        episode
+    }
+    mediaListEntry {
+        mediaId
+        status
+        score (format: POINT_5)
+        progress
+        startedAt {
+            year
+            month
+            day
+        }
+        completedAt {
+            year
+            month
+            day
+        }
+        repeat
+    }
+    studios(isMain: true) {
+        edges {
+            isMain
+            node {
+                id
+                name
+            }
+        }
+    }
+}
+'''

@@ -7,6 +7,9 @@ import {
     SEARCH_IN_PROGRESS,
     SEARCH_SUCCESSFULLY,
     SEARCH_WITH_ERRORS,
+    FETCH_ANIME_LIST_IN_PROGRESS,
+    FETCH_ANIME_LIST_SUCCESSFULLY,
+    FETCH_ANIME_LIST_WITH_ERRORS,
 } from './actionTypes';
 
 import AnimeResource from '../../gateway/resources/animePages';
@@ -60,3 +63,26 @@ export const searchAnime = (query, callback) => async (dispatch) => {
         });
     }
 };
+
+export const fetchAnimeList =
+    (listName, pageNumber, callback) => async (dispatch) => {
+        dispatch({ type: FETCH_ANIME_LIST_IN_PROGRESS });
+        const resource = new AnimeResource();
+        const response = await resource.fetchAnimeList(listName, pageNumber);
+        const data = await response.json();
+        if (response.ok) {
+            dispatch({
+                type: FETCH_ANIME_LIST_SUCCESSFULLY,
+                data,
+                listName,
+            });
+            if (isFunction(callback)) {
+                callback();
+            }
+        } else {
+            dispatch({
+                type: FETCH_ANIME_LIST_WITH_ERRORS,
+                data,
+            });
+        }
+    };

@@ -10,6 +10,13 @@ class AnimeResource extends BaseResource {
             query: query === '' ? null : query,
         });
     }
+
+    async fetchAnimeList(listName, pageNumber) {
+        return this.makeRequest('post', 'anime_list/', {
+            listName,
+            pageNumber,
+        });
+    }
 }
 
 AnimeResource.resource = null;
