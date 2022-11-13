@@ -1,4 +1,4 @@
-user_info = '''
+USER_INFO = '''
 {
     Viewer {
         id
@@ -50,7 +50,7 @@ user_info = '''
 }
 '''
 
-anime_to_list = '''
+ANIME_TO_LIST = '''
 mutation (
     $mediaId: Int,
     $status: MediaListStatus,
@@ -65,7 +65,7 @@ mutation (
 }
 '''
 
-anime_status_change = '''
+ANIME_STATUS_CHANGE = '''
 mutation (
     $mediaId: Int,
     $status: MediaListStatus,
@@ -122,7 +122,7 @@ mutation (
 }
 '''
 
-anime_info = '''
+ANIME_INFO = '''
 query ($mediaId: Int) {
     Media(id: $mediaId) {
         id

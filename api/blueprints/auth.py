@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .. import db
 from ..models import User
 
-from ..anilist_api import oauth_url
+from ..anilist_api import OAUTH_URL
 
 
 auth = Blueprint('auth', __name__)
@@ -26,7 +26,7 @@ def login():
     if not check_password_hash(user.password, password):
         return {'errors': ['Wrong password']}, 401
 
-    return {'url': oauth_url}
+    return {'url': OAUTH_URL}
 
 
 @auth.route('/login-callback/', methods=['POST'])

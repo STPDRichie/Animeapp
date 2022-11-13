@@ -24,6 +24,7 @@ export default () => {
         nextSeason: null,
         popular: null,
         top: null,
+        pageTitle: null,
         animeInProgress: true,
         searchResult: null,
         searchInProgress: false,
@@ -143,6 +144,7 @@ export default () => {
             }
             case FETCH_ANIME_LIST_SUCCESSFULLY: {
                 const { list } = action.data.data;
+                const { pageTitle } = action.data.additionalResponse;
                 const { listName } = action;
                 let newList = {
                     count: list.media.length,
@@ -157,6 +159,7 @@ export default () => {
                 return {
                     ...state,
                     [listName]: newList,
+                    pageTitle,
                     animeInProgress: false,
                 };
             }

@@ -1,4 +1,4 @@
-home_page_lists = '''
+HOME_PAGE_LISTS = '''
 query (
     $season: MediaSeason,
     $seasonYear: Int,
@@ -110,7 +110,7 @@ fragment media on Media {
 }
 '''
 
-anime_list_query = '''
+ANIME_LIST_QUERY = '''
 query (
     $page: Int = 1
     $id: Int
@@ -263,7 +263,7 @@ query (
 }
 '''
 
-anime_filters = '''
+ANIME_FILTERS = '''
 query ($type: ExternalLinkMediaType) {
     ExternalLinkSourceCollection (mediaType: $type, type: STREAMING) {
         id
@@ -284,7 +284,7 @@ query ($type: ExternalLinkMediaType) {
 }
 '''
 
-anime_list = '''
+ANIME_LIST = '''
 query (
     $season: MediaSeason,
     $seasonYear: Int,

@@ -12,7 +12,7 @@ function Layout(props) {
 
     useEffect(() => {
         document.title = title;
-    }, []);
+    }, [title]);
 
     return (
         <div className="layout">

@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from .. import db
 
 from ..anilist_api import make_request
-from ..anilist_api.query_strings.user import user_info, anime_to_list, anime_status_change, anime_info
+from ..anilist_api.query_strings.user import USER_INFO, ANIME_TO_LIST, ANIME_STATUS_CHANGE, ANIME_INFO
 
 
 user = Blueprint('user', __name__)
@@ -13,7 +13,7 @@ user = Blueprint('user', __name__)
 @user.route('/user/profile/', methods=['GET'])
 @jwt_required()
 def get_profile():
-    response = make_request(user_info)
+    response = make_request(USER_INFO)
     return response.json()
 
 
@@ -22,7 +22,7 @@ def get_profile():
 def add_anime_to_list():
     media_id = request.json['mediaId']
     status = request.json['status']
-    response = make_request(anime_to_list, {
+    response = make_request(ANIME_TO_LIST, {
         'mediaId': media_id,
         'status': status
     })
@@ -33,7 +33,7 @@ def add_anime_to_list():
 @jwt_required()
 def get_anime_info():
     media_id = request.json['mediaId']
-    response = make_request(anime_info, {
+    response = make_request(ANIME_INFO, {
         'mediaId': media_id
     })
     return response.json()
@@ -43,13 +43,13 @@ def get_anime_info():
 @jwt_required()
 def change_anime_status():
     media_id = request.json['mediaId']
-    status = request.json['status'] if request.json['status'] != None else "CURRENT"
-    score = request.json['score'] if request.json['score'] != None else 0
-    progress = request.json['progress'] if request.json['progress'] != None else 0
-    repeat = request.json['repeat'] if request.json['repeat'] != None else 0
+    status = request.json['status'] if request.json['status'] else "CURRENT"
+    score = request.json['score'] if request.json['score'] else 0
+    progress = request.json['progress'] if request.json['progress'] else 0
+    repeat = request.json['repeat'] if request.json['repeat'] else 0
     started_at = request.json['startedAt']
     completed_at = request.json['completedAt']
-    response = make_request(anime_status_change, {
+    response = make_request(ANIME_STATUS_CHANGE, {
         'mediaId': media_id,
         'status': status,
         'score': score,

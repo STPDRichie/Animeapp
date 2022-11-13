@@ -35,6 +35,16 @@ def get_next_year():
     return int(datetime.now().strftime('%Y')) + 1
 
 
+def get_page_title_this_season():
+    return f'{get_current_season().lower().capitalize()} {get_current_year()} Anime'
+
+
+def get_page_title_next_season():
+    if (int(datetime.now().strftime('%m')) + 3) % 12 < int(datetime.now().strftime('%m')) % 12:
+        return f'Anime Next Season — Airing {get_next_season().lower().capitalize()} {get_next_year()}'
+    return f'Anime Next Season — Airing {get_next_season().lower().capitalize()} {get_current_year()}'
+
+
 variables_by_list_map = {
     'trending': {
         'sort': 'TRENDING_DESC'
@@ -57,8 +67,30 @@ variables_by_list_map = {
     }
 }
 
+additional_response_map = {
+    'trending': {
+        'pageTitle': 'Trending Anime'
+    },
+    'season': {
+        'pageTitle': get_page_title_this_season()
+    },
+    'nextSeason': {
+        'pageTitle': get_page_title_next_season()
+    },
+    'popular': {
+        'pageTitle': 'Popular Anime'
+    },
+    'top': {
+        'pageTitle': 'Top Anime'
+    },
+}
+
 
 def get_anime_list_variables(list_name, page_number):
     variables = variables_by_list_map[list_name]
     variables['page'] = page_number
     return variables
+
+
+def get_additional_response(list_name):
+    return additional_response_map[list_name]

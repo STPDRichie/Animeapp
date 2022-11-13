@@ -9,11 +9,15 @@ import history from './history';
 
 import ModalProvider from './components/General/Modal/ModalProvider';
 
-import HomePage from './pages/homePage';
-import TrendingPage from './pages/animePages/trending';
 import LoginPage from './pages/auth/login';
 import LoginCallbackPage from './pages/auth/loginCallback';
 import SignupPage from './pages/auth/signup';
+import HomePage from './pages/homePage';
+import TrendingPage from './pages/animePages/trending';
+import SeasonPage from './pages/animePages/season';
+import NextSeasonPage from './pages/animePages/nextSeason';
+import PopularPage from './pages/animePages/popular';
+import TopPage from './pages/animePages/top';
 import ProfilePage from './pages/auth/profile';
 
 function App() {
@@ -32,6 +36,18 @@ function App() {
                             path="/trending"
                             element={<TrendingPage />}
                         />
+                        <Route exact path="/season" element={<SeasonPage />} />
+                        <Route
+                            exact
+                            path="/next-season"
+                            element={<NextSeasonPage />}
+                        />
+                        <Route
+                            exact
+                            path="/popular"
+                            element={<PopularPage />}
+                        />
+                        <Route exact path="/top" element={<TopPage />} />
                         <Route
                             exact
                             path="/login"
