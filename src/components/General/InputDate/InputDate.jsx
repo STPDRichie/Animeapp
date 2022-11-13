@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react';
+import React, { useState } from 'react';
 import { Calendar } from 'react-calendar';
 import PropTypes from 'prop-types';
 
@@ -16,9 +16,8 @@ function InputDate(props) {
         inputAttrs = {},
     } = props;
 
-    const inputRef = createRef();
-
     const [currentDate, setCurrentDate] = useState(value || '');
+
     const [calendarOpened, setCalendarOpened] = useState(false);
 
     const classNames = ['input-date', modifiersClass];
@@ -26,28 +25,31 @@ function InputDate(props) {
     const onChangeDate = (value) => {
         setCurrentDate(value);
         onChange(value);
-        setCalendarOpened(false);
     };
 
     return (
-        <div className={classNames.join(' ')}>
+        <div
+            className={classNames.join(' ')}
+            onBlur={() => setTimeout(() => setCalendarOpened(false), 300)}
+        >
             {!isHidden && label && (
                 <label
                     className="input-date__label input-label"
                     dangerouslySetInnerHTML={{ __html: label }}
                 ></label>
             )}
-            <Input
-                value={getStringDate(currentDate)}
-                modifier="light-blue"
-                classes={['input-date__input']}
-                onClick={() => setCalendarOpened(true)}
-            />
+            <div className="input-date__inner">
+                <Input
+                    value={getStringDate(currentDate)}
+                    modifier="light-blue"
+                    classes={['input-date__input']}
+                    onClick={() => setCalendarOpened(true)}
+                />
+            </div>
             {calendarOpened && (
                 <Calendar
                     value={value}
                     onChange={onChangeDate}
-                    inputRef={inputRef}
                     locale="en-US"
                     className="input-date__calendar"
                     tileClassName={({ date }) => {

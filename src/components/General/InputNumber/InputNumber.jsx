@@ -21,6 +21,21 @@ export function InputNumber(props) {
 
     const [currentValue, setCurrentValue] = useState(value || min);
 
+    const onValueChange = (e) => {
+        if (Number.isInteger(parseInt(e.target.value))) {
+            if (parseInt(e.target.value) > max) {
+                setCurrentValue(max);
+                onChange(max);
+            } else if (parseInt(e.target.value) < min) {
+                setCurrentValue(min);
+                onChange(min);
+            } else {
+                setCurrentValue(parseInt(e.target.value));
+                onChange(parseInt(e.target.value));
+            }
+        }
+    };
+
     const addValue = () => {
         let newValue = currentValue + 1;
         newValue = newValue <= max ? newValue : currentValue;
@@ -67,7 +82,7 @@ export function InputNumber(props) {
                         name={name}
                         value={currentValue}
                         autoComplete={autoComplete}
-                        onChange={onChange}
+                        onChange={onValueChange}
                         onKeyDown={onKeyDown}
                         {...inputAttrs}
                     />
