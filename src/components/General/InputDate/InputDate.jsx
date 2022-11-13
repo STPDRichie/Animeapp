@@ -51,8 +51,6 @@ function InputDate(props) {
                     locale="en-US"
                     className="input-date__calendar"
                     tileClassName={({ date }) => {
-                        console.log(date);
-                        console.log(value);
                         if (date.toString() === currentDate.toString()) {
                             return 'react-calendar__tile--selected';
                         }
