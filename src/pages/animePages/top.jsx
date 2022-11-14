@@ -25,10 +25,10 @@ function TopPage() {
     }, []);
 
     return (
-        <Layout title="Top • Animeapp" mainContentClasses={['top-page']}>
+        <Layout title="Top Scored • Animeapp" mainContentClasses={['top-page']}>
             <BlockContainer>
                 <div className="top-page__title anime-page__title">
-                    Top Anime
+                    Top Scored Anime
                 </div>
                 <ItemsBlock
                     name="top"

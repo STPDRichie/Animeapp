@@ -100,7 +100,7 @@ function HomePage() {
                         />
                         <ItemsBlock
                             name="top"
-                            title="Top 10 anime"
+                            title="Top scored anime"
                             viewAllLink="/top"
                             items={top}
                             {...itemsBlockProps}
