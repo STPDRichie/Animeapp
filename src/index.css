@@ -903,6 +903,54 @@ ul {
   font-size: 11px;
 }
 
+.anime-table .table-instance-row {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+.anime-table .table-instance-row:hover {
+  background-color: rgba(61, 180, 242, 0.2);
+}
+.anime-table .table-instance-row:hover .anime-edit-icon {
+  opacity: 1;
+  display: block;
+}
+.anime-table .table-instance-row:hover .anime-image-preview {
+  display: block;
+}
+.anime-table .table-instance-row:hover .anime-image-wrapper {
+  background-color: #3db4f2;
+}
+.anime-table .table-instance-row:hover .anime-image-wrapper img {
+  opacity: 0;
+}
+.anime-table .anime-edit-icon {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  display: none;
+  transition: opacity 0.1s ease-in-out;
+  font-size: 18px;
+  color: #ffffff;
+}
+.anime-table .anime-image-preview {
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  transform: translate(-100%, -50%);
+  width: 140px;
+  height: 200px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: none;
+  background-color: #5c728a;
+}
+.anime-table .anime-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .anime-table .table-instance-col--anime-image {
   width: 60px;
   padding: 10px;
@@ -913,10 +961,17 @@ ul {
   border-radius: 5px;
   overflow: hidden;
 }
-.anime-table .table-instance-col--anime-image img {
+.anime-table .table-instance-col--anime-image .anime-image-wrapper {
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+}
+.anime-table .table-instance-col--anime-image .anime-image-wrapper img {
   width: 100%;
   height: 100%;
   object-position: 50% -8px;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
 }
 .anime-table .table-instance-col--anime-title {
   padding-left: 5px;

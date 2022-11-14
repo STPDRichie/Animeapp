@@ -1,4 +1,52 @@
 .anime-table {
+    .table-instance-row {
+        position: relative;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: rgba($blue, 0.2);
+            .anime-edit-icon {
+                opacity: 1;
+                display: block;
+            }
+            .anime-image-preview {
+                display: block;
+            }
+            .anime-image-wrapper {
+                background-color: $blue;
+                img {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+    .anime-edit-icon {
+        position: absolute;
+        top: 11px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        display: none;
+        transition: opacity 0.1s ease-in-out;
+        font-size: 18px;
+        color: $white;
+    }
+    .anime-image-preview {
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translate(-100%, -50%);
+        width: 140px;
+        height: 200px;
+        border-radius: 5px;
+        overflow: hidden;
+        display: none;
+        background-color: $main-text;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
     .table-instance-col {
         &--anime-image {
             width: 60px;
@@ -9,10 +57,17 @@
                 border-radius: 5px;
                 overflow: hidden;
             }
-            img {
-                width: 100%;
-                height: 100%;
-                object-position: 50% -8px;
+            .anime-image-wrapper {
+                position: relative;
+                cursor: pointer;
+                transition: background-color 0.1s ease-in-out;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-position: 50% -8px;
+                    opacity: 1;
+                    transition: opacity 0.2s ease-in-out;
+                }
             }
         }
         &--anime-title {

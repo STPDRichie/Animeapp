@@ -1,11 +1,17 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 import TableCell from '../General/Table/TableCell';
+import ChangeAnimeStatusModal from '../Modals/ChangeAnimeStatusModal';
+import useModal from '../General/Modal/useModal';
 
 import { animeCardFormat } from '../../utils/constants';
 
 function AnimeTableInstance(props) {
     const { animeInstance } = props;
+
+    const { openModal } = useModal();
 
     const listEntry = animeInstance.mediaListEntry;
     console.log(animeInstance);
@@ -13,8 +19,21 @@ function AnimeTableInstance(props) {
     return (
         <React.Fragment>
             <TableCell type="anime-image">
-                <div className="anime-image-wrapper">
+                <div className="anime-image-preview">
+                    <img src={animeInstance.coverImage.large} />
+                </div>
+                <div
+                    className="anime-image-wrapper"
+                    onClick={() =>
+                        openModal(() => (
+                            <ChangeAnimeStatusModal animeCard={animeInstance} />
+                        ))
+                    }
+                >
                     <img src={animeInstance.coverImage.medium} />
+                    <div className="anime-edit-icon">
+                        <FontAwesomeIcon icon={faPen} />
+                    </div>
                 </div>
             </TableCell>
             <TableCell type="anime-title">
