@@ -8,14 +8,19 @@ import { childrenProps } from '../utils/constants';
 import { makeClasses } from '../utils/functions';
 
 function Layout(props) {
-    const { title = 'Animeapp', mainContentClasses, children } = props;
+    const {
+        title = 'Animeapp',
+        mainContentClasses,
+        layoutClass,
+        children,
+    } = props;
 
     useEffect(() => {
         document.title = title;
     }, [title]);
 
     return (
-        <div className="layout">
+        <div className={`layout ${layoutClass}`}>
             <Header />
             <main className={`main-content ${makeClasses(mainContentClasses)}`}>
                 <div className="layout__inner">{children}</div>
@@ -29,6 +34,7 @@ function Layout(props) {
 Layout.propTypes = {
     title: PropTypes.string,
     mainContentClasses: PropTypes.arrayOf(PropTypes.string),
+    layoutClass: PropTypes.string,
     children: childrenProps,
 };
 

@@ -895,3 +895,7 @@ ul {
 .login-form .button, .signup-form .button {
   margin-top: 40px;
 }
+
+.profile-layout .header {
+  background-color: rgba(43, 45, 66, 0.7);
+}

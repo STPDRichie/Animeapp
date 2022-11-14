@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import Layout from '../../layouts/layout';
+import BlockContainer from '../../components/General/BlockContainer/BlockContainer';
 import useToken from '../../hooks/useToken';
 
 import { logout } from '../../actions/auth/actions';
@@ -20,10 +22,13 @@ function ProfilePage() {
     }, []);
 
     return (
-        <React.Fragment>
-            <h2>Profile</h2>
-            <button onClick={logMeOut}>Logout</button>
-        </React.Fragment>
+        <Layout
+            title="Profile • Animeapp"
+            layoutClass="profile-layout"
+            mainContentClasses={['profile-page']}
+        >
+            <BlockContainer></BlockContainer>
+        </Layout>
     );
 }
 

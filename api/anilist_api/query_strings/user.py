@@ -50,6 +50,109 @@ USER_INFO = '''
 }
 '''
 
+USER_ANIME_LIST = '''
+query (
+    $userId: Int,
+    $userName: String,
+    $type: MediaType = ANIME
+) {
+    MediaListCollection (
+        userId: $userId,
+        userName: $userName,
+        type: $type
+    ) {
+        lists {
+            name
+            isCustomList
+            isCompletedList: isSplitCompletedList
+            entries {
+                ...mediaListEntry
+            }
+        }
+    }
+}
+
+fragment mediaListEntry on MediaList {
+    media {
+        id
+        title {
+            userPreferred
+            romaji
+            english
+            native
+        }
+        coverImage {
+            extraLarge
+            large
+            medium
+            color
+        }
+        startDate {
+            year
+            month
+            day
+        }
+        endDate {
+            year
+            month
+            day
+        }
+        bannerImage
+        season
+        seasonYear
+        description
+        type
+        format
+        status (version: 2)
+        episodes
+        duration
+        chapters
+        volumes
+        genres
+        isAdult
+        averageScore
+        popularity
+        source
+        tags {
+            id
+            name
+        }
+        nextAiringEpisode {
+            airingAt
+            timeUntilAiring
+            episode
+        }
+        mediaListEntry {
+            id
+            mediaId
+            status
+            score (format: POINT_5)
+            progress
+            startedAt {
+                year
+                month
+                day
+            }
+            completedAt {
+                year
+                month
+                day
+            }
+            repeat
+        }
+        studios(isMain: true) {
+            edges {
+                isMain
+                node {
+                    id
+                    name
+                }
+            }
+        }
+    }
+}
+'''
+
 ADD_ANIME_TO_LIST = '''
 mutation (
     $mediaId: Int,
