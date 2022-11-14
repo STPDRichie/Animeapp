@@ -6,6 +6,7 @@ import {
     USER_ANIME_LISTS_IN_PROGRESS,
     USER_ANIME_LISTS_SUCCESSFULLY,
     USER_ANIME_LISTS_WITH_ERRORS,
+    USER_ANIME_LISTS_CHANGED,
     ADD_ANIME_TO_LIST_IN_PROGRESS,
     ADD_ANIME_TO_LIST_SUCCESSFULLY,
     ADD_ANIME_TO_LIST_WITH_ERRORS,
@@ -61,6 +62,13 @@ export const getUserAnimeLists = (userId, callback) => async (dispatch) => {
             type: USER_ANIME_LISTS_WITH_ERRORS,
             data,
         });
+    }
+};
+
+export const initUserAnimeLists = (callback) => async (dispatch) => {
+    dispatch({ type: USER_ANIME_LISTS_CHANGED });
+    if (isFunction(callback)) {
+        callback();
     }
 };
 

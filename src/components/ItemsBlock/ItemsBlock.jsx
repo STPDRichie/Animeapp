@@ -77,7 +77,7 @@ function ItemsBlock(props) {
 
 ItemsBlock.propTypes = {
     name: PropTypes.string,
-    title: PropTypes.string,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     viewAllLink: PropTypes.string,
     items: PropTypes.shape({
         count: PropTypes.number,

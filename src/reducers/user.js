@@ -5,6 +5,10 @@ import {
     USER_ANIME_LISTS_IN_PROGRESS,
     USER_ANIME_LISTS_SUCCESSFULLY,
     USER_ANIME_LISTS_WITH_ERRORS,
+    USER_ANIME_LISTS_CHANGED,
+    ADD_ANIME_TO_LIST_SUCCESSFULLY,
+    DELETE_ANIME_FROM_LISTS_SUCCESSFULLY,
+    CHANGE_ANIME_STATUS_SUCCESSFULLY,
 } from '../actions/user/actionTypes';
 
 export default () => {
@@ -14,11 +18,12 @@ export default () => {
         animeLists: {
             watching: null,
             completed: null,
+            planning: null,
             paused: null,
             dropped: null,
-            planning: null,
         },
         animeListsInProgress: true,
+        listsChanged: false,
     };
 
     return (state = defaultState, action) => {
@@ -51,9 +56,12 @@ export default () => {
                     ...lists.map((list) => {
                         const listName = list.name.toLowerCase();
                         return {
-                            [listName]: list.entries.map(
-                                (entry) => entry.media,
-                            ),
+                            [listName]: {
+                                count: list.entries.length,
+                                entities: list.entries.map(
+                                    (entry) => entry.media,
+                                ),
+                            },
                         };
                     }),
                 );
@@ -68,7 +76,6 @@ export default () => {
             case USER_ANIME_LISTS_IN_PROGRESS: {
                 return {
                     ...state,
-                    animeLists: defaultState.animeLists,
                     animeListsInProgress: true,
                 };
             }
@@ -76,6 +83,30 @@ export default () => {
                 return {
                     ...state,
                     animeListsInProgress: false,
+                };
+            }
+            case USER_ANIME_LISTS_CHANGED: {
+                return {
+                    ...state,
+                    listsChanged: false,
+                };
+            }
+            case ADD_ANIME_TO_LIST_SUCCESSFULLY: {
+                return {
+                    ...state,
+                    listsChanged: true,
+                };
+            }
+            case DELETE_ANIME_FROM_LISTS_SUCCESSFULLY: {
+                return {
+                    ...state,
+                    listsChanged: true,
+                };
+            }
+            case CHANGE_ANIME_STATUS_SUCCESSFULLY: {
+                return {
+                    ...state,
+                    listsChanged: true,
                 };
             }
             default:
