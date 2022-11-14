@@ -59,7 +59,9 @@ export default () => {
                 );
                 return {
                     ...state,
-                    ...data,
+                    animeLists: {
+                        ...data,
+                    },
                     animeListsInProgress: false,
                 };
             }
