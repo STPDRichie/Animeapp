@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../../layouts/layout';
 import BlockContainer from '../../components/General/BlockContainer/BlockContainer';
 import Button from '../../components/General/Button/Button';
-import ItemsBlock from '../../components/ItemsBlock/ItemsBlock';
-import ImageWithTitleCard from '../../components/AnimeCard/ImageWithTitleCard';
 import AnimeTable from '../../components/AnimeTable/AnimeTable';
 import useToken from '../../hooks/useToken';
 
@@ -25,17 +23,6 @@ function ProfilePage() {
         useSelector((state) => state.user);
 
     const { watching, completed, planning, paused, dropped } = animeLists;
-
-    const itemsBlockProps = {
-        itemInstance: (entity) => <ImageWithTitleCard animeCard={entity} />,
-        loadersCount: 5,
-        itemLoader: () => (
-            <div className="image-with-title-card">
-                <div className="image-with-title-card__image-wrapper image-wrapper__loader" />
-                <div className="image-with-title-card__title title__loader" />
-            </div>
-        ),
-    };
 
     const onLogout = () => {
         dispatch(logout(removeToken));
