@@ -930,7 +930,7 @@ ul {
   transform: translateX(-50%);
   opacity: 0;
   display: none;
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
   font-size: 18px;
   color: #ffffff;
 }
@@ -964,7 +964,7 @@ ul {
 .anime-table .table-instance-col--anime-image .anime-image-wrapper {
   position: relative;
   cursor: pointer;
-  transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 .anime-table .table-instance-col--anime-image .anime-image-wrapper img {
   width: 100%;
