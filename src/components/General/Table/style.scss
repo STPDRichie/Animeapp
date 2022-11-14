@@ -12,6 +12,14 @@
     @include loading;
 }
 
+.table-title-loader {
+    width: 150px;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    @include loading;
+}
+
 .table-head {
     height: 60px;
 }

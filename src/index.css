@@ -568,6 +568,17 @@ ul {
   animation-direction: alternate;
 }
 
+.table-title-loader {
+  width: 150px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  animation-name: loading-keyframes;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 .table-head {
   height: 60px;
 }

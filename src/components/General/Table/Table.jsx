@@ -16,7 +16,12 @@ function Table(props) {
 
     return (
         <div className="table-wrapper">
-            {inProgress && <div className="table-instances-loader" />}
+            {inProgress && (
+                <React.Fragment>
+                    <div className="table-title-loader" />
+                    <div className="table-instances-loader" />
+                </React.Fragment>
+            )}
             {!inProgress && (
                 <React.Fragment>
                     {title && <div className="table-title">{title}</div>}
