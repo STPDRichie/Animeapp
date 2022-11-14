@@ -14,7 +14,7 @@ import {
     changeAnimeStatus,
     deleteAnimeFromLists,
 } from '../../actions/user/actions';
-import { animeCardFormat, animeUserStatusesMap } from '../AnimeCard/constants';
+import { animeCardFormat, animeUserStatusesMap } from '../../utils/constants';
 
 function ChangeAnimeStatusModal(props) {
     const { animeCard } = props;

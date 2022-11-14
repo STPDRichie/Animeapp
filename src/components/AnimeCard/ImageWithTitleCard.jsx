@@ -20,7 +20,7 @@ import {
     animeCardFormat,
     statusColorsMap,
     animeUserStatusesMap,
-} from './constants';
+} from '../../utils/constants';
 import sadEmoji from '../../static/icon/sad-emoji.svg';
 
 function ImageWithTitleCard(props) {
