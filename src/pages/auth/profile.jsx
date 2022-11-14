@@ -6,6 +6,7 @@ import BlockContainer from '../../components/General/BlockContainer/BlockContain
 import Button from '../../components/General/Button/Button';
 import ItemsBlock from '../../components/ItemsBlock/ItemsBlock';
 import ImageWithTitleCard from '../../components/AnimeCard/ImageWithTitleCard';
+import AnimeTable from '../../components/AnimeTable/AnimeTable';
 import useToken from '../../hooks/useToken';
 
 import { logout } from '../../actions/auth/actions';
@@ -20,9 +21,8 @@ function ProfilePage() {
 
     const { removeToken } = useToken();
 
-    const { user, animeLists, listsChanged } = useSelector(
-        (state) => state.user,
-    );
+    const { user, animeLists, animeListsInProgress, listsChanged } =
+        useSelector((state) => state.user);
 
     const { watching, completed, planning, paused, dropped } = animeLists;
 
@@ -88,59 +88,54 @@ function ProfilePage() {
                         <div className="profile-page__page-title">
                             Anime List
                         </div>
-                        <ItemsBlock
-                            name="watching"
+                        <AnimeTable
+                            animeInstances={watching}
+                            inProgress={animeListsInProgress}
                             title={
                                 <React.Fragment>
                                     Watching{' '}
                                     <span>{watching && watching.count}</span>
                                 </React.Fragment>
                             }
-                            items={watching}
-                            {...itemsBlockProps}
                         />
-                        <ItemsBlock
-                            name="completed"
+                        <AnimeTable
+                            animeInstances={completed}
+                            inProgress={animeListsInProgress}
                             title={
                                 <React.Fragment>
                                     Completed{' '}
                                     <span>{completed && completed.count}</span>
                                 </React.Fragment>
                             }
-                            items={completed}
-                            {...itemsBlockProps}
                         />
-                        <ItemsBlock
-                            name="planning"
+                        <AnimeTable
+                            animeInstances={planning}
+                            inProgress={animeListsInProgress}
                             title={
                                 <React.Fragment>
                                     Planning{' '}
                                     <span>{planning && planning.count}</span>
                                 </React.Fragment>
                             }
-                            items={planning}
-                            {...itemsBlockProps}
                         />
-                        <ItemsBlock
-                            name="paused"
+                        <AnimeTable
+                            animeInstances={paused}
+                            inProgress={animeListsInProgress}
                             title={
                                 <React.Fragment>
                                     Paused <span>{paused && paused.count}</span>
                                 </React.Fragment>
                             }
-                            items={paused}
-                            {...itemsBlockProps}
                         />
-                        <ItemsBlock
-                            name="dropped"
+                        <AnimeTable
+                            animeInstances={dropped}
+                            inProgress={animeListsInProgress}
                             title={
                                 <React.Fragment>
                                     Dropped{' '}
                                     <span>{dropped && dropped.count}</span>
                                 </React.Fragment>
                             }
-                            items={dropped}
-                            {...itemsBlockProps}
                         />
                     </BlockContainer>
                 </React.Fragment>

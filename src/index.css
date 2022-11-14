@@ -96,6 +96,10 @@ table {
   border-spacing: 0;
 }
 
+th {
+  text-align: left;
+}
+
 textarea {
   overflow: auto;
   vertical-align: top;
@@ -547,6 +551,53 @@ ul {
   background-color: #ffffff !important;
 }
 
+.table-instances {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0px 20px 40px rgba(92, 114, 138, 0.05);
+}
+
+.table-instances-loader {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  animation-name: loading-keyframes;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.table-head {
+  height: 60px;
+}
+
+.table-title {
+  font-size: 25px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+
+.table-instance-col {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 20px;
+  vertical-align: bottom;
+}
+
+.table-instance-col-inner {
+  display: flex;
+  white-space: nowrap;
+}
+.table-instance-col-inner__icon {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.table-instances {
+  width: 100%;
+}
+
 .change-anime-status-modal {
   width: 1000px;
 }
@@ -852,6 +903,41 @@ ul {
   font-size: 11px;
 }
 
+.anime-table .table-instance-col--anime-image {
+  width: 60px;
+  padding: 10px;
+}
+.anime-table .table-instance-col--anime-image .table-instance-col__cell {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.anime-table .table-instance-col--anime-image img {
+  width: 100%;
+  height: 100%;
+  object-position: 50% -8px;
+}
+.anime-table .table-instance-col--anime-title {
+  padding-left: 5px;
+}
+.anime-table .table-instance-col--anime-repeat {
+  width: 150px;
+  text-align: center;
+}
+.anime-table .table-instance-col--anime-score {
+  width: 100px;
+  text-align: center;
+}
+.anime-table .table-instance-col--anime-progress {
+  width: 150px;
+  text-align: center;
+}
+.anime-table .table-instance-col--anime-type {
+  width: 100px;
+  text-align: center;
+}
+
 .home-page .horizontal-container {
   margin-bottom: 30px;
 }
@@ -961,18 +1047,10 @@ ul {
   text-align: right;
   margin: 30px 0;
 }
-.profile-page .items-title {
-  margin-top: 50px;
-  cursor: text;
+.profile-page .anime-table {
+  margin-bottom: 50px;
 }
-.profile-page .items-title:hover .items-title__label {
-  color: #5c728a;
-}
-.profile-page .items-title__label {
-  font-size: 25px;
-  line-height: 28px;
-}
-.profile-page .items-title span {
+.profile-page .table-title span {
   font-size: 20px;
   margin-left: 5px;
   color: #748899;

@@ -126,10 +126,10 @@ export const animeCardFormat = PropTypes.shape({
         }),
     ),
     title: PropTypes.shape({
+        userPrefered: PropTypes.string,
+        romaji: PropTypes.string,
         english: PropTypes.string,
         native: PropTypes.string,
-        romaji: PropTypes.string,
-        userPrefered: PropTypes.string,
     }),
     chapters: PropTypes.number,
     mediaListEntry: PropTypes.shape({
