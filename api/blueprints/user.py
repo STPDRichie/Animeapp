@@ -2,8 +2,9 @@ from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
 from ..anilist_api import make_request
-from ..anilist_api.query_strings.user import USER_INFO, USER_ANIME_LIST, \
-    ADD_ANIME_TO_LIST, DELETE_ANIME_FROM_LISTS, CHANGE_ANIME_STATUS, ANIME_INFO
+from ..anilist_api.query_strings.user import USER_INFO, \
+    USER_ANIME_LIST, ADD_ANIME_TO_LIST, DELETE_ANIME_FROM_LISTS, \
+    CHANGE_ANIME_STATUS, ANIME_INFO
 
 
 user = Blueprint('user', __name__)

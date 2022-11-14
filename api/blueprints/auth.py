@@ -1,7 +1,8 @@
 import json
 from datetime import datetime, timedelta, timezone
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies
+from flask_jwt_extended import create_access_token, get_jwt, \
+    get_jwt_identity, unset_jwt_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from .. import db
@@ -54,7 +55,8 @@ def refresh_expiring_jwts(response):
                 response.data = json.dumps(data)
         return response
     except (RuntimeError, KeyError):
-        # Case where there is not a valid JWT. Just return the original response
+        # Case where there is not a valid JWT.
+        # Just return the original response
         return response
 
 
@@ -69,7 +71,11 @@ def signup():
     if user:
         return {'errors': ['User with this email already exists']}, 401
     
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+    new_user = User(
+        email=email,
+        name=name,
+        password=generate_password_hash(password, method='sha256')
+    )
 
     db.session.add(new_user)
     db.session.commit()

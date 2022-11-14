@@ -2,9 +2,11 @@ from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
 from ..anilist_api import make_request
-from ..anilist_api.variables_getters import get_current_season, get_next_season, \
-    get_current_year, get_next_year, get_anime_list_variables, get_additional_response
-from ..anilist_api.query_strings.anime_pages import ANIME_LIST_QUERY, HOME_PAGE_LISTS, ANIME_LIST
+from ..anilist_api.variables_getters import get_current_season, \
+    get_next_season, get_current_year, get_next_year, \
+    get_anime_list_variables, get_additional_response
+from ..anilist_api.query_strings.anime_pages import ANIME_LIST_QUERY, \
+    HOME_PAGE_LISTS, ANIME_LIST
 
 
 main = Blueprint('main', __name__)
@@ -37,7 +39,10 @@ def search_anime():
 def get_anime_list():
     list_name = request.json['listName']
     page_number = request.json['pageNumber']
-    response = make_request(ANIME_LIST, get_anime_list_variables(list_name, page_number))
+    response = make_request(
+        ANIME_LIST,
+        get_anime_list_variables(list_name, page_number)
+    )
     return {
         'data': response.json()['data'],
         'additionalResponse': get_additional_response(list_name)
