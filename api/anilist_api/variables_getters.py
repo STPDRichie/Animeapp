@@ -36,13 +36,17 @@ def get_next_year():
 
 
 def get_page_title_this_season():
-    return f'{get_current_season().lower().capitalize()} {get_current_year()} Anime'
+    return f'{get_current_season().lower().capitalize()} ' \
+           f'{get_current_year()} Anime'
 
 
 def get_page_title_next_season():
-    if (int(datetime.now().strftime('%m')) + 3) % 12 < int(datetime.now().strftime('%m')) % 12:
-        return f'Anime Next Season — Airing {get_next_season().lower().capitalize()} {get_next_year()}'
-    return f'Anime Next Season — Airing {get_next_season().lower().capitalize()} {get_current_year()}'
+    if (int(datetime.now().strftime('%m')) + 3) % 12 < \
+            int(datetime.now().strftime('%m')) % 12:
+        return f'Anime Next Season — Airing ' \
+               f'{get_next_season().lower().capitalize()} {get_next_year()}'
+    return f'Anime Next Season — Airing ' \
+           f'{get_next_season().lower().capitalize()} {get_current_year()}'
 
 
 variables_by_list_map = {

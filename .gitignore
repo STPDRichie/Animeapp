@@ -4,8 +4,6 @@
 /node_modules
 /.pnp
 .pnp.js
-venv/
-.env
 
 # testing
 /coverage
@@ -13,6 +11,9 @@ venv/
 # production
 /build
 /dist
+venv/
+.idea/
+.env
 
 # misc
 .DS_Store

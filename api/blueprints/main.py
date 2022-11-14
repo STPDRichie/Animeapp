@@ -1,8 +1,6 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
-from .. import db
-
 from ..anilist_api import make_request
 from ..anilist_api.variables_getters import get_current_season, get_next_season, \
     get_current_year, get_next_year, get_anime_list_variables, get_additional_response

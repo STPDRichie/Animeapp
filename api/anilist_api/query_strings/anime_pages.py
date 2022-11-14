@@ -6,17 +6,29 @@ query (
     $nextYear: Int
 ) {
     trending: Page(page: 1, perPage: 5) {
-        media(sort: TRENDING_DESC, type: ANIME, isAdult: false) {
+        media (sort: TRENDING_DESC, type: ANIME, isAdult: false) {
             ...media
         }
     }
     season: Page(page: 1, perPage: 5) {
-        media(season: $season, seasonYear: $seasonYear, sort: POPULARITY_DESC, type: ANIME, isAdult: false) {
+        media (
+            season: $season,
+            seasonYear: $seasonYear,
+            sort: POPULARITY_DESC,
+            type: ANIME,
+            isAdult: false
+        ) {
             ...media
         }
     }
     nextSeason: Page(page: 1, perPage: 5) {
-        media(season: $nextSeason, seasonYear: $nextYear, sort: POPULARITY_DESC, type: ANIME, isAdult: false) {
+        media (
+            season: $nextSeason,
+            seasonYear: $nextYear,
+            sort: POPULARITY_DESC,
+            type: ANIME,
+            isAdult: false
+        ) {
             ...media
         }
     }
@@ -294,7 +306,13 @@ query (
     $page: Int
 ) {
     list: Page(page: $page, perPage: 10) {
-        media(season: $season, seasonYear: $seasonYear, sort: $sort, type: ANIME, isAdult: false) {
+        media (
+            season: $season,
+            seasonYear: $seasonYear,
+            sort: $sort,
+            type: ANIME,
+            isAdult: false
+        ) {
             ...media
         }
     }
