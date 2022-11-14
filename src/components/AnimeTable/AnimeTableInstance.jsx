@@ -14,7 +14,6 @@ function AnimeTableInstance(props) {
     const { openModal } = useModal();
 
     const listEntry = animeInstance.mediaListEntry;
-    console.log(animeInstance);
 
     return (
         <React.Fragment>
@@ -46,7 +45,15 @@ function AnimeTableInstance(props) {
                 {listEntry && (listEntry.score === 0 ? '' : listEntry.score)}
             </TableCell>
             <TableCell type="anime-progress">
-                {`${listEntry && listEntry.progress}/${animeInstance.episodes}`}
+                {listEntry && (
+                    <React.Fragment>
+                        {animeInstance.episodes
+                            ? `${listEntry && listEntry.progress}/${
+                                  animeInstance.episodes
+                              }`
+                            : listEntry && listEntry.progress}
+                    </React.Fragment>
+                )}
             </TableCell>
             <TableCell type="anime-type">{animeInstance.format}</TableCell>
         </React.Fragment>

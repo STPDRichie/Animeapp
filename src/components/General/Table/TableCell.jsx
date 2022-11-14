@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { childrenProps } from '../../../utils/constants';
-
 function TableCell(props) {
     const { type, children, onClick } = props;
     const modifier = type ? ` table-instance-col--${type}` : '';
@@ -14,7 +12,7 @@ function TableCell(props) {
 }
 
 TableCell.propTypes = {
-    children: childrenProps,
+    children: PropTypes.any,
     type: PropTypes.string,
     onClick: PropTypes.func,
 };
