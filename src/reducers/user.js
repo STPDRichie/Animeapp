@@ -11,14 +11,14 @@ export default () => {
     const defaultState = {
         user: null,
         userInProgress: true,
-        userLists: {
+        animeLists: {
             watching: null,
             completed: null,
             paused: null,
             dropped: null,
             planning: null,
         },
-        userListsInProgress: true,
+        animeListsInProgress: true,
     };
 
     return (state = defaultState, action) => {
@@ -60,20 +60,20 @@ export default () => {
                 return {
                     ...state,
                     ...data,
-                    userListsInProgress: false,
+                    animeListsInProgress: false,
                 };
             }
             case USER_ANIME_LISTS_IN_PROGRESS: {
                 return {
                     ...state,
-                    userLists: defaultState.userLists,
-                    userListsInProgress: true,
+                    animeLists: defaultState.animeLists,
+                    animeListsInProgress: true,
                 };
             }
             case USER_ANIME_LISTS_WITH_ERRORS: {
                 return {
                     ...state,
-                    userListsInProgress: false,
+                    animeListsInProgress: false,
                 };
             }
             default:
