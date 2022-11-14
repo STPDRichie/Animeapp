@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
@@ -25,13 +25,10 @@ export function InputNumber(props) {
     const onValueChange = (e) => {
         if (Number.isInteger(parseInt(e.target.value))) {
             if (parseInt(e.target.value) > max) {
-                setCurrentValue(max);
                 onChange(max);
             } else if (parseInt(e.target.value) < min) {
-                setCurrentValue(min);
                 onChange(min);
             } else {
-                setCurrentValue(parseInt(e.target.value));
                 onChange(parseInt(e.target.value));
             }
         }
@@ -40,21 +37,19 @@ export function InputNumber(props) {
     const addValue = () => {
         let newValue = currentValue + 1;
         newValue = newValue <= max ? newValue : currentValue;
-        setCurrentValue(newValue);
         onChange(newValue);
     };
 
     const subtractValue = () => {
         let newValue = currentValue - 1;
         newValue = newValue >= Number(min) ? newValue : currentValue;
-        setCurrentValue(newValue);
         onChange(newValue);
     };
 
     const onKeyDown = (e) => {
         if (e.keyCode === 8) {
             const newValue = Math.trunc(currentValue / 10);
-            setCurrentValue(newValue);
+            onChange(newValue);
         }
         if (e.keyCode === 38) {
             addValue();
@@ -65,6 +60,12 @@ export function InputNumber(props) {
     };
 
     const classNames = ['input-number', ...classes];
+
+    useEffect(() => {
+        if (value) {
+            setCurrentValue(value);
+        }
+    }, [value]);
 
     return (
         <div className={makeClasses(classNames)}>

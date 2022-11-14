@@ -92,18 +92,18 @@ function ChangeAnimeStatusModal(props) {
     };
 
     useEffect(() => {
-        setFormData({
-            status:
-                animeUserInfo &&
-                statuses.find((s) => s.value === animeUserInfo.status),
-            score:
-                animeUserInfo &&
-                scores.find((s) => s.value === animeUserInfo.score.toString()),
-            progress: animeUserInfo && animeUserInfo.progress,
-            startedAt,
-            completedAt,
-            repeat: animeUserInfo && animeUserInfo.repeat,
-        });
+        if (animeUserInfo) {
+            setFormData({
+                status: statuses.find((s) => s.value === animeUserInfo.status),
+                score: scores.find(
+                    (s) => s.value === animeUserInfo.score.toString(),
+                ),
+                progress: animeUserInfo.progress,
+                startedAt,
+                completedAt,
+                repeat: animeUserInfo.repeat,
+            });
+        }
     }, [animeUserInfo]);
 
     useEffect(() => {
