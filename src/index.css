@@ -657,8 +657,9 @@ ul {
   object-fit: cover;
 }
 .change-anime-status-modal .change-anime-status__title {
-  margin: 10px 20px;
-  line-height: 32px;
+  margin: 10px 20px 18px;
+  line-height: 24px;
+  max-width: 550px;
 }
 .change-anime-status-modal .change-anime-status__header-buttons {
   position: relative;
@@ -989,6 +990,12 @@ ul {
 }
 .anime-table .table-instance-col--anime-title {
   padding-left: 5px;
+}
+.anime-table .table-instance-col--anime-title .table-instance-col__cell {
+  max-width: 650px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .anime-table .table-instance-col--anime-repeat {
   width: 150px;

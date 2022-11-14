@@ -46,8 +46,9 @@
             }
         }
         &__title {
-            margin: 10px 20px;
-            line-height: 32px;
+            margin: 10px 20px 18px;
+            line-height: 24px;
+            max-width: 550px;
         }
         &__header-buttons {
             position: relative;
