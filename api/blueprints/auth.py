@@ -14,7 +14,7 @@ from ..anilist_api import OAUTH_URL
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login/', methods=['POST'])
+@auth.route('/auth/login/', methods=['POST'])
 def login():
     email = request.json.get('email', None)
     password = request.json.get('password', None)
@@ -30,7 +30,7 @@ def login():
     return {'url': OAUTH_URL}
 
 
-@auth.route('/login-callback/', methods=['POST'])
+@auth.route('/auth/login-callback/', methods=['POST'])
 def login_callback():
     access_token = request.json.get('access_token')
     expires_in = request.json.get('expires_in')
@@ -60,7 +60,7 @@ def refresh_expiring_jwts(response):
         return response
 
 
-@auth.route('/signup/', methods=['POST'])
+@auth.route('/auth/signup/', methods=['POST'])
 def signup():
     name = request.json.get('name', None)
     email = request.json.get('email', None)
@@ -83,7 +83,7 @@ def signup():
     return {'msg': 'Register successfully'}
 
 
-@auth.route('/logout/', methods=['POST'])
+@auth.route('/auth/logout/', methods=['POST'])
 def logout():
     response = jsonify({'msg': 'Logout successfully'})
     unset_jwt_cookies(response)

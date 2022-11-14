@@ -29,6 +29,6 @@ class AuthResource extends BaseResource {
 }
 
 AuthResource.resource = null;
-AuthResource.service = '.';
+AuthResource.service = 'auth';
 
 module.exports = AuthResource;
