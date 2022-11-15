@@ -12,11 +12,11 @@ import {
     FETCH_ANIME_LIST_WITH_ERRORS,
 } from './actionTypes';
 
-import AnimeResource from '../../gateway/resources/animePages';
+import AnimePagesResource from '../../gateway/resources/animePages';
 
 export const fetchHomePageAnime = (callback) => async (dispatch) => {
     dispatch({ type: FETCH_HOME_IN_PROGRESS });
-    const resource = new AnimeResource();
+    const resource = new AnimePagesResource();
     const response = await resource.fetchHomePageAnime();
     const data = await response.json();
     if (response.ok && !data.errors) {
@@ -44,7 +44,7 @@ export const initSearchAnime = (callback) => async (dispatch) => {
 
 export const searchAnime = (query, callback) => async (dispatch) => {
     dispatch({ type: SEARCH_IN_PROGRESS });
-    const resource = new AnimeResource();
+    const resource = new AnimePagesResource();
     const response = await resource.searchAnime(query);
     const data = await response.json();
     if (response.ok && !data.errors) {
@@ -67,7 +67,7 @@ export const searchAnime = (query, callback) => async (dispatch) => {
 export const fetchAnimeList =
     (listName, pageNumber, callback) => async (dispatch) => {
         dispatch({ type: FETCH_ANIME_LIST_IN_PROGRESS });
-        const resource = new AnimeResource();
+        const resource = new AnimePagesResource();
         const response = await resource.fetchAnimeList(listName, pageNumber);
         const data = await response.json();
         if (response.ok && !data.errors) {

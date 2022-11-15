@@ -19,6 +19,7 @@ import NextSeasonPage from './pages/animePages/nextSeason';
 import PopularPage from './pages/animePages/popular';
 import TopPage from './pages/animePages/top';
 import ProfilePage from './pages/auth/profile';
+import AnimePage from './pages/media/anime';
 
 function App() {
     const { token } = useToken();
@@ -48,6 +49,11 @@ function App() {
                             element={<PopularPage />}
                         />
                         <Route exact path="/top" element={<TopPage />} />
+                        <Route
+                            exact
+                            path="/anime/:mediaId"
+                            element={<AnimePage />}
+                        />
                         <Route
                             exact
                             path="/login"

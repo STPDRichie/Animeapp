@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
-const attachedReducers = ['animePages', 'anime', 'user'];
+const attachedReducers = ['animePages', 'anime', 'user', 'media'];
 
 function RootReducer(history, initialState) {
     const reducersMap = {
