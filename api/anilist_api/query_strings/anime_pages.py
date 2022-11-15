@@ -5,12 +5,16 @@ query (
     $nextSeason: MediaSeason,
     $nextYear: Int
 ) {
-    trending: Page(page: 1, perPage: 5) {
-        media (sort: TRENDING_DESC, type: ANIME, isAdult: false) {
+    trending: Page (page: 1, perPage: 5) {
+        media (
+            sort: TRENDING_DESC,
+            type: ANIME,
+            isAdult: false
+        ) {
             ...media
         }
     }
-    season: Page(page: 1, perPage: 5) {
+    season: Page (page: 1, perPage: 5) {
         media (
             season: $season,
             seasonYear: $seasonYear,
@@ -21,7 +25,7 @@ query (
             ...media
         }
     }
-    nextSeason: Page(page: 1, perPage: 5) {
+    nextSeason: Page (page: 1, perPage: 5) {
         media (
             season: $nextSeason,
             seasonYear: $nextYear,
@@ -33,12 +37,20 @@ query (
         }
     }
     popular: Page(page: 1, perPage: 5) {
-        media(sort: POPULARITY_DESC, type: ANIME, isAdult: false) {
+        media (
+            sort: POPULARITY_DESC,
+            type: ANIME,
+            isAdult: false
+        ) {
             ...media
         }
     }
-    top: Page(page: 1, perPage: 10) {
-        media(sort: SCORE_DESC, type: ANIME, isAdult: false) {
+    top: Page (page: 1, perPage: 10) {
+        media (
+            sort: SCORE_DESC,
+            type: ANIME,
+            isAdult: false
+        ) {
             ...media
         }
     }
@@ -111,7 +123,7 @@ fragment media on Media {
         }
         repeat
     }
-    studios(isMain: true) {
+    studios (isMain: true) {
         edges {
             isMain
             node {
@@ -305,7 +317,7 @@ query (
     $sort: [MediaSort],
     $page: Int
 ) {
-    list: Page(page: $page, perPage: 10) {
+    list: Page (page: $page, perPage: 10) {
         media (
             season: $season,
             seasonYear: $seasonYear,
@@ -385,7 +397,7 @@ fragment media on Media {
         }
         repeat
     }
-    studios(isMain: true) {
+    studios (isMain: true) {
         edges {
             isMain
             node {

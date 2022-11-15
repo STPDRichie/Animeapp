@@ -140,7 +140,7 @@ fragment mediaListEntry on MediaList {
             }
             repeat
         }
-        studios(isMain: true) {
+        studios (isMain: true) {
             edges {
                 isMain
                 node {
@@ -235,7 +235,7 @@ mutation (
 
 ANIME_INFO = '''
 query ($mediaId: Int) {
-    Media(id: $mediaId) {
+    Media (id: $mediaId) {
         id
         type
         status (version: 2)
