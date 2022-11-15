@@ -1,4 +1,4 @@
-ANIME_FULL_INFO = '''
+FULL_ANIME_INFO = '''
 query ($mediaId: Int) {
     Media (id: $mediaId) {
         id

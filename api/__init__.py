@@ -25,6 +25,9 @@ def create_app():
     from .blueprints.user import user as user_blueprint
     app.register_blueprint(user_blueprint)
 
+    from .blueprints.media import media as media_blueprint
+    app.register_blueprint(media_blueprint)
+
     from . import models
 
     with app.app_context():
